@@ -180,15 +180,17 @@ NOTE: After running the script, you will get xx_ligand.pdb, you need to manually
 
 ### 2.3 Fetch PDB ID validation
 
-<div style="text-align: justify"> This script is fast and convenient tool of extract ligand from the protein complex pdb. This script is usually used in conjunction with <a href="#jump5">Pymol</a> protein prepare script. You can download it from <a href="https://drive.google.com/file/d/1fyBODIrKMvWLFQbuy1XsYgsvHXO1VC7b/view?usp=sharing">here</a>.</div>
+<div style="text-align: justify"> This Python script allows users to batch download PDB validation reports by entering a list of PDB IDs. It takes input from the user, processes each PDB ID, and constructs the correct URL to fetch the corresponding validation report in PDF format from the RCSB PDB database. The reports are then saved in a designated directory on the user's local system. If a PDB ID is invalid or the report is unavailable, the script will notify the user. It simplifies the retrieval process for multiple validation reports in one go. You can download it from <a href="https://drive.google.com/file/d/1fyBODIrKMvWLFQbuy1XsYgsvHXO1VC7b/view?usp=sharing">here</a>.</div>
 
 The usage are as follow:
-```
-perl extr_ligand.pl xx.pdb 
-```
+1. Enter PDB ID:
+When running the script, the system will prompt you to enter a list of PDB IDs, separated by commas between multiple IDs (e.g. 6LU7, 1CBS, 2PTC).
 
-NOTE: After running the script, you will get xx_ligand.pdb, you need to manually remove non ligand heteroatoms. 
+3. Batch download:
+The script will traverse the input PDBD list and download the verification report corresponding to each D in sequence.
 
+5. Save location:
+The downloaded report will be saved in a location called validation_. In the folder of reports. If the folder does not exist, the script will be automatically created.
 
 ## 3. Pymol 
 
