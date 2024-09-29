@@ -20,7 +20,7 @@
 - [2. PDB operations](#2-PDB-operations)
   * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
   * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
-  * [2.3 Fetch_pdb_validation](#23-Fetch-pdb-validation)
+  * [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
 - [3. Pymol](#3-pymol)
 - [4. Free Energy](#4-free-energy)
 - [5. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
@@ -178,7 +178,7 @@ perl extr_ligand.pl xx.pdb
 
 NOTE: After running the script, you will get xx_ligand.pdb, you need to manually remove non ligand heteroatoms. 
 
-### 2.3 Fetch_pdb_validation
+### 2.3 Fetch PDB ID validation
 
 <div style="text-align: justify"> This script is fast and convenient tool of extract ligand from the protein complex pdb. This script is usually used in conjunction with <a href="#jump5">Pymol</a> protein prepare script. You can download it from <a href="https://drive.google.com/file/d/1OdRyEdUG_ekzSNBIobFmlqlDb1b8Wsoe/view?usp=sharing">here</a>.</div>
 
