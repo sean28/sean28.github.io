@@ -180,7 +180,7 @@ NOTE: After running the script, you will get xx_ligand.pdb, you need to manually
 
 ### 2.3 Fetch PDB ID validation
 
-<div style="text-align: justify"> This script is fast and convenient tool of extract ligand from the protein complex pdb. This script is usually used in conjunction with <a href="#jump5">Pymol</a> protein prepare script. You can download it from <a href="https://drive.google.com/file/d/1OdRyEdUG_ekzSNBIobFmlqlDb1b8Wsoe/view?usp=sharing">here</a>.</div>
+<div style="text-align: justify"> This script is fast and convenient tool of extract ligand from the protein complex pdb. This script is usually used in conjunction with <a href="#jump5">Pymol</a> protein prepare script. You can download it from <a href="https://drive.google.com/file/d/1fyBODIrKMvWLFQbuy1XsYgsvHXO1VC7b/view?usp=sharing">here</a>.</div>
 
 The usage are as follow:
 ```
