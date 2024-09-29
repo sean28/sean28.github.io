@@ -596,9 +596,6 @@ If you use the data of this website, please indicate the source of the reprinted
 ## Support or Contact
 
 <div style="text-align: center"> Team of drug design and discovery </div>
-<div style="text-align: center"> Dr. Neher’s Biophysics Laboratory for Innovative Drug Discovery </div>
-<div style="text-align: center"> Macau University of Science and Technology </div>
-<div style="text-align: center"> Avenida WaiLong, Taipa, Macau(SAR) </div>
 <div style="text-align: center"> <a href="mailto:xjyao@must.edu.mo">Professor Dr. Yao Xiao-jun </a> </div>
 <div style="text-align: center"> <a href="mailto:sean28299@gmail.com">Dr. Sean</a> </div>
 <div style="text-align: justify"> <br> </div>
