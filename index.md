@@ -250,7 +250,7 @@ python cal_ic50.py
 Please enter the temperature (K)：
 Please enter the Gbinding (kcal/mol)：
 ```
-## 3. Python
+## 5. Python
 ---
 <div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
 <div style="text-align: justify"> <br> </div>
@@ -258,7 +258,7 @@ Please enter the Gbinding (kcal/mol)：
 
 NOTE: All scripts of this website are python3 versions.
 
-### 3.1 Python basics 
+### 5.1 Python basics 
 <div style="text-align: justify"> There is an online website running jupyter notebook, click  <a href="https://colab.research.google.com/notebooks/">here</a>. Input the my library linked (https://github.com/sean28/home) in github block, and you can practice the basics of Python online from here. You can also learn the basic knowledge of Python directly <a href="https://github.com/sean28/home/blob/main/python-basic.ipynb">here</a>.</div>
 
 #### Python reads user input files 
@@ -310,7 +310,7 @@ python3 xx.py -f xx.file
 ```
 <div style="text-align: justify"> After mastering the writing method of setting as file input, you can specify Python script to read the specified file later, which is convenient for reading different files, especially suitable for batch processing of a large number of files. </div>
 
-### 3.2 Python processing office 
+### 5.2 Python processing office 
 
 #### CSV
 
@@ -353,7 +353,7 @@ python3 merge-ppt.py
 
 
 
-### 3.3 Python processing image 
+### 5.3 Python processing image 
 <div style="text-align: justify"> This part of the script is cumbersome and does not include the function of user specified file input. It is temporarily presented in code for reference only. </div>
 
 #### Vertical merge png
@@ -393,10 +393,10 @@ img3.save("./result_merge_hor.png")
 ```
 
 
-## 4. R
+## 6. R
 ---
 
-### 4.1 Parallel kmeans scripts 
+### 6.1 Parallel kmeans scripts 
 <div style="text-align: justify">R is a powerful scripting language for mapping and data visualization, which can execute a large number of mathematical models and algorithms. However, due to its low system execution efficiency, it will be difficult to deal with the problem of large amount of data. Here is a case of parallel kmeans clustering for everyone to learn. </div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">For the parallel running script of kmean mean value, the best of the 10 running results is better selected. After testing, it does not affect the operation results, greatly speeds up the operation speed and saves the script operation time. It is recommended to use when calculating large data sets.  </div>
@@ -434,7 +434,7 @@ summary(per_atom_rmsd)
 </code></pre>
 </details>
 
-### 4.2 ggplot2 
+### 6.2 ggplot2 
 <a href="url"><img src="https://ggplot2.tidyverse.org/logo.png" align="center" height="56" ></a>
 <div style="text-align: justify"> Ggplot is an R software package used to draw statistical graphs. It is an important tool to visualize data analysis, supported by a set of syntax behind it. The core idea of ggplot2 is to separate drawing and data, and separate data related drawing from data independent drawing. </div>
 <div style="text-align: justify"> <br> </div>
@@ -453,11 +453,11 @@ library(ggplot2)
 <div style="text-align: justify"> <br> </div>
 to be continue...
 
-### 4.3 Binder 
+### 6.3 Binder 
 <div style="text-align: justify"> There is a online tool can run the R, binder. The <a href="https://mybinder.org/">binder</a> can directly configure the environment of GitHub as a docker image, and then start it in the cloud. With Binder,we can open those notebooks in an executable environment. I have deployed R in my public repository, and through this <a href="https://mybinder.org/v2/gh/sean28/home/HEAD">link</a>, you can learn and practice the basic knowledge of R language or python online.</div>
 <div style="text-align: justify"> <br> </div>
 
-### 4.4 TRAPP Multiple Comparison Script 
+### 6.4 TRAPP Multiple Comparison Script 
 <div style="text-align: justify"> TRAnsient Pockets in Proteins (TRAPP) is a tool that allows the exploration of different protein conformations, the analysis of binding pocket flexibility and dynamics, and the extraction of spatial and physicochemical information on the binding pocket confor-mations (J Chem Inf Model. 2020 Mar 23;60(3):1685-1699). Through this <a href="https://trapp.h-its.org/trapp">link</a>, you can learn and use the TRAPP webserver online.</div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify"> The analysis chart derived from TRAPP only shows the scoring of one system, and cannot compare multiple groups of systems. Now we have developed an extended tool to realize the comparative analysis of multiple systems. This program need to extract data from the TRAPP analysis results, and then use this script for analysis. Now we only provide two groups of system comparative analysis tools. </div>
