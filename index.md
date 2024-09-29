@@ -17,7 +17,7 @@
   * [1.2 AMBER](#12-amber)
     + [Online amber tool](#online-amber-tool)
     + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
-- [2. Perl](#2-perl)
+- [2. PDB operations](#2-PDB-operations)
   * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
   * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
 - [3. Python](#3-python)
@@ -148,11 +148,11 @@ print ("alphaD = ", alphaD);
 ```
 
 
-## 2. Perl
+## 2. PDB operations
 ---
-<div style="text-align: justify"> Perl is the same as scripting language and doesn't need a compiler and linker to run code. All you have to do is write a program and tell Perl to run it. This means that Perl is ideal for quick solutions to small programming problems and for creating prototypes for large events to test potential solutions. </div>
+<div style="text-align: justify"> PDB (Protein Data Bank) files are important data formats for storing three-dimensional structural information of biomolecules, such as proteins, nucleic acids, etc. The widespread application of PDB files makes it an important tool in the fields of bioinformatics, structural biology, and drug design. </div>
 <div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> Perl has the powerful and flexible characteristics of dynamic language, and also draws on syntax rules from c/c++, basic, Pascal and other languages, thus providing many redundant grammars. In the field of molecular simulation, Perl is often used as a processing script because of its flexibility to text information. The following two examples are provided as a reference for you to learn. </div>
+<div style="text-align: justify"> In this part, there are many independently written scripts included. These scripts are designed to simplify and automate the processing and analysis of PDB files, enabling users to efficiently perform complex operations. </div>
 
 ### 2.1 Extract selected residues form protein pdb
 
