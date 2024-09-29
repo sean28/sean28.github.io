@@ -22,7 +22,7 @@
   * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
 - [3. Pymol](#3-pymol)
 - [4. Free Energy](#4-free-energy)
-- [5. Python](#5-python)
+- [5. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
   * [5.1 Python basics](#51-python-basics)
     + [Python reads user input files](#python-reads-user-input-files)
   * [5.2 Python processing office](#52-python-processing-office)
@@ -32,7 +32,7 @@
   * [5.3 Python processing image](#53-python-processing-image)
     + [Vertical merge png](#vertical-merge-png)
     + [Horizontal merge png](#horizontal-merge-png)
-- [6. R](#6-r)
+- [6. Fundamentals of R Programming](#6-Fundamentals-of-R-Programming)
   * [6.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
   * [6.2 ggplot2](#62-ggplot2)
   * [6.3 Binder](#63-binder)
@@ -250,7 +250,7 @@ python cal_ic50.py
 Please enter the temperature (K)：
 Please enter the Gbinding (kcal/mol)：
 ```
-## 5. Python
+## 5. Fundamentals of Python Programming
 ---
 <div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
 <div style="text-align: justify"> <br> </div>
@@ -393,7 +393,7 @@ img3.save("./result_merge_hor.png")
 ```
 
 
-## 6. R
+## 6. Fundamentals of R Programming
 ---
 
 ### 6.1 Parallel kmeans scripts 
