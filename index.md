@@ -33,7 +33,7 @@
   * [5.3 Python processing image](#53-python-processing-image)
     + [Vertical merge png](#vertical-merge-png)
     + [Horizontal merge png](#horizontal-merge-png)
-- [6. Fundamentals of R Programming](#6-Fundamentals-of-R-Programming)
+- [6. Fundamentals of R Programming](#6-fundamentals-of-r-programming)
   * [6.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
   * [6.2 ggplot2](#62-ggplot2)
   * [6.3 Binder](#63-binder)
