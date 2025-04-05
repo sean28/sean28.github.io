@@ -43,8 +43,8 @@
   * [7.2 Online calculator](#72-online-calculator)
   * [7.3 File format converter](#73-file-format-converter)
   * [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
-  * [7.5 color-random](#75-color-random)
-  * [7.6 Data Analysis and Bar Plot Tool](#74-data-analysis-and-bar-plot-tool)
+  * [7.5 ColorMap Lab](#75-colormap-lab)
+  * [7.6 Data Analysis and Bar Plot Tool](#76-data-analysis-and-bar-plot-tool)
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
 
@@ -590,6 +590,14 @@ python python smiles_to_2dsdf.py xx.xlsx
 <div style="text-align: justify">ChemDraw JS is a chemical structure drawing and editing tool designed to help you create high-quality chemical drawings. ChemDraw JS consists of a drawing toolbar and document window. The document window lets you draw and edit chemical structures using the various drawing tools available in the ChemDraw JS toolbar. This section introduces the ChemDraw JS user interface and ChemDraw JS toolbar.</div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
+
+### 7.5 ColorMap Lab
+<div style="text-align: justify"> When doing computational chemistry, the conversion of various units is a headache, especially when accurate values are really needed. The online calculator developed by jerkwin is very easy to use. His github link is here (https://github.com/Jerkwin/gmxtools). However, the webpage of the calculator crashed and could not be logged in. So, I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Online_calculator/">here</a>. Besides, I added a new unit conversion in this calculator, nM(nmol/L). If there is infringement, please contact to delete.</div>
+<div style="text-align: justify"> <br> </div>
+
+### 7.6 Data Analysis and Bar Plot Tool
+<div style="text-align: justify"> When doing computational chemistry, the conversion of various units is a headache, especially when accurate values are really needed. The online calculator developed by jerkwin is very easy to use. His github link is here (https://github.com/Jerkwin/gmxtools). However, the webpage of the calculator crashed and could not be logged in. So, I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Online_calculator/">here</a>. Besides, I added a new unit conversion in this calculator, nM(nmol/L). If there is infringement, please contact to delete.</div>
+<div style="text-align: justify"> <br> </div>
 
 ## Data Availability Statement
 
