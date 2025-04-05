@@ -37,28 +37,28 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [3.2 ColorMap Lab](#32-colormap-lab)
   * [3.3 Data Analysis and Bar Plot Tool](#33-data-analysis-and-bar-plot-tool)
 
-- [5. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
-  * [5.1 Python basics](#51-python-basics)
+- [4. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
+  * [4.1 Python basics](#51-python-basics)
     + [Python reads user input files](#python-reads-user-input-files)
-  * [5.2 Python processing office](#52-python-processing-office)
+  * [4.2 Python processing office](#52-python-processing-office)
     + [CSV](#csv)
     + [EXCEl](#excel)
     + [PPT](#ppt)
-  * [5.3 Python processing image](#53-python-processing-image)
+  * [4.3 Python processing image](#53-python-processing-image)
     + [Vertical merge png](#vertical-merge-png)
     + [Horizontal merge png](#horizontal-merge-png)
 
-- [6. Fundamentals of R Programming](#6-fundamentals-of-r-programming)
-  * [6.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
-  * [6.2 ggplot2](#62-ggplot2)
-  * [6.3 Binder](#63-binder)
-  * [6.4 TRAPP Multiple Comparison Script](#64-trapp-multiple-comparison-script)
+- [5. Fundamentals of R Programming](#6-fundamentals-of-r-programming)
+  * [5.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
+  * [5.2 ggplot2](#62-ggplot2)
+  * [5.3 Binder](#63-binder)
+  * [5.4 TRAPP Multiple Comparison Script](#64-trapp-multiple-comparison-script)
 
-- [7. Others](#7-others)
-  * [7.1 Automatically building scientific research environment](#71-automatically-building-scientific-research-environment)
-  * [7.2 Online calculator](#72-online-calculator)
-  * [7.3 File format converter](#73-file-format-converter)
-  * [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
+- [6. Others](#7-others)
+  * [6.1 Automatically building scientific research environment](#71-automatically-building-scientific-research-environment)
+  * [6.2 Online calculator](#72-online-calculator)
+  * [6.3 File format converter](#73-file-format-converter)
+  * [6.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
@@ -290,7 +290,7 @@ to be continue...
 <div style="text-align: justify"> Data Analysis and Bar Plot Tool is a lightweight, browser-based application designed for intuitive statistical calculation and customizable bar chart visualization. It is ideal for researchers, students, and data analysts who need a fast and flexible way to analyze numeric data and export publication-ready graphics. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Data-Analysis-and-Bar-Plot-Tool/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
-## 5. Fundamentals of Python Programming
+## 4. Fundamentals of Python Programming
 ---
 <div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
 <div style="text-align: justify"> <br> </div>
@@ -298,7 +298,7 @@ to be continue...
 
 NOTE: All scripts of this website are python3 versions.
 
-### 5.1 Python basics 
+### 4.1 Python basics 
 <div style="text-align: justify"> There is an online website running jupyter notebook, click  <a href="https://colab.research.google.com/notebooks/">here</a>. Input the my library linked (https://github.com/sean28/home) in github block, and you can practice the basics of Python online from here. You can also learn the basic knowledge of Python directly <a href="https://github.com/sean28/home/blob/main/python-basic.ipynb">here</a>.</div>
 
 #### Python reads user input files 
@@ -350,7 +350,7 @@ python3 xx.py -f xx.file
 ```
 <div style="text-align: justify"> After mastering the writing method of setting as file input, you can specify Python script to read the specified file later, which is convenient for reading different files, especially suitable for batch processing of a large number of files. </div>
 
-### 5.2 Python processing office 
+### 4.2 Python processing office 
 
 #### CSV
 
@@ -393,7 +393,7 @@ python3 merge-ppt.py
 
 
 
-### 5.3 Python processing image 
+### 4.3 Python processing image 
 <div style="text-align: justify"> This part of the script is cumbersome and does not include the function of user specified file input. It is temporarily presented in code for reference only. </div>
 
 #### Vertical merge png
@@ -433,10 +433,10 @@ img3.save("./result_merge_hor.png")
 ```
 
 
-## 6. Fundamentals of R Programming
+## 5. Fundamentals of R Programming
 ---
 
-### 6.1 Parallel kmeans scripts 
+### 5.1 Parallel kmeans scripts 
 <div style="text-align: justify">R is a powerful scripting language for mapping and data visualization, which can execute a large number of mathematical models and algorithms. However, due to its low system execution efficiency, it will be difficult to deal with the problem of large amount of data. Here is a case of parallel kmeans clustering for everyone to learn. </div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">For the parallel running script of kmean mean value, the best of the 10 running results is better selected. After testing, it does not affect the operation results, greatly speeds up the operation speed and saves the script operation time. It is recommended to use when calculating large data sets.  </div>
@@ -474,7 +474,7 @@ summary(per_atom_rmsd)
 </code></pre>
 </details>
 
-### 6.2 ggplot2 
+### 5.2 ggplot2 
 <a href="url"><img src="https://ggplot2.tidyverse.org/logo.png" align="center" height="56" ></a>
 <div style="text-align: justify"> Ggplot is an R software package used to draw statistical graphs. It is an important tool to visualize data analysis, supported by a set of syntax behind it. The core idea of ggplot2 is to separate drawing and data, and separate data related drawing from data independent drawing. </div>
 <div style="text-align: justify"> <br> </div>
@@ -493,11 +493,11 @@ library(ggplot2)
 <div style="text-align: justify"> <br> </div>
 to be continue...
 
-### 6.3 Binder 
+### 5.3 Binder 
 <div style="text-align: justify"> There is a online tool can run the R, binder. The <a href="https://mybinder.org/">binder</a> can directly configure the environment of GitHub as a docker image, and then start it in the cloud. With Binder,we can open those notebooks in an executable environment. I have deployed R in my public repository, and through this <a href="https://mybinder.org/v2/gh/sean28/home/HEAD">link</a>, you can learn and practice the basic knowledge of R language or python online.</div>
 <div style="text-align: justify"> <br> </div>
 
-### 6.4 TRAPP Multiple Comparison Script 
+### 5.4 TRAPP Multiple Comparison Script 
 <div style="text-align: justify"> TRAnsient Pockets in Proteins (TRAPP) is a tool that allows the exploration of different protein conformations, the analysis of binding pocket flexibility and dynamics, and the extraction of spatial and physicochemical information on the binding pocket confor-mations (J Chem Inf Model. 2020 Mar 23;60(3):1685-1699). Through this <a href="https://trapp.h-its.org/trapp">link</a>, you can learn and use the TRAPP webserver online.</div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify"> The analysis chart derived from TRAPP only shows the scoring of one system, and cannot compare multiple groups of systems. Now we have developed an extended tool to realize the comparative analysis of multiple systems. This program need to extract data from the TRAPP analysis results, and then use this script for analysis. Now we only provide two groups of system comparative analysis tools. </div>
@@ -507,9 +507,9 @@ to be continue...
 
 
 
-## 7. Others
+## 6. Others
 ---
-### 7.1 Automatically building scientific research environment
+### 6.1 Automatically building scientific research environment
 
 <div style="text-align: justify"> For many novices who are just beginning in bioinformatics, it is a headache to explore the installation environment of different software. CONDA can create different virtual environments and install them into different virtual environments according to different software, which is not easy to conflicts due to the dependencies of different programs. It only needs to call different virtual CONDA environments to call different software. This method can use in linux and mac os.</div>
 <div style="text-align: justify"> <br> </div>
@@ -572,11 +572,11 @@ conda remove --name en_name --all
 <div style="text-align: justify"> In the last, it is worth noting that if you want to use multiple software in the same virtual environment, and the software will call each other, you need to deploy multiple software in the same environment. For example, when using Jupiter notebook, Python and R, other situations will not be listed one by one.</div>
 <div style="text-align: justify"> <br> </div>
 
-### 7.2 Online calculator
+### 6.2 Online calculator
 <div style="text-align: justify"> When doing computational chemistry, the conversion of various units is a headache, especially when accurate values are really needed. The online calculator developed by jerkwin is very easy to use. His github link is here (https://github.com/Jerkwin/gmxtools). However, the webpage of the calculator crashed and could not be logged in. So, I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Online_calculator/">here</a>. Besides, I added a new unit conversion in this calculator, nM(nmol/L). If there is infringement, please contact to delete.</div>
 <div style="text-align: justify"> <br> </div>
 
-### 7.3 File format converter
+### 6.3 File format converter
 <div style="text-align: justify">The conversion between various chemical formats is a headache question. Different chemical formats have different uses.For example, In the field of molecular dynamics simulation, the format is used as follows:</div>
 
 
@@ -609,7 +609,7 @@ The scripts usage is as follows:
 python python smiles_to_2dsdf.py xx.xlsx
 ```
 
-### 7.4 Online chemical structure drawing and editing tool
+### 6.4 Online chemical structure drawing and editing tool
 <div style="text-align: justify">ChemDraw JS is a chemical structure drawing and editing tool designed to help you create high-quality chemical drawings. ChemDraw JS consists of a drawing toolbar and document window. The document window lets you draw and edit chemical structures using the various drawing tools available in the ChemDraw JS toolbar. This section introduces the ChemDraw JS user interface and ChemDraw JS toolbar.</div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
