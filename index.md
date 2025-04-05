@@ -1,11 +1,22 @@
-# Welcome to team pages of Sean drug design and discovery 
+# 🧬 Sean Drug Design and Discovery
 
-## Introduction
+> **Welcome to the official site of Dr. Sean's group.**  
+> We focus on *computer-aided drug design (CADD)*, *molecular simulation*, *computational chemistry*, and *bioinformatics*. This site serves as a collection of learning notes and self-developed tools.
+
+<p align="center">
+  <img src="/cadd.png" alt="CADD banner" width="60%">
+</p>
+
 ---
 
-![This is an image](/cadd.png)
+## 📌 Introduction
 
-<div style="text-align: justify"> The content of this website mainly involves computer-aided drug design, molecular simulation, computational chemistry, computational biology and bioinformatics. This site is currently used as a learning record, and the source of reprinted articles is indicated. If there is infringement, please contact to delete. </div>
+This repository is maintained by **Dr. Sean**, aiming to provide practical scripts, toolkits, and guides for molecular modeling and data analysis. Most content is developed in real research projects and validated by peer-reviewed publications.
+
+If any content infringes, please contact for deletion.  
+Contact: [sean28299@gmail.com](mailto:sean28299@gmail.com)
+
+---
 
 ## Table of contents
 ---
