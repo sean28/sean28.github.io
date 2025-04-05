@@ -13,9 +13,6 @@
 
 This repository is maintained by **Dr. Sean**, aiming to provide practical scripts, toolkits, and guides for molecular modeling and data analysis. Most content is developed in real research projects and validated by peer-reviewed publications.
 
-If any content infringes, please contact for deletion.  
-Contact: [sean28299@gmail.com](mailto:sean28299@gmail.com)
-
 ---
 
 ## Table of contents
