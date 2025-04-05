@@ -15,7 +15,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
 
 ---
 
-## Table of contents
+## 📚 Table of contents
 ---
 
 - [1. Molecular dynamics simulation](#1-molecular-dynamics-simulation)
