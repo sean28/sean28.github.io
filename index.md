@@ -43,6 +43,8 @@
   * [7.2 Online calculator](#72-online-calculator)
   * [7.3 File format converter](#73-file-format-converter)
   * [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
+  * [7.5 color-random](#75-color-random)
+  * [7.6 Data Analysis and Bar Plot Tool](#74-data-analysis-and-bar-plot-tool)
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
 
