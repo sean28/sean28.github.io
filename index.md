@@ -592,7 +592,7 @@ python python smiles_to_2dsdf.py xx.xlsx
 <div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
 
 ### 7.5 ColorMap Lab
-<div style="text-align: justify"> When doing computational chemistry, the conversion of various units is a headache, especially when accurate values are really needed. The online calculator developed by jerkwin is very easy to use. His github link is here (https://github.com/Jerkwin/gmxtools). However, the webpage of the calculator crashed and could not be logged in. So, I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Online_calculator/">here</a>. Besides, I added a new unit conversion in this calculator, nM(nmol/L). If there is infringement, please contact to delete.</div>
+<div style="text-align: justify"> When doing computational chemistry, the conversion of various units is a headache, especially when accurate values are really needed. The online calculator developed by jerkwin is very easy to use. His github link is here (https://github.com/Jerkwin/gmxtools). However, the webpage of the calculator crashed and could not be logged in. So, I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/ColorMap-Lab/">here</a>. Besides, I added a new unit conversion in this calculator, nM(nmol/L). If there is infringement, please contact to delete.</div>
 <div style="text-align: justify"> <br> </div>
 
 ### 7.6 Data Analysis and Bar Plot Tool
