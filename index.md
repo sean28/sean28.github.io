@@ -25,6 +25,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [1.2 AMBER](#12-amber)
     + [Online amber tool](#online-amber-tool)
     + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
+  * [1.3 Free Energy](#13-free-energy)
 
 - [2. PDB operations](#2-PDB-operations)
   * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
@@ -35,8 +36,6 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [3.1 Pymol](#31-pymol)
   * [3.2 ColorMap Lab](#32-colormap-lab)
   * [3.3 Data Analysis and Bar Plot Tool](#33-data-analysis-and-bar-plot-tool)
-
-- [4. Free Energy](#4-free-energy)
 
 - [5. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
   * [5.1 Python basics](#51-python-basics)
@@ -166,6 +165,38 @@ print ("alphaD = ", alphaD);
 
 ```
 
+### 1.3 Free Energy 
+---
+<div style="text-align: justify"> In chemistry, the lower the free energy is, the greater the affinity between the receptor and the ligand is, and the more likely the molecular docking reaction is to occur. That is, the lower the binding free energy, the easier the key and lock will be stuck together, and the more effective the drug will be. It can destroy the normal function of protein more effectively. The prediction of binding free energy that is meaningful for the optimization of lead compounds needs to be within 1kcal/mol (~0.04% of the total energy).</div>
+<div style="text-align: justify"> <br> </div>
+<div style="text-align: justify"> Generally speaking, the binding affinity of drugs is between -8.28kcal/mol and -12.43kcal/mol. For every 1 kcal/mol difference in binding free energy, the activity difference is about 6 times. A 10 fold change in affinity is equivalent to a change in the binding free energy of 1.4kcal/mol.</div>
+<div style="text-align: justify"> <br> </div>
+Molar concentration unit table:
+
+<p align="left">
+ <img src="/Molar-unit-table.png" width="500" >
+</p>
+
+
+<div style="text-align: justify">In addition, there are calculation tools of free energy is  <a href="https://drive.google.com/file/d/1x8zNoy30bsR6UmWtqnQAziPVs-8cLuHL/view?usp=sharing">here</a>. For conversion between Binding free energy ΔG and affinity (IC50/kd/ki). </div>
+
+The formula is: ΔGbinding = RT·ln Kdissociated = RT·lnKd ≈ RT·lnIC50 = −RT·pIC50
+
+Usage:
+
+Ic50/ki/kd to ΔGbinding:
+```
+python cal_gbinding.py
+Please enter the temperature (K)：
+Please enter the IC50 (μM)：
+```
+
+ΔGbinding to Ic50/ki/kd:
+```
+python cal_ic50.py
+Please enter the temperature (K)：
+Please enter the Gbinding (kcal/mol)：
+```
 
 ## 2. PDB operations
 ---
@@ -259,38 +290,6 @@ to be continue...
 <div style="text-align: justify"> Data Analysis and Bar Plot Tool is a lightweight, browser-based application designed for intuitive statistical calculation and customizable bar chart visualization. It is ideal for researchers, students, and data analysts who need a fast and flexible way to analyze numeric data and export publication-ready graphics. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Data-Analysis-and-Bar-Plot-Tool/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
-## 4. Free Energy 
----
-<div style="text-align: justify"> In chemistry, the lower the free energy is, the greater the affinity between the receptor and the ligand is, and the more likely the molecular docking reaction is to occur. That is, the lower the binding free energy, the easier the key and lock will be stuck together, and the more effective the drug will be. It can destroy the normal function of protein more effectively. The prediction of binding free energy that is meaningful for the optimization of lead compounds needs to be within 1kcal/mol (~0.04% of the total energy).</div>
-<div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> Generally speaking, the binding affinity of drugs is between -8.28kcal/mol and -12.43kcal/mol. For every 1 kcal/mol difference in binding free energy, the activity difference is about 6 times. A 10 fold change in affinity is equivalent to a change in the binding free energy of 1.4kcal/mol.</div>
-<div style="text-align: justify"> <br> </div>
-Molar concentration unit table:
-
-<p align="left">
- <img src="/Molar-unit-table.png" width="500" >
-</p>
-
-
-<div style="text-align: justify">In addition, there are calculation tools of free energy is  <a href="https://drive.google.com/file/d/1x8zNoy30bsR6UmWtqnQAziPVs-8cLuHL/view?usp=sharing">here</a>. For conversion between Binding free energy ΔG and affinity (IC50/kd/ki). </div>
-
-The formula is: ΔGbinding = RT·ln Kdissociated = RT·lnKd ≈ RT·lnIC50 = −RT·pIC50
-
-Usage:
-
-Ic50/ki/kd to ΔGbinding:
-```
-python cal_gbinding.py
-Please enter the temperature (K)：
-Please enter the IC50 (μM)：
-```
-
-ΔGbinding to Ic50/ki/kd:
-```
-python cal_ic50.py
-Please enter the temperature (K)：
-Please enter the Gbinding (kcal/mol)：
-```
 ## 5. Fundamentals of Python Programming
 ---
 <div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
