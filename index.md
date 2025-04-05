@@ -31,7 +31,10 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
   * [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
 
-- [3. Pymol](#3-pymol)
+- [3. Scientific drawing](#3-scientific-drawing)
+  * [3.1 Pymol](#31-pymol)
+  * [3.2 ColorMap Lab](#32-colormap-lab)
+  * [3.3 Data Analysis and Bar Plot Tool](#33-data-analysis-and-bar-plot-tool)
 
 - [4. Free Energy](#4-free-energy)
 
@@ -57,8 +60,6 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [7.2 Online calculator](#72-online-calculator)
   * [7.3 File format converter](#73-file-format-converter)
   * [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
-  * [7.5 ColorMap Lab](#75-colormap-lab)
-  * [7.6 Data Analysis and Bar Plot Tool](#76-data-analysis-and-bar-plot-tool)
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
@@ -209,7 +210,9 @@ The script will traverse the input PDBD list and download the verification repor
 5. Save location:
 The downloaded report will be saved in a location called validation_. In the folder of reports. If the folder does not exist, the script will be automatically created.
 
-## 3. Pymol 
+## 3. Scientific drawing 
+
+### 3.1 Pymol 
 
 <div style="text-align: justify"> PyMOL is a molecular 3D structure display software, which is suitable for creating high-quality 3D structure images of small molecules or biological macromolecules. The content of this issue is to share the quick reference manual of common commands in the use of PyMOL. If you need the original version, you can browse it on the official website <a href="https://pymolwiki.org/index.php/Main_Page">(pymolwiki)</a>.</div>
 
@@ -248,7 +251,13 @@ There are also some simple scripts that can easily implement some functions, and
 
 to be continue...
 
+### 3.2 ColorMap Lab
+<div style="text-align: justify"> ColorMap Lab is a lightweight, web-based tool designed for researchers, designers, and developers to preview and explore a curated collection of color gradient palettes. It allows users to display up to 21 predefined color schemes, each smoothly interpolated into 10 gradient steps. These palettes are particularly useful for data visualization, scientific figures, or presentation design. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/ColorMap-Lab/">here</a>.</div>
+<div style="text-align: justify"> <br> </div>
 
+### 3.3 Data Analysis and Bar Plot Tool
+<div style="text-align: justify"> Data Analysis and Bar Plot Tool is a lightweight, browser-based application designed for intuitive statistical calculation and customizable bar chart visualization. It is ideal for researchers, students, and data analysts who need a fast and flexible way to analyze numeric data and export publication-ready graphics. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Data-Analysis-and-Bar-Plot-Tool/">here</a>.</div>
+<div style="text-align: justify"> <br> </div>
 
 ## 4. Free Energy 
 ---
@@ -605,14 +614,6 @@ python python smiles_to_2dsdf.py xx.xlsx
 <div style="text-align: justify">ChemDraw JS is a chemical structure drawing and editing tool designed to help you create high-quality chemical drawings. ChemDraw JS consists of a drawing toolbar and document window. The document window lets you draw and edit chemical structures using the various drawing tools available in the ChemDraw JS toolbar. This section introduces the ChemDraw JS user interface and ChemDraw JS toolbar.</div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
-
-### 7.5 ColorMap Lab
-<div style="text-align: justify"> ColorMap Lab is a lightweight, web-based tool designed for researchers, designers, and developers to preview and explore a curated collection of color gradient palettes. It allows users to display up to 21 predefined color schemes, each smoothly interpolated into 10 gradient steps. These palettes are particularly useful for data visualization, scientific figures, or presentation design. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/ColorMap-Lab/">here</a>.</div>
-<div style="text-align: justify"> <br> </div>
-
-### 7.6 Data Analysis and Bar Plot Tool
-<div style="text-align: justify"> Data Analysis and Bar Plot Tool is a lightweight, browser-based application designed for intuitive statistical calculation and customizable bar chart visualization. It is ideal for researchers, students, and data analysts who need a fast and flexible way to analyze numeric data and export publication-ready graphics. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Data-Analysis-and-Bar-Plot-Tool/">here</a>.</div>
-<div style="text-align: justify"> <br> </div>
 
 ## Data Availability Statement
 
