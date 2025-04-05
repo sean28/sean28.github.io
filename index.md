@@ -291,7 +291,7 @@ to be continue...
 <div style="text-align: justify"> <br> </div>
 
 ### 3.4 Online chemical structure drawing and editing tool
-<div style="text-align: justify">ChemDraw JS is a chemical structure drawing and editing tool designed to help you create high-quality chemical drawings. ChemDraw JS consists of a drawing toolbar and document window. The document window lets you draw and edit chemical structures using the various drawing tools available in the ChemDraw JS toolbar. This section introduces the ChemDraw JS user interface and ChemDraw JS toolbar.</div>
+<div style="text-align: justify">This online molecule editor provides a lightweight, browser-based alternative to ChemDraw for drawing and editing chemical structures. Powered by PubChem Sketcher (NIH), it allows users to build molecules, visualize structures, and export them in formats such as SMILES, InChI, or PNG images.</div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
 
