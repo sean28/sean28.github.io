@@ -36,29 +36,29 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [3.1 Pymol](#31-pymol)
   * [3.2 ColorMap Lab](#32-colormap-lab)
   * [3.3 Data Analysis and Bar Plot Tool](#33-data-analysis-and-bar-plot-tool)
+  * [3.4 Online chemical structure drawing and editing tool](#34-online-chemical-structure-drawing-and-editing-tool)
 
-- [4. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
-  * [4.1 Python basics](#51-python-basics)
+- [4. Fundamentals of Python Programming](#4-Fundamentals-of-Python-Programming)
+  * [4.1 Python basics](#41-python-basics)
     + [Python reads user input files](#python-reads-user-input-files)
-  * [4.2 Python processing office](#52-python-processing-office)
+  * [4.2 Python processing office](#42-python-processing-office)
     + [CSV](#csv)
     + [EXCEl](#excel)
     + [PPT](#ppt)
-  * [4.3 Python processing image](#53-python-processing-image)
+  * [4.3 Python processing image](#43-python-processing-image)
     + [Vertical merge png](#vertical-merge-png)
     + [Horizontal merge png](#horizontal-merge-png)
 
-- [5. Fundamentals of R Programming](#6-fundamentals-of-r-programming)
-  * [5.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
-  * [5.2 ggplot2](#62-ggplot2)
-  * [5.3 Binder](#63-binder)
-  * [5.4 TRAPP Multiple Comparison Script](#64-trapp-multiple-comparison-script)
+- [5. Fundamentals of R Programming](#5-fundamentals-of-r-programming)
+  * [5.1 Parallel kmeans scripts](#51-parallel-kmeans-scripts)
+  * [5.2 ggplot2](#52-ggplot2)
+  * [5.3 Binder](#53-binder)
+  * [5.4 TRAPP Multiple Comparison Script](#54-trapp-multiple-comparison-script)
 
-- [6. Others](#7-others)
-  * [6.1 Automatically building scientific research environment](#71-automatically-building-scientific-research-environment)
-  * [6.2 Online calculator](#72-online-calculator)
-  * [6.3 File format converter](#73-file-format-converter)
-  * [6.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
+- [6. Others](#6-others)
+  * [6.1 Automatically building scientific research environment](#61-automatically-building-scientific-research-environment)
+  * [6.2 Online calculator](#62-online-calculator)
+  * [6.3 File format converter](#63-file-format-converter)
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
@@ -289,6 +289,12 @@ to be continue...
 ### 3.3 Data Analysis and Bar Plot Tool
 <div style="text-align: justify"> Data Analysis and Bar Plot Tool is a lightweight, browser-based application designed for intuitive statistical calculation and customizable bar chart visualization. It is ideal for researchers, students, and data analysts who need a fast and flexible way to analyze numeric data and export publication-ready graphics. I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Data-Analysis-and-Bar-Plot-Tool/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
+
+### 3.4 Online chemical structure drawing and editing tool
+<div style="text-align: justify">ChemDraw JS is a chemical structure drawing and editing tool designed to help you create high-quality chemical drawings. ChemDraw JS consists of a drawing toolbar and document window. The document window lets you draw and edit chemical structures using the various drawing tools available in the ChemDraw JS toolbar. This section introduces the ChemDraw JS user interface and ChemDraw JS toolbar.</div>
+<div style="text-align: justify"> <br> </div>
+<div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
+
 
 ## 4. Fundamentals of Python Programming
 ---
@@ -608,11 +614,6 @@ The scripts usage is as follows:
 ```
 python python smiles_to_2dsdf.py xx.xlsx
 ```
-
-### 6.4 Online chemical structure drawing and editing tool
-<div style="text-align: justify">ChemDraw JS is a chemical structure drawing and editing tool designed to help you create high-quality chemical drawings. ChemDraw JS consists of a drawing toolbar and document window. The document window lets you draw and edit chemical structures using the various drawing tools available in the ChemDraw JS toolbar. This section introduces the ChemDraw JS user interface and ChemDraw JS toolbar.</div>
-<div style="text-align: justify"> <br> </div>
-<div style="text-align: justify">Click <a href="https://chemdrawdirect.perkinelmer.cloud/js/sample/index.html#">here</a> to jump to this tool.</div>
 
 ## Data Availability Statement
 
