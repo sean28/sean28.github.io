@@ -25,12 +25,16 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [1.2 AMBER](#12-amber)
     + [Online amber tool](#online-amber-tool)
     + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
+
 - [2. PDB operations](#2-PDB-operations)
   * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
   * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
   * [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
+
 - [3. Pymol](#3-pymol)
+
 - [4. Free Energy](#4-free-energy)
+
 - [5. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
   * [5.1 Python basics](#51-python-basics)
     + [Python reads user input files](#python-reads-user-input-files)
@@ -41,11 +45,13 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [5.3 Python processing image](#53-python-processing-image)
     + [Vertical merge png](#vertical-merge-png)
     + [Horizontal merge png](#horizontal-merge-png)
+
 - [6. Fundamentals of R Programming](#6-fundamentals-of-r-programming)
   * [6.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
   * [6.2 ggplot2](#62-ggplot2)
   * [6.3 Binder](#63-binder)
   * [6.4 TRAPP Multiple Comparison Script](#64-trapp-multiple-comparison-script)
+
 - [7. Others](#7-others)
   * [7.1 Automatically building scientific research environment](#71-automatically-building-scientific-research-environment)
   * [7.2 Online calculator](#72-online-calculator)
@@ -53,6 +59,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
   * [7.5 ColorMap Lab](#75-colormap-lab)
   * [7.6 Data Analysis and Bar Plot Tool](#76-data-analysis-and-bar-plot-tool)
+
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
 
