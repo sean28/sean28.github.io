@@ -18,50 +18,85 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
 ## 📚 Table of contents
 ---
 
-- [1. Molecular dynamics simulation](#1-molecular-dynamics-simulation)
-  * [1.1 GROMACS](#11-gromacs)
-    + [An auto protonation-pdb2gmx run script](#an-auto-protonation-pdb2gmx-run-script)
-    + [Auto gromacs-result analysis program](#auto-gromacs-result-analysis-program)
-  * [1.2 AMBER](#12-amber)
-    + [Online amber tool](#online-amber-tool)
-    + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
+<details open>
+<summary><strong>1. Molecular dynamics simulation</strong></summary>
 
-- [2. PDB operations](#2-PDB-operations)
-  * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
-  * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
-  * [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
+- [1.1 GROMACS](#11-gromacs)  
+  + [An auto protonation-pdb2gmx run script](#an-auto-protonation-pdb2gmx-run-script)  
+  + [Auto gromacs-result analysis program](#auto-gromacs-result-analysis-program)  
+- [1.2 AMBER](#12-amber)  
+  + [Online amber tool](#online-amber-tool)  
+  + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
+
+</details>
+
+<details>
+<summary><strong>2. PDB operations</strong></summary>
+
+- [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)  
+- [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)  
+- [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
+
+</details>
+
+<details>
+<summary><strong>3. Pymol</strong></summary>
 
 - [3. Pymol](#3-pymol)
 
+</details>
+
+<details>
+<summary><strong>4. Free Energy</strong></summary>
+
 - [4. Free Energy](#4-free-energy)
 
-- [5. Fundamentals of Python Programming](#5-Fundamentals-of-Python-Programming)
-  * [5.1 Python basics](#51-python-basics)
-    + [Python reads user input files](#python-reads-user-input-files)
-  * [5.2 Python processing office](#52-python-processing-office)
-    + [CSV](#csv)
-    + [EXCEl](#excel)
-    + [PPT](#ppt)
-  * [5.3 Python processing image](#53-python-processing-image)
-    + [Vertical merge png](#vertical-merge-png)
-    + [Horizontal merge png](#horizontal-merge-png)
+</details>
 
-- [6. Fundamentals of R Programming](#6-fundamentals-of-r-programming)
-  * [6.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)
-  * [6.2 ggplot2](#62-ggplot2)
-  * [6.3 Binder](#63-binder)
-  * [6.4 TRAPP Multiple Comparison Script](#64-trapp-multiple-comparison-script)
+<details>
+<summary><strong>5. Fundamentals of Python Programming</strong></summary>
 
-- [7. Others](#7-others)
-  * [7.1 Automatically building scientific research environment](#71-automatically-building-scientific-research-environment)
-  * [7.2 Online calculator](#72-online-calculator)
-  * [7.3 File format converter](#73-file-format-converter)
-  * [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)
-  * [7.5 ColorMap Lab](#75-colormap-lab)
-  * [7.6 Data Analysis and Bar Plot Tool](#76-data-analysis-and-bar-plot-tool)
+- [5.1 Python basics](#51-python-basics)  
+  + [Python reads user input files](#python-reads-user-input-files)  
+- [5.2 Python processing office](#52-python-processing-office)  
+  + [CSV](#csv)  
+  + [EXCEl](#excel)  
+  + [PPT](#ppt)  
+- [5.3 Python processing image](#53-python-processing-image)  
+  + [Vertical merge png](#vertical-merge-png)  
+  + [Horizontal merge png](#horizontal-merge-png)
 
-- [Data Availability Statement](#data-availability-statement)
+</details>
+
+<details>
+<summary><strong>6. Fundamentals of R Programming</strong></summary>
+
+- [6.1 Parallel kmeans scripts](#61-parallel-kmeans-scripts)  
+- [6.2 ggplot2](#62-ggplot2)  
+- [6.3 Binder](#63-binder)  
+- [6.4 TRAPP Multiple Comparison Script](#64-trapp-multiple-comparison-script)
+
+</details>
+
+<details>
+<summary><strong>7. Others</strong></summary>
+
+- [7.1 Automatically building scientific research environment](#71-automatically-building-scientific-research-environment)  
+- [7.2 Online calculator](#72-online-calculator)  
+- [7.3 File format converter](#73-file-format-converter)  
+- [7.4 Online chemical structure drawing and editing tool](#74-online-chemical-structure-drawing-and-editing-tool)  
+- [7.5 ColorMap Lab](#75-colormap-lab)  
+- [7.6 Data Analysis and Bar Plot Tool](#76-data-analysis-and-bar-plot-tool)
+
+</details>
+
+<details>
+<summary><strong>Other</strong></summary>
+
+- [Data Availability Statement](#data-availability-statement)  
 - [Support or Contact](#support-or-contact)
+
+</details>
 
 ## 1. Molecular dynamics simulation
 ---
