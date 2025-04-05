@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 Introduction
+## Introduction
 
 This repository is maintained by **Dr. Sean**, aiming to provide practical scripts, toolkits, and guides for molecular modeling and data analysis. Most content is developed in real research projects and validated by peer-reviewed publications.
 
