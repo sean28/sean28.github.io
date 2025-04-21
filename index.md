@@ -302,7 +302,7 @@ NOTE: This site offers a collection of tools for general-purpose text processing
 <div style="text-align: justify"> <br> </div>
 
 ### 4.2 PDF Reader
-<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/Text-comparison-tool/">here</a>.</div>
+<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/PDF-reader/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
 
