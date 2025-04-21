@@ -291,11 +291,11 @@ to be continue...
 
 ## 4. Text tool
 ---
-<div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
+<div style="text-align: justify"> Text tools may be one of the most practical and intuitive sets of web utilities for handling textual content, offering features like PDF reading, keyword navigation, and text comparison. Designed to streamline common reading and editing workflows, these tools help users quickly locate, compare, and review information across documents. Whether you’re preparing a manuscript, analyzing research materials, or simply managing everyday documents, Text Tools offers a fast, focused, and distraction-free way to work with text. </div>
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify"> Here I will record some of my common scripts and learning experiences for your reference and learning. </div>
 
-NOTE: All scripts of this website are python3 versions.
+NOTE: This site offers a collection of tools for general-purpose text processing and analysis. While many features are open to all users, certain functions are access-restricted. If you wish to use them, feel free to reach out to me by email.
 
 ### 4.1 Text comparison tool
 <div style="text-align: justify"> This is a powerful and intuitive web-based Text Difference Comparison Tool, designed to help users visually analyze and track changes between two versions of any textual content. Users can also toggle an option to display only the lines that differ, enhancing focus during proofreading or version tracking. In addition, it calculates and displays real-time statistics such as character count and line count for both text versions. With a clean, responsive layout and interactive feedback, this tool is ideal for writers, developers, editors, and anyone needing to track textual revisions clearly and efficiently. You can use this tool for free by clicking <a href="https://sean28.github.io/Text-comparison-tool/">here</a>.</div>
