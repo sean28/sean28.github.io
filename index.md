@@ -59,7 +59,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [6.1 Automatically building scientific research environment](#61-automatically-building-scientific-research-environment)
   * [6.2 Online calculator](#62-online-calculator)
   * [6.3 File format converter](#63-file-format-converter)
-  * [6.4 Text comparison tool](#63-text-comparison-tool)
+  * [6.4 Text comparison tool](#64-text-comparison-tool)
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
