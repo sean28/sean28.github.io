@@ -59,6 +59,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [6.1 Automatically building scientific research environment](#61-automatically-building-scientific-research-environment)
   * [6.2 Online calculator](#62-online-calculator)
   * [6.3 File format converter](#63-file-format-converter)
+  * [6.4 Text comparison tool](#63-text-comparison-tool)
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
@@ -614,6 +615,14 @@ The scripts usage is as follows:
 ```
 python python smiles_to_2dsdf.py xx.xlsx
 ```
+
+### 6.4 Text comparison tool
+<div style="text-align: justify"> This is a powerful and intuitive web-based Text Difference Comparison Tool, designed to help users visually analyze and track changes between two versions of any textual content. Users can also toggle an option to display only the lines that differ, enhancing focus during proofreading or version tracking. In addition, it calculates and displays real-time statistics such as character count and line count for both text versions. With a clean, responsive layout and interactive feedback, this tool is ideal for writers, developers, editors, and anyone needing to track textual revisions clearly and efficiently. You can use this tool for free by clicking <a href="https://sean28.github.io/Online_calculator/">here</a>.</div>
+<div style="text-align: justify"> <br> </div>
+
+
+
+
 
 ## Data Availability Statement
 
