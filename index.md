@@ -289,7 +289,7 @@ to be continue...
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://sean28.github.io/Online-Chemical-Structure-Drawing-Tool/">here</a> to jump to this tool.</div>
 
-## 3. Text tool
+## 4. Text tool
 ---
 <div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
 <div style="text-align: justify"> <br> </div>
