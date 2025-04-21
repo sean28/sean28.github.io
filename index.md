@@ -38,16 +38,9 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [3.3 Data Analysis and Bar Plot Tool](#33-data-analysis-and-bar-plot-tool)
   * [3.4 Online chemical structure drawing and editing tool](#34-online-chemical-structure-drawing-and-editing-tool)
 
-- [4. Fundamentals of Python Programming](#4-Fundamentals-of-Python-Programming)
-  * [4.1 Python basics](#41-python-basics)
-    + [Python reads user input files](#python-reads-user-input-files)
-  * [4.2 Python processing office](#42-python-processing-office)
-    + [CSV](#csv)
-    + [EXCEl](#excel)
-    + [PPT](#ppt)
-  * [4.3 Python processing image](#43-python-processing-image)
-    + [Vertical merge png](#vertical-merge-png)
-    + [Horizontal merge png](#horizontal-merge-png)
+- [4. Text tool](#4-Text-tool)
+  * [4.1 Text comparison tool](#41-text-comparison-tool)
+  * [4.2 PDF reader](#42-pdf-reader)
 
 - [5. Fundamentals of R Programming](#5-fundamentals-of-r-programming)
   * [5.1 Parallel kmeans scripts](#51-parallel-kmeans-scripts)
@@ -59,7 +52,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [6.1 Automatically building scientific research environment](#61-automatically-building-scientific-research-environment)
   * [6.2 Online calculator](#62-online-calculator)
   * [6.3 File format converter](#63-file-format-converter)
-  * [6.4 Text comparison tool](#64-text-comparison-tool)
+  
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
@@ -296,8 +289,7 @@ to be continue...
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://sean28.github.io/Online-Chemical-Structure-Drawing-Tool/">here</a> to jump to this tool.</div>
 
-
-## 4. Fundamentals of Python Programming
+## 3. Text tool
 ---
 <div style="text-align: justify"> Python may be one of the few programming languages that can balance simplicity and power at the same time. This is of great benefit to both novices and experts. More importantly, programming in Python is fun. In my research, i often use python to resolve some problem of batch office (including ppt, word, xls and csv),image processing, data visualization and so on. </div>
 <div style="text-align: justify"> <br> </div>
@@ -305,139 +297,13 @@ to be continue...
 
 NOTE: All scripts of this website are python3 versions.
 
-### 4.1 Python basics 
-<div style="text-align: justify"> There is an online website running jupyter notebook, click  <a href="https://colab.research.google.com/notebooks/">here</a>. Input the my library linked (https://github.com/sean28/home) in github block, and you can practice the basics of Python online from here. You can also learn the basic knowledge of Python directly <a href="https://github.com/sean28/home/blob/main/python-basic.ipynb">here</a>.</div>
-
-#### Python reads user input files 
-
-<div style="text-align: justify"> Using python read the user specific files has two way, the first is very simple, for example: </div>
-
-
-```
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
-import sys
-# Get command line parameters
-filename = sys.argv[1]   
-# Open file
-myfile = open(filename,'r') 
-# Read each line
-for line in myfile.readlines():
-# Print each line
-        print (line),
-# Close file
-myfile.close 
-
-```
-The usage also simple, commands are as follow:
-
-```
-python3 xx.py xx.file
-```
-
-<div style="text-align: justify"> The other method is a little complicated, but you can set more function parameters. This method uses a python module argparse. Please refer to <a href="https://docs.python.org/3/library/argparse.html">here</a> for details. The examples are as follows: </div>
-
-```
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
-import argparse
-# Create argumentparser object
-parser = argparse.ArgumentParser() 
-# Add parameters
-parser.add_argument('-f', '--filename', type=str, help='input csv filename')
-# Analytic parameters
-args = parser.parse_args()
-# Get parameters
-filename = args.filename
-print(filename)
-```
-The usage are as follow:
-```
-python3 xx.py -f xx.file
-```
-<div style="text-align: justify"> After mastering the writing method of setting as file input, you can specify Python script to read the specified file later, which is convenient for reading different files, especially suitable for batch processing of a large number of files. </div>
-
-### 4.2 Python processing office 
-
-#### CSV
-
-<div style="text-align: justify"> Comma separated values (CSV, sometimes called character separated values, because the separating character can also be not a comma), its file stores table data (numbers and text) in plain text. Plain text means that the file is a sequence of characters without data that must be interpreted like binary numbers. CSV file is composed of any number of records, which are separated by some line break; Each record consists of fields. The separator between fields is other characters or strings, and the most common is comma or tab. Generally, all records have exactly the same sequence of fields. They are usually plain text files.</div>
+### 4.1 Text comparison tool
+<div style="text-align: justify"> This is a powerful and intuitive web-based Text Difference Comparison Tool, designed to help users visually analyze and track changes between two versions of any textual content. Users can also toggle an option to display only the lines that differ, enhancing focus during proofreading or version tracking. In addition, it calculates and displays real-time statistics such as character count and line count for both text versions. With a clean, responsive layout and interactive feedback, this tool is ideal for writers, developers, editors, and anyone needing to track textual revisions clearly and efficiently. You can use this tool for free by clicking <a href="https://sean28.github.io/Text-comparison-tool/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
-<div style="text-align: justify">For the field of bioinformatics, it is very convenient to use the plain text format of csv instead of Excel to process some data, and there is no need to import additional modules or expansion packages that support reading xls and xlsx.</div>
 
-(1) Fast delete data of blank script
-
-We can use this script fast delete the data with blank column in the csv table. You can download it from <a href="https://drive.google.com/file/d/1bfIP5UpzTOtHbYDpVnugB09Mb3q2Dm4Z/view?usp=sharing">here</a>.
-
-The usage are as follow:
-```
-python3 delete_csv_black.py -f xx.csv
-```
-(2) Batch fetch pdb and ligand
-<br>
-to be continue...
-
-#### EXCEl
-
-to be continue...
-
-#### PPT 
-(1) Auto delete ppt
-<br>
-This is a sample script that can quickly delete the first and last pages of all ppt files in the current directory. You can download it from <a href="https://drive.google.com/file/d/1Ka4PSZs7jii4buE0355zzSHq46uL4hdy/view?usp=sharing">here</a>.
-
-The usage are as follow:
-```
-python3 delete-ppt.py
-```
-
-(2) Merge ppt
-<br>
-This is a script that can quickly merge all ppts under the current folder. You can download it from <a href="https://drive.google.com/file/d/1Yt9MWSQzN0e1J2xKztOANS2pZ4gupBsr/view?usp=sharing">here</a>.
-```
-python3 merge-ppt.py
-```
-
-
-
-### 4.3 Python processing image 
-<div style="text-align: justify"> This part of the script is cumbersome and does not include the function of user specified file input. It is temporarily presented in code for reference only. </div>
-
-#### Vertical merge png
-
-```
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
-# Created By Sean -- MUST ;
-from PIL import Image
-
-img1 = Image.open( "./image1.png")
-img2 = Image.open( "./image2.png")
-
-img3 = Image.new('RGB', (img1.size[0], img1.size[1] + img2.size[1])
-img3.paste(img1, (0, 0))
-img3.paste(img2, (0, img1.size[1]))
-img3.paste(img3, (0, img1.size[1] + img2.size[1]))
-
-img3.save("./result_merge_ver.png")
-```
-
-#### Horizontal merge png
-
-```
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
-# Created By Sean -- MUST ;
-from PIL import Image
-
-img1 = Image.open( "./image1.png")
-img2 = Image.open( "./image2.png")
-
-img3 = Image.new('RGB', (img1.width + img2.width, img1.height))
-img3.paste(img1, (0, 0))
-img3.paste(img2, (img1.width, 0))
-img3.save("./result_merge_hor.png")
-```
+### 4.2 PDF Reader
+<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/Text-comparison-tool/">here</a>.</div>
+<div style="text-align: justify"> <br> </div>
 
 
 ## 5. Fundamentals of R Programming
@@ -616,9 +482,6 @@ The scripts usage is as follows:
 python python smiles_to_2dsdf.py xx.xlsx
 ```
 
-### 6.4 Text comparison tool
-<div style="text-align: justify"> This is a powerful and intuitive web-based Text Difference Comparison Tool, designed to help users visually analyze and track changes between two versions of any textual content. Users can also toggle an option to display only the lines that differ, enhancing focus during proofreading or version tracking. In addition, it calculates and displays real-time statistics such as character count and line count for both text versions. With a clean, responsive layout and interactive feedback, this tool is ideal for writers, developers, editors, and anyone needing to track textual revisions clearly and efficiently. You can use this tool for free by clicking <a href="https://sean28.github.io/Text-comparison-tool/">here</a>.</div>
-<div style="text-align: justify"> <br> </div>
 
 
 
