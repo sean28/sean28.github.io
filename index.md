@@ -389,11 +389,11 @@ NOTE: This site offers a collection of tools for general-purpose text processing
 
 
 ### 5.1 Gemini Chat Tool 
-<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/PDF-reader/">here</a>.</div>
+<div style="text-align: justify"> ZHIPU-Talk is a conversational AI tool based on the Zhipu AI platform. It aims to provide an interactive chatbot experience that leverages AI to simulate human-like conversations. The tool may offer various features, such as handling user queries, providing intelligent responses, and enabling seamless communication. Its core objective is to facilitate user interaction through an AI-powered assistant capable of learning and improving from conversations. <a href="https://sean28.github.io/Gemini-talk/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
 ### 5.2 ZHIPU Chat Tool 
-<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/PDF-reader/">here</a>.</div>
+<div style="text-align: justify"> Gemini-Talk is a conversational AI tool built using the Gemini model, which is a state-of-the-art conversational model developed by Google. It is designed to enhance natural language understanding and generate context-aware responses. Gemini-Talk aims to create a more engaging and insightful dialogue experience for users. It may support multiple tasks, including question answering, creative writing, and information retrieval, making it versatile for various applications. <a href="https://sean28.github.io/ZHIPU-tallk/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
 to be continue...
