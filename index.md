@@ -384,7 +384,7 @@ NOTE: This site offers a collection of tools for general-purpose text processing
 ## 5. AI Tool
 ---
 
-<div style="text-align: justify"> This section offers a curated suite of AI-powered tools that go beyond simple conversation. These utilities are designed to support creativity, research, and productivity. Whether you’re exploring language models, processing information, or building AI-integrated workflows, this hub provides a hands-on gateway to next-generation AI applications. </div>
+<div style="text-align: justify"> This section offers a curated suite of AI-powered tools. These utilities are designed to support creativity, research, and productivity. Whether you’re exploring language models, processing information, or building AI-integrated workflows, this hub provides a hands-on gateway to next-generation AI applications. </div>
 <div style="text-align: justify"> <br> </div>
 
 
