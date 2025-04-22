@@ -47,11 +47,9 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [4.1 Text comparison tool](#41-text-comparison-tool)
   * [4.2 PDF reader](#42-pdf-reader)
 
-- [5. Fundamentals of R Programming](#5-fundamentals-of-r-programming)
-  * [5.1 Parallel kmeans scripts](#51-parallel-kmeans-scripts)
-  * [5.2 ggplot2](#52-ggplot2)
-  * [5.3 Binder](#53-binder)
-  * [5.4 TRAPP Multiple Comparison Script](#54-trapp-multiple-comparison-script)
+- [5. AI Tool](#5-ai-tool)
+  * [5.1 Gemini Chat Tool](#51-gemini-chat-tool)
+  * [5.2 ZHIPU Chat Tool](#52-zhipu-chat-tool)
 
 - [6. Others](#6-others)
   * [6.1 Automatically building scientific research environment](#61-automatically-building-scientific-research-environment)
@@ -383,78 +381,22 @@ NOTE: This site offers a collection of tools for general-purpose text processing
 <div style="text-align: justify"> <br> </div>
 
 
-## 5. Fundamentals of R Programming
+## 5. AI Tool
 ---
 
-### 5.1 Parallel kmeans scripts 
-<div style="text-align: justify">R is a powerful scripting language for mapping and data visualization, which can execute a large number of mathematical models and algorithms. However, due to its low system execution efficiency, it will be difficult to deal with the problem of large amount of data. Here is a case of parallel kmeans clustering for everyone to learn. </div>
+<div style="text-align: justify"> This section offers a curated suite of AI-powered tools that go beyond simple conversation. These utilities are designed to support creativity, research, and productivity. Whether you’re exploring language models, processing information, or building AI-integrated workflows, this hub provides a hands-on gateway to next-generation AI applications. </div>
 <div style="text-align: justify"> <br> </div>
-<div style="text-align: justify">For the parallel running script of kmean mean value, the best of the 10 running results is better selected. After testing, it does not affect the operation results, greatly speeds up the operation speed and saves the script operation time. It is recommended to use when calculating large data sets.  </div>
+
+
+### 5.1 Gemini Chat Tool 
+<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/PDF-reader/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
-<details>
-<summary> Click to view code </summary>
-<pre><code>
-#####By Sean from MUST#####
-#Induce parallel package
-library(parallel)
 
-#Define number of cpu core (default: total -2)
-nw <- detectCores()-2
-cl <- makeCluster(nw)
-
-#Define nstart 
-nstart <- 10
-nstartv <- rep(ceiling(nstart / nw), nw)
-
-#read lig_noh_pos.txt
-data <- read.table("data.txt")
-
-#run clusterApply
-data_km <- clusterApply(cl, nstartv,
-        function(n, x) kmeans(x, 1000, nstart=n, iter.max=100),
-        data)
-        
-#Pick the best result
-i <- sapply(data_km , function(data_km) data_km $tot.withinss)
-data_km  <- data_km [[which.min(i)]]
-print(data_km$tot.withinss)
-per_atom_rmsd<-sqrt((data_km$withinss/(data_km$size-1))/2914) 
-summary(data_km$size)
-summary(per_atom_rmsd)
-</code></pre>
-</details>
-
-### 5.2 ggplot2 
-<a href="url"><img src="https://ggplot2.tidyverse.org/logo.png" align="center" height="56" ></a>
-<div style="text-align: justify"> Ggplot is an R software package used to draw statistical graphs. It is an important tool to visualize data analysis, supported by a set of syntax behind it. The core idea of ggplot2 is to separate drawing and data, and separate data related drawing from data independent drawing. </div>
+### 5.2 ZHIPU Chat Tool 
+<div style="text-align: justify"> PDF Reader Tool is a lightweight, front-end-only application that allows users to upload and read PDF files directly in the browser. It supports full-text extraction, keyword search with match highlighting, navigation between search results, and an optional auto-jump feature to quickly locate keywords. Designed for GitHub Pages deployment, it requires no server or backend setup—just a single HTML file. You can use this tool for free by clicking <a href="https://sean28.github.io/PDF-reader/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> In the first, let us learn about the installation of ggplot2, as shown below: </div>
 
-Installation：
-```
-# Check the installed package of R
-library()
-# install ggplot2
-install.packages("ggplot2")
-# import ggplot2
-library(ggplot2)
-```
-<div style="text-align: justify"> Basic usage of ggplot2 </div>
-<div style="text-align: justify"> <br> </div>
 to be continue...
-
-### 5.3 Binder 
-<div style="text-align: justify"> There is a online tool can run the R, binder. The <a href="https://mybinder.org/">binder</a> can directly configure the environment of GitHub as a docker image, and then start it in the cloud. With Binder,we can open those notebooks in an executable environment. I have deployed R in my public repository, and through this <a href="https://mybinder.org/v2/gh/sean28/home/HEAD">link</a>, you can learn and practice the basic knowledge of R language or python online.</div>
-<div style="text-align: justify"> <br> </div>
-
-### 5.4 TRAPP Multiple Comparison Script 
-<div style="text-align: justify"> TRAnsient Pockets in Proteins (TRAPP) is a tool that allows the exploration of different protein conformations, the analysis of binding pocket flexibility and dynamics, and the extraction of spatial and physicochemical information on the binding pocket confor-mations (J Chem Inf Model. 2020 Mar 23;60(3):1685-1699). Through this <a href="https://trapp.h-its.org/trapp">link</a>, you can learn and use the TRAPP webserver online.</div>
-<div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> The analysis chart derived from TRAPP only shows the scoring of one system, and cannot compare multiple groups of systems. Now we have developed an extended tool to realize the comparative analysis of multiple systems. This program need to extract data from the TRAPP analysis results, and then use this script for analysis. Now we only provide two groups of system comparative analysis tools. </div>
-![This is an image](/sample.png)
-<div style="text-align: justify"> This tool is now open source and you can refer to it from <a href="https://github.com/sean28/TRAPP-Multiple-comparison.git">here</a>. Download this tool from this <a href="https://github.com/sean28/TRAPP-Multiple-comparison/archive/refs/heads/main.zip">link</a>. If you need to use it, please indicate the source. Articles using this tool have been published, please refer to this link (https://pubmed.ncbi.nlm.nih.gov/36232570/).</div>
-<div style="text-align: justify"> <br> </div>
-
 
 
 ## 6. Others
