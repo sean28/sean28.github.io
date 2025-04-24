@@ -474,8 +474,8 @@ conda remove --name en_name --all
 
 |Name|Usage|
 |:---|:---|
-|Topology file.     |The coordinate file records the three-dimensional coordinates of all atoms in the simulation system. Format include: amber (prmtop, pram7) gromacs (top) |
-|Coordinate file.   |Topological files record the connection relations of atoms and molecular mechanical parameters. Format include: amber (inpcrd) gromacs (gro)|
+|Coordinate file.     |The coordinate file records the three-dimensional coordinates of all atoms in the simulation system. Format include: amber (prmtop, pram7) gromacs (top) |
+|Topology file.   |Topological files record the connection relations of atoms and molecular mechanical parameters. Format include: amber (inpcrd) gromacs (gro)|
 |Trajectory data    |Record the coordinate file of each frame atom. Format include: gromacs (trr, xtc) amber (mdcrd) namd(dcd)|
 |Reference structure|Atomic coordinate files used as reference structures in some software and sometimes as topology files. The Reference files needs to be converted into topology file and coordinate file for calculation. Format include: pdb, gro, mol2, sdf|
 
