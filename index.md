@@ -27,7 +27,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
     + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
   * [1.3 Free Energy](#13-free-energy)
 
-- [2. PDB operations](#2-PDB-operations)
+- [2. PDB operations](#2-pdb-operations)
   * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
   * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
   * [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
