@@ -420,7 +420,6 @@ conda install -c conda-forge ambertools
 # gromacs
 conda create --prefix=./conda_work/envs/gromacs --no-default-package
 conda activate gromacs
-conda install -c bioconda gromacs
 conda install -c conda-forge -c bioconda gromacs
 
 # R
