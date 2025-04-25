@@ -421,6 +421,7 @@ conda install -c conda-forge ambertools
 conda create --prefix=./conda_work/envs/gromacs --no-default-package
 conda activate gromacs
 conda install -c bioconda gromacs
+conda install -c conda-forge -c bioconda gromacs
 
 # R
 conda create -n R3.5
