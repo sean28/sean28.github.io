@@ -37,7 +37,8 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [3.2 ColorMap Lab](#32-colormap-lab)
   * [3.3 Data Analysis and Bar Plot Tool](#33-data-analysis-and-bar-plot-tool)
   * [3.4 Online chemical structure drawing and editing tool](#34-online-chemical-structure-drawing-and-editing-tool)
-  * [3.5 Fundamentals of R Programming](#35-fundamentals-of-r-programming)
+  * [3.5 Corner cutting tool](#35-corner-cutting-tool)
+  * [3.6 Fundamentals of R Programming](#36-fundamentals-of-r-programming)
      + [Parallel kmeans scripts](#parallel-kmeans-scripts)
      + [ggplot2](#ggplot2)
      + [Binder](#binder)
@@ -292,7 +293,13 @@ to be continue...
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify">Click <a href="https://sean28.github.io/Online-Chemical-Structure-Drawing-Tool/">here</a> to jump to this tool.</div>
 
-### 3.5 Fundamentals of R Programming
+### 3.5 Corner cutting tool
+<div style="text-align: justify">This tool allows users to upload any image and instantly generate a high-definition version with customizable rounded corners and background modes (transparent or black). The preview perfectly matches the final downloadable result, thanks to 2x supersampling for ultra-smooth edges. Ideal for avatars, poster designs, UI elements, and more. </div>
+<div style="text-align: justify"> <br> </div>
+<div style="text-align: justify">Click <a href="https://sean28.github.io/Glass-corner-cutting-tool/">here</a> to jump to this tool.</div>
+
+
+### 3.6 Fundamentals of R Programming
 ---
 
 #### Parallel kmeans scripts 
