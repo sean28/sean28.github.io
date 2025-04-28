@@ -26,6 +26,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
     + [Online amber tool](#online-amber-tool)
     + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
   * [1.3 Free Energy](#13-free-energy)
+  * [1.4 Mixed solvent MD](#14-mixed-solvent-md)
 
 - [2. PDB operations](#2-pdb-operations)
   * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
@@ -195,6 +196,12 @@ python cal_ic50.py
 Please enter the temperature (K)：
 Please enter the Gbinding (kcal/mol)：
 ```
+
+### 1.4 Mixed solvent MD
+---
+<div style="text-align: justify"> Molecular probes are essential tools for uncovering cryptic pockets and potential binding hotspots in protein structures. This article systematically summarizes the properties, suitable environments, and recommended combinations of 13 commonly used probes in hybrid solvent molecular dynamics (MixMD) simulations. Detailed usage notes are provided for each individual probe, offering practical guidance for selecting and combining probes based on pocket polarity, hydrophobicity, aromaticity, and charge characteristics. This comprehensive guide aims to help researchers design more effective probe sets for structure-based drug discovery and molecular recognition studies. You can use this guide for free by clicking <a href="https://sean28.github.io/MixMD/">here</a>.</div>
+<div style="text-align: justify"> <br> </div>
+
 ## 2. PDB operations
 
 ---
