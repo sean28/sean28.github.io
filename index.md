@@ -18,20 +18,23 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
 ## 📚 Table of contents
 ---
 
-- [1. Molecular dynamics simulation](#1-molecular-dynamics-simulation)
-  * [1.1 GROMACS](#11-gromacs)
+- [1. PDB operations](#1-pdb-operations)
+  * [1.1 Extract selected residues form protein pdb](#11-extract-selected-residues-form-protein-pdb)
+  * [1.2 Extract ligand form complex protein-ligand pdb](#12-extract-ligand-form-complex-protein-ligand-pdb)
+  * [1.3 Fetch PDB ID validation](#13-fetch-pdb-id-validation)
+
+
+- [2. Molecular dynamics simulation](#2-molecular-dynamics-simulation)
+  * [2.1 GROMACS](#21-gromacs)
     + [An auto protonation-pdb2gmx run script](#an-auto-protonation-pdb2gmx-run-script)
     + [Auto gromacs-result analysis program](#auto-gromacs-result-analysis-program)
-  * [1.2 AMBER](#12-amber)
+  * [2.2 AMBER](#22-amber)
     + [Online amber tool](#online-amber-tool)
     + [Script for calculating aMD parameters](#script-for-calculating-amd-parameters)
-  * [1.3 Free Energy](#13-free-energy)
-  * [1.4 Mixed solvent MD](#14-mixed-solvent-md)
+  * [2.3 Free Energy](#23-free-energy)
+  * [2.4 Mixed solvent MD](#24-mixed-solvent-md)
+  * [2.5 File format converter](#25-file-format-converter)
 
-- [2. PDB operations](#2-pdb-operations)
-  * [2.1 Extract selected residues form protein pdb](#21-extract-selected-residues-form-protein-pdb)
-  * [2.2 Extract ligand form complex protein-ligand pdb](#22-extract-ligand-form-complex-protein-ligand-pdb)
-  * [2.3 Fetch PDB ID validation](#23-fetch-pdb-id-validation)
 
 - [3. Scientific drawing](#3-scientific-drawing)
   * [3.1 Pymol](#31-pymol)
@@ -56,18 +59,60 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
 - [6. Others](#6-others)
   * [6.1 Automatically building scientific research environment](#61-automatically-building-scientific-research-environment)
   * [6.2 Online calculator](#62-online-calculator)
-  * [6.3 File format converter](#63-file-format-converter)
-  
 
 - [Data Availability Statement](#data-availability-statement)
 - [Support or Contact](#support-or-contact)
 
-## 1. Molecular dynamics simulation
+## 1. PDB operations
+
+---
+<div style="text-align: justify"> PDB (Protein Data Bank) files are important data formats for storing three-dimensional structural information of biomolecules, such as proteins, nucleic acids, etc. The widespread application of PDB files makes it an important tool in the fields of bioinformatics, structural biology, and drug design. </div>
+<div style="text-align: justify"> <br> </div>
+<div style="text-align: justify"> In this part, there are many independently written scripts included. These scripts are designed to simplify and automate the processing and analysis of PDB files, enabling users to efficiently perform complex operations. </div>
+
+### 1.1 Extract selected residues form protein pdb
+
+<div style="text-align: justify"> In the study of molecular simulation, we may sometimes use the specified partial residues of a protein, so it is very necessary to extract atom of the specified residues. This script mainly solves this problem. This perl script main use the array. Perl array is a list variable that stores scalar values. Variables can be of different types.</div>
+<div style="text-align: justify"> <br> </div>
+<div style="text-align: justify"> Before using this script, we need to prepare two files, the selected residue file and the pdb file of the protein. The selected residue file is txt format.The sample of selected residue txt file and protein pdb is downloaded <a href="https://drive.google.com/file/d/1Ir7wCGSn9ADX3G9_7Rre0K8wR_CKKQ4g/view?usp=sharing">here</a>.</div>
+
+The following is the usage of this script：
+```
+perl extr_atom.pl xx.pdb xx.txt
+```
+Run this script and we will get a XX_ new.pdb, which is all the atom for extracting some residues. The complete script is downloaded [here](https://drive.google.com/file/d/1gfflT5WwTtPfLsbq9Ik9gO0obbwvVqaP/view?usp=sharing).
+
+### 1.2 Extract ligand form complex protein-ligand pdb
+
+<div style="text-align: justify"> This script is fast and convenient tool of extract ligand from the protein complex pdb. This script is usually used in conjunction with <a href="#jump5">Pymol</a> protein prepare script. You can download it from <a href="https://drive.google.com/file/d/1OdRyEdUG_ekzSNBIobFmlqlDb1b8Wsoe/view?usp=sharing">here</a>.</div>
+
+The usage are as follow:
+```
+perl extr_ligand.pl xx.pdb 
+```
+
+NOTE: After running the script, you will get xx_ligand.pdb, you need to manually remove non ligand heteroatoms. 
+
+### 1.3 Fetch PDB ID validation
+
+<div style="text-align: justify"> This Python script allows users to batch download PDB validation reports by entering a list of PDB IDs. It takes input from the user, processes each PDB ID, and constructs the correct URL to fetch the corresponding validation report in PDF format from the RCSB PDB database. The reports are then saved in a designated directory on the user's local system. If a PDB ID is invalid or the report is unavailable, the script will notify the user. It simplifies the retrieval process for multiple validation reports in one go. You can download it from <a href="https://drive.google.com/file/d/1fyBODIrKMvWLFQbuy1XsYgsvHXO1VC7b/view?usp=sharing">here</a>.</div>
+
+The usage are as follow:
+1. Enter PDB ID:
+When running the script, the system will prompt you to enter a list of PDB IDs, separated by commas between multiple IDs (e.g. 6LU7, 1CBS, 2PTC).
+
+3. Batch download:
+The script will traverse the input PDBD list and download the verification report corresponding to each D in sequence.
+
+5. Save location:
+The downloaded report will be saved in a location called validation_. In the folder of reports. If the folder does not exist, the script will be automatically created.
+
+## 2. Molecular dynamics simulation
 ---
 
 <div style="text-align: justify"> Molecular Dynamics (MD) simulation is a set of molecular simulation methods and a powerful tool for studying condensed state systems. Through molecular dynamics simulation, researchers can get the movement track of the atoms in the system, observe various microscopic details of the atomic movement process, and understand the relationship between the movement of biological macromolecules and their functions, the interaction mechanism between proteins and small molecules. </div>
 
-### 1.1 GROMACS
+### 2.1 GROMACS
 
 #### An auto protonation-pdb2gmx run script
 
@@ -106,7 +151,7 @@ sh 1auto_rmsf_analysis.sh
 <div style="text-align: justify"> <br> </div>
 <div style="text-align: justify"> There are another  automatic tool <a href="https://heromdanalysis.wordpress.com">HeroMDAnalysis</a> for GROMACS based Molecular Dynamics Simulation Analysis. HeroMDAnalysis is an automagical tool designed to analyze GROMACS based trajectories from molecular dynamics simulations in .xtc format. It can read required .edr , .xtc and .tpr format particle and energy-based coordinate files for biomolecules then perform analysis of various parameters to finally generate suitable high quality images for visualization and publication. </div>
 
-### 1.2 AMBER
+### 2.2 AMBER
 
 #### Online amber tool
 <div style="text-align: justify">An online visual amber tool is provided here. Go straight through this <a href="https://cloud.yinfotek.com/">link</a>. The platform uses Amber 20 as the calculation engine, realizing conventional molecular dynamics simulation schemes and rich analysis tools. </div>
@@ -164,7 +209,7 @@ print ("alphaD = ", alphaD);
 
 ```
 
-### 1.3 Free Energy 
+### 2.3 Free Energy 
 ---
 <div style="text-align: justify"> In chemistry, the lower the free energy is, the greater the affinity between the receptor and the ligand is, and the more likely the molecular docking reaction is to occur. That is, the lower the binding free energy, the easier the key and lock will be stuck together, and the more effective the drug will be. It can destroy the normal function of protein more effectively. The prediction of binding free energy that is meaningful for the optimization of lead compounds needs to be within 1kcal/mol (~0.04% of the total energy).</div>
 <div style="text-align: justify"> <br> </div>
@@ -197,54 +242,44 @@ Please enter the temperature (K)：
 Please enter the Gbinding (kcal/mol)：
 ```
 
-### 1.4 Mixed solvent MD
+### 2.4 Mixed solvent MD
 ---
 <div style="text-align: justify"> Molecular probes are essential tools for uncovering cryptic pockets and potential binding hotspots in protein structures. This article systematically summarizes the properties, suitable environments, and recommended combinations of 13 commonly used probes in Mixed solvent molecular dynamics (MixMD) simulations. Detailed usage notes are provided for each individual probe, offering practical guidance for selecting and combining probes based on pocket polarity, hydrophobicity, aromaticity, and charge characteristics. This comprehensive guide aims to help researchers design more effective probe sets for structure-based drug discovery and molecular recognition studies. You can use this guide for free by clicking <a href="https://sean28.github.io/MixMD/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
-## 2. PDB operations
+### 2.5 File format converter
+<div style="text-align: justify">The conversion between various chemical formats is a headache question. Different chemical formats have different uses.For example, In the field of molecular dynamics simulation, the format is used as follows:</div>
 
----
-<div style="text-align: justify"> PDB (Protein Data Bank) files are important data formats for storing three-dimensional structural information of biomolecules, such as proteins, nucleic acids, etc. The widespread application of PDB files makes it an important tool in the fields of bioinformatics, structural biology, and drug design. </div>
+
+|Name|Usage|
+|:---|:---|
+|Coordinate file.     |The coordinate file records the three-dimensional coordinates of all atoms in the simulation system. Format include: amber (prmtop, pram7) gromacs (top) |
+|Topology file.   |Topological files record the connection relations of atoms and molecular mechanical parameters. Format include: amber (inpcrd) gromacs (gro)|
+|Trajectory data    |Record the coordinate file of each frame atom. Format include: gromacs (trr, xtc) amber (mdcrd) namd(dcd)|
+|Reference structure|Atomic coordinate files used as reference structures in some software and sometimes as topology files. The Reference files needs to be converted into topology file and coordinate file for calculation. Format include: pdb, gro, mol2, sdf|
+
+
+<div style="text-align: justify"> Different software supports different formats. The same format converted by the same software may be different.When selecting the reference and trajectory files, they must be the reference structure files and trajectory files saved after the same software aligned, otherwise the location information error will occur! Therefore, it is very important to skillfully use a format chemical format conversion tool.</div>
 <div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> In this part, there are many independently written scripts included. These scripts are designed to simplify and automate the processing and analysis of PDB files, enabling users to efficiently perform complex operations. </div>
-
-### 2.1 Extract selected residues form protein pdb
-
-<div style="text-align: justify"> In the study of molecular simulation, we may sometimes use the specified partial residues of a protein, so it is very necessary to extract atom of the specified residues. This script mainly solves this problem. This perl script main use the array. Perl array is a list variable that stores scalar values. Variables can be of different types.</div>
+<div style="text-align: justify"> Open Babel is a chemical toolbox designed to speak the many languages of chemical data. It’s an open, collaborative project allowing anyone to search, convert, analyze, or store data from molecular modeling, chemistry, solid-state materials, biochemistry, or related areas.However, it is difficult for beginners to get started with this software. <a href="http://www.cheminfo.org/Chemistry/Cheminformatics/FormatConverter/index.html">Here</a> is an online openbabel tool for easy to use. </div>
 <div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> Before using this script, we need to prepare two files, the selected residue file and the pdb file of the protein. The selected residue file is txt format.The sample of selected residue txt file and protein pdb is downloaded <a href="https://drive.google.com/file/d/1Ir7wCGSn9ADX3G9_7Rre0K8wR_CKKQ4g/view?usp=sharing">here</a>.</div>
+<div style="text-align: justify"> In addition, a script for converting smiles numbers into SDF in batch is also provided  <a href="https://drive.google.com/file/d/1k_pAnCFhXI2teUd5u40vghfXk2E51a3a/view?usp=sharing">here</a>. This script needs an excel table, and the corresponding smiles number is filled in.</div>
+<div style="text-align: justify"> <br> </div>
+<div style="text-align: justify"> The table format is as follows: </div>
 
-The following is the usage of this script：
+|Compound name|SMILES|
+|:---|:---|
+|1 |CCCCOc1ccccc1|
+|2 |CCCCOc1ccccc1|
+|3 |CCCCOc1ccccc1|
+|..|..           |
+
+The scripts usage is as follows: 
+
 ```
-perl extr_atom.pl xx.pdb xx.txt
-```
-Run this script and we will get a XX_ new.pdb, which is all the atom for extracting some residues. The complete script is downloaded [here](https://drive.google.com/file/d/1gfflT5WwTtPfLsbq9Ik9gO0obbwvVqaP/view?usp=sharing).
-
-### 2.2 Extract ligand form complex protein-ligand pdb
-
-<div style="text-align: justify"> This script is fast and convenient tool of extract ligand from the protein complex pdb. This script is usually used in conjunction with <a href="#jump5">Pymol</a> protein prepare script. You can download it from <a href="https://drive.google.com/file/d/1OdRyEdUG_ekzSNBIobFmlqlDb1b8Wsoe/view?usp=sharing">here</a>.</div>
-
-The usage are as follow:
-```
-perl extr_ligand.pl xx.pdb 
+python python smiles_to_2dsdf.py xx.xlsx
 ```
 
-NOTE: After running the script, you will get xx_ligand.pdb, you need to manually remove non ligand heteroatoms. 
-
-### 2.3 Fetch PDB ID validation
-
-<div style="text-align: justify"> This Python script allows users to batch download PDB validation reports by entering a list of PDB IDs. It takes input from the user, processes each PDB ID, and constructs the correct URL to fetch the corresponding validation report in PDF format from the RCSB PDB database. The reports are then saved in a designated directory on the user's local system. If a PDB ID is invalid or the report is unavailable, the script will notify the user. It simplifies the retrieval process for multiple validation reports in one go. You can download it from <a href="https://drive.google.com/file/d/1fyBODIrKMvWLFQbuy1XsYgsvHXO1VC7b/view?usp=sharing">here</a>.</div>
-
-The usage are as follow:
-1. Enter PDB ID:
-When running the script, the system will prompt you to enter a list of PDB IDs, separated by commas between multiple IDs (e.g. 6LU7, 1CBS, 2PTC).
-
-3. Batch download:
-The script will traverse the input PDBD list and download the verification report corresponding to each D in sequence.
-
-5. Save location:
-The downloaded report will be saved in a location called validation_. In the folder of reports. If the folder does not exist, the script will be automatically created.
 
 ## 3. Scientific drawing 
 
@@ -481,43 +516,6 @@ conda remove --name en_name --all
 ### 6.2 Online calculator
 <div style="text-align: justify"> When doing computational chemistry, the conversion of various units is a headache, especially when accurate values are really needed. The online calculator developed by jerkwin is very easy to use. His github link is here (https://github.com/Jerkwin/gmxtools). However, the webpage of the calculator crashed and could not be logged in. So, I redeployed this online tool in my repository and you can use this tool for free by clicking <a href="https://sean28.github.io/Online_calculator/">here</a>. Besides, I added a new unit conversion in this calculator, nM(nmol/L). If there is infringement, please contact to delete.</div>
 <div style="text-align: justify"> <br> </div>
-
-### 6.3 File format converter
-<div style="text-align: justify">The conversion between various chemical formats is a headache question. Different chemical formats have different uses.For example, In the field of molecular dynamics simulation, the format is used as follows:</div>
-
-
-|Name|Usage|
-|:---|:---|
-|Coordinate file.     |The coordinate file records the three-dimensional coordinates of all atoms in the simulation system. Format include: amber (prmtop, pram7) gromacs (top) |
-|Topology file.   |Topological files record the connection relations of atoms and molecular mechanical parameters. Format include: amber (inpcrd) gromacs (gro)|
-|Trajectory data    |Record the coordinate file of each frame atom. Format include: gromacs (trr, xtc) amber (mdcrd) namd(dcd)|
-|Reference structure|Atomic coordinate files used as reference structures in some software and sometimes as topology files. The Reference files needs to be converted into topology file and coordinate file for calculation. Format include: pdb, gro, mol2, sdf|
-
-
-<div style="text-align: justify"> Different software supports different formats. The same format converted by the same software may be different.When selecting the reference and trajectory files, they must be the reference structure files and trajectory files saved after the same software aligned, otherwise the location information error will occur! Therefore, it is very important to skillfully use a format chemical format conversion tool.</div>
-<div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> Open Babel is a chemical toolbox designed to speak the many languages of chemical data. It’s an open, collaborative project allowing anyone to search, convert, analyze, or store data from molecular modeling, chemistry, solid-state materials, biochemistry, or related areas.However, it is difficult for beginners to get started with this software. <a href="http://www.cheminfo.org/Chemistry/Cheminformatics/FormatConverter/index.html">Here</a> is an online openbabel tool for easy to use. </div>
-<div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> In addition, a script for converting smiles numbers into SDF in batch is also provided  <a href="https://drive.google.com/file/d/1k_pAnCFhXI2teUd5u40vghfXk2E51a3a/view?usp=sharing">here</a>. This script needs an excel table, and the corresponding smiles number is filled in.</div>
-<div style="text-align: justify"> <br> </div>
-<div style="text-align: justify"> The table format is as follows: </div>
-
-|Compound name|SMILES|
-|:---|:---|
-|1 |CCCCOc1ccccc1|
-|2 |CCCCOc1ccccc1|
-|3 |CCCCOc1ccccc1|
-|..|..           |
-
-The scripts usage is as follows: 
-
-```
-python python smiles_to_2dsdf.py xx.xlsx
-```
-
-
-
-
 
 
 ## Data Availability Statement
