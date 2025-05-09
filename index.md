@@ -22,7 +22,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
   * [1.1 Extract selected residues form protein pdb](#11-extract-selected-residues-form-protein-pdb)
   * [1.2 Extract ligand form complex protein-ligand pdb](#12-extract-ligand-form-complex-protein-ligand-pdb)
   * [1.3 Fetch PDB ID validation](#13-fetch-pdb-id-validation)
-  * [1.4 PDB pre procession](#14-pdb-pre-processing)
+  * [1.4 PDB pre processing](#14-pdb-pre-processing)
 
 
 - [2. Molecular dynamics simulation](#2-molecular-dynamics-simulation)
@@ -108,7 +108,7 @@ The script will traverse the input PDBD list and download the verification repor
 5. Save location:
 The downloaded report will be saved in a location called validation_. In the folder of reports. If the folder does not exist, the script will be automatically created.
 
-### 1.4 PDB pre procession
+### 1.4 PDB pre processing
 <div style="text-align: justify"> This web-based platform provides a streamlined interface for preprocessing protein structure files (PDB) prior to molecular simulations. It enables users to perform key structural corrections. The interface is designed to assist researchers in computational biology, drug discovery, and molecular dynamics by simplifying the preprocessing workflow through a graphical web front-end. You can use this tool by clicking <a href="https://sean28.github.io/pdb-pre-processing/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
