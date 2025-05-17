@@ -21,8 +21,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
 - [1. PDB operations](#1-pdb-operations)
   * [1.1 Extract selected residues form protein pdb](#11-extract-selected-residues-form-protein-pdb)
   * [1.2 Extract ligand form complex protein-ligand pdb](#12-extract-ligand-form-complex-protein-ligand-pdb)
-  * [1.3 Fetch PDB ID validation](#13-fetch-pdb-id-validation)
-  * [1.4 PDB pre processing](#14-pdb-pre-processing)
+  * [1.3 PDB pre processing](#13-pdb-pre-processing)
 
 
 - [2. Molecular dynamics simulation](#2-molecular-dynamics-simulation)
@@ -94,22 +93,8 @@ perl extr_ligand.pl xx.pdb
 
 NOTE: After running the script, you will get xx_ligand.pdb, you need to manually remove non ligand heteroatoms. 
 
-### 1.3 Fetch PDB ID validation
-
-<div style="text-align: justify"> This Python script allows users to batch download PDB validation reports by entering a list of PDB IDs. It takes input from the user, processes each PDB ID, and constructs the correct URL to fetch the corresponding validation report in PDF format from the RCSB PDB database. The reports are then saved in a designated directory on the user's local system. If a PDB ID is invalid or the report is unavailable, the script will notify the user. It simplifies the retrieval process for multiple validation reports in one go. You can download it from <a href="https://drive.google.com/file/d/1fyBODIrKMvWLFQbuy1XsYgsvHXO1VC7b/view?usp=sharing">here</a>.</div>
-
-The usage are as follow:
-1. Enter PDB ID:
-When running the script, the system will prompt you to enter a list of PDB IDs, separated by commas between multiple IDs (e.g. 6LU7, 1CBS, 2PTC).
-
-3. Batch download:
-The script will traverse the input PDBD list and download the verification report corresponding to each D in sequence.
-
-5. Save location:
-The downloaded report will be saved in a location called validation_. In the folder of reports. If the folder does not exist, the script will be automatically created.
-
-### 1.4 PDB pre processing
-<div style="text-align: justify"> This web-based platform provides a streamlined interface for preprocessing protein structure files (PDB) prior to molecular simulations. It enables users to perform key structural corrections. The interface is designed to assist researchers in computational biology, drug discovery, and molecular dynamics by simplifying the preprocessing workflow through a graphical web front-end. You can use this tool by clicking <a href="https://sean28.github.io/pdb-pre-processing/">here</a>.</div>
+### 1.3 PDB pre processing
+<div style="text-align: justify"> This web-based platform offers an integrated solution for both preprocessing and validating protein structure files (PDB), tailored for users engaged in molecular simulations, drug discovery, and structural biology. It allows users to upload PDB files or input PDB IDs, then perform essential tasks including structural cleaning (e.g., removing waters/ligands), format standardization, and batch retrieval of validation reports directly from the RCSB database. With a simple graphical interface, the tool streamlines both correction and verification workflows. Accessible via browser without installation, it enhances productivity and ensures simulation-ready input. You can use this tool by clicking <a href="https://sean28.github.io/pdb-pre-processing/">here</a>.</div>
 <div style="text-align: justify"> <br> </div>
 
 
