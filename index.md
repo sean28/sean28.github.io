@@ -46,7 +46,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
      + [Binder](#binder)
      + [TRAPP Multiple Comparison Script](#trapp-multiple-comparison-script)
     
-- [4. Text tool](#4-Text-tool)
+- [4. Text tool](#4-text-tool)
   * [4.1 Text comparison tool](#41-text-comparison-tool)
   * [4.2 PDF reader](#42-pdf-reader)
 
