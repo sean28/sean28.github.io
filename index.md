@@ -46,7 +46,7 @@ This repository is maintained by **Dr. Sean**, aiming to provide practical scrip
      + [Binder](#binder)
      + [TRAPP Multiple Comparison Script](#trapp-multiple-comparison-script)
     
-- [4. Text tool](#4-text-tool)
+- [4. Text Tool](#4-text-tool)
   * [4.1 Text comparison tool](#41-text-comparison-tool)
   * [4.2 PDF reader](#42-pdf-reader)
 
@@ -404,7 +404,7 @@ to be continue...
 <div style="text-align: justify"> This tool is now open source and you can refer to it from <a href="https://github.com/sean28/TRAPP-Multiple-comparison.git">here</a>. Download this tool from this <a href="https://github.com/sean28/TRAPP-Multiple-comparison/archive/refs/heads/main.zip">link</a>. If you need to use it, please indicate the source. Articles using this tool have been published, please refer to this link (https://pubmed.ncbi.nlm.nih.gov/36232570/).</div>
 <div style="text-align: justify"> <br> </div>
 
-## 4. Text tool
+## 4. Text Tool
 ---
 <div style="text-align: justify"> Text tools may be one of the most practical and intuitive sets of web utilities for handling textual content, offering features like PDF reading, keyword navigation, and text comparison. Designed to streamline common reading and editing workflows, these tools help users quickly locate, compare, and review information across documents. Whether you’re preparing a manuscript, analyzing research materials, or simply managing everyday documents, Text Tools offers a fast, focused, and distraction-free way to work with text. </div>
 <div style="text-align: justify"> <br> </div>
