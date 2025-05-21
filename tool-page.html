@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dr. Sean’s Research Group</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f6f9fc;}
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5em 2em; background: rgba(255,255,255,0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.3); border-radius: 25px 25px 25px 25px; margin-top: 35px; position: sticky; top: 20px; z-index: 999; max-width: 1125px; margin-left: auto; margin-right: auto;}
+    nav .logo { font-size: 20px; font-weight: bold; color: #222; }
+    nav .menu { justify-content: flex-start; align-items: center; gap: 0.1em; }
+    nav .menu a { margin-left: 0.5em; margin-right: 0.5em; text-decoration: none; color: #333; font-weight: 500; }
+    nav .menu .btn {background:#0d6efd;color:#fff;padding:0.4em 1em;border-radius:20px;text-decoration:none;}
+    nav .menu .btn:hover {background:#0056d2;color:#fff;text-decoration:none;}
+    #navbar { transition: top 0.8s ease; }
+    .hide-navbar { top: -120px !important; }
+    .hero { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5em 2em 3em; background: linear-gradient(120deg, #f4f9ff 30%, rgba(255,255,255,0) 80%); max-width: 1180px; margin-left: auto; margin-right: auto;}
+    .hero-text { max-width: 600px; }
+    .hero-text h1 { font-size: 42px; margin-bottom: 0.5em; line-height: 1.3; color: #222; }
+    .hero-text h1 span { color: #007bff; }
+    .hero-text p { font-size: 16px; color: #555; margin-bottom: 1.5em; }
+    .hero-text .btn { background: #0d6efd; color: #fff; padding: 0.6em 1.4em; border-radius: 25px; text-decoration: none; font-weight: bold; }
+    .features { display: flex; flex-wrap: wrap; justify-content: center; gap: 10em; padding: 2em; margin-top: 2em; margin-bottom: 2em; border-radius: 20px; background: rgba(255, 255, 255, 0.4); box-shadow: 0 0 30px rgba(0,0,0,0.08); max-width: 1125px; max-height: 70px; margin-left: auto; margin-right: auto; }
+    .feature-item { border-radius: 25%; text-align: center; justify-content: center; height: 100px; width: 100px; transition: all 0.3s ease; transform: translateY(0);margin-top: -10px; }
+    .feature-item:hover {transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
+    .feature-icon { font-size: 40px; margin-top: 10px; margin-bottom: 0.2em; background: #e9f2ff; width: 60px; height: 60px; line-height: 60px; border-radius: 20%; display: inline-block; color: #0d6efd; }
+    .feature-label { font-size: 16px; color: #333; }
+    @media (max-width: 768px) {.hero { flex-direction: column; text-align: center; }.hero-text { margin-bottom: 2em; }.features { gap: 1.5em; }}
+    .fade-up{opacity:0;transform:scale(0.85);transition:opacity 1.2s ease,transform 1.2s ease;}
+    .fade-up.visible{opacity:1;transform:translateY(0);}
+    .fade-delay-1 { animation-delay: 0.2s; }
+    .fade-delay-2 { animation-delay: 0.4s; }
+    .fade-delay-3 { animation-delay: 0.6s; }
+    .fade-delay-4 { animation-delay: 0.8s; }
+    .fade-delay-5 { animation-delay: 1s; }
+    .fade-delay-6 { animation-delay: 1.2s; }
+    @keyframes fadeUp {to {opacity: 1;transform: translateY(0);} }  
+
+    .menu-item {position:relative;display:inline-block;padding:0 0.1em;}
+    .menu-item > a {text-decoration:none;color:#333;font-weight:500;}
+    .menu-item > ul,.menu-item ul ul {visibility:hidden;opacity:0;transform:translateY(10px);transition:opacity 0.3s ease,transform 0.3s ease,visibility 0.3s;position:absolute;background:#fff;padding:0.5em 1em;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);list-style:none;margin:0;z-index:999;width:max-content;text-align:left;flex-direction:column;white-space:normal;}
+    .menu-item > ul {top:125%;left:100%;transform: translateX(-50%);}
+    .menu-item ul ul {top:25%;left:50%;transform: translateX(0.3em);min-width:180px;padding:0.3em 0.8em}
+    .menu-item ul a {display:block;text-align:left;text-decoration:none;font-size:16px;color:#333;margin:1em 0;line-height:1.5;}
+    .menu-item ul a:hover {color:#0d6efd;}
+    .menu-item:hover > ul {visibility:visible;opacity:1;transform:translate(-50%,0);}
+    .menu-item ul li:hover > ul {visibility:visible;opacity:1;transform:translate(0.3em,0);}
+    .menu-item::after {content:"";position:absolute;top:100%;left:0;width:100%;height:20px;pointer-events:auto;}
+    .menu-item ul li {display:block;}
+
+    .markdown-box{background:#fff;border-radius:45px;box-shadow:0 4px 16px rgba(0,0,0,0.06);border:1px solid #e0e0e0;padding:30px 40px;margin:20px 0;overflow:hidden;max-width: 1100px;margin-left: auto; margin-right: auto;}
+    .markdown-body{font-size:18px;line-height:1.8;width:100%;box-sizing:border-box;}
+    
+    .menu-toggle{display:none;}
+    @media (max-width:768px){
+    .menu-toggle{display:block;background:none;border:none;font-size:24px;margin-left:auto;}
+    .menu{display:none;flex-direction:column;gap:1em;margin-top:1em;width:100%;}
+    .menu.show{display:flex;}
+    .menu a,.menu-item > a{font-size:14px;padding:0.3em 0.6em;}
+    .menu-item > ul,.menu-item ul ul{display:none !important;}
+    .menu-item ul a{margin:0.5em 0;}
+    .menu-item ul{display:none;}
+    .menu-item.expanded > ul{display:block;}
+    body{font-size:15px;line-height:1.7;}
+    nav{flex-wrap:wrap;gap:1em;padding:1em 1.5em;}
+    nav .logo{font-size:16px;}
+    .markdown-body{font-size:15px;line-height:1.7;padding:0 1em;}
+    .markdown-box{padding:20px 20px;border-radius:25px;}
+    .tool-cards{flex-direction:column;gap:1.5em;padding:1em;}
+    .tool-card{flex:1;width:100%;max-width:95%;margin:0 auto;}
+    .tool-card-inner{flex-direction:column;gap:1em;}
+    .tool-card h3{font-size:18px;}
+    .tool-card p{font-size:14px;}
+    .tool-icon{font-size:24px;text-align:left;}
+    .tool-card a{font-size:14px;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div class="logo">CADD & AIDD Platform</div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="menu">
+      <!-- PDB Operation下拉菜单（纯内联CSS） -->
+      <div class="menu-item">
+        <a href="#PDB-operation">PDB Operation</a>
+        <ul>
+          <li><a href="#pdb-preprocessing">PDB pre processing</a></li>
+          <li><a href="#format-converter">File format converter</a></li>
+        </ul>
+      </div>
+      
+      <div class="menu-item">
+        <a href="#MD-Simulation">MD Simulation</a>
+        <ul>
+          <li class="menu-item"> <a href="#auto-pdb2gmx">GROMACS </a>
+            <ul>
+              <li><a href="#auto-pdb2gmx">An auto protonation-pdb2gmx run script</a></li>
+              <li><a href="#gmx-analysis">Auto gromacs-result analysis program</a></li>
+            </ul>
+          </li>
+          <li class="menu-item"> <a href="#online-amber">AMBER</a>
+            <ul>
+              <li><a href="#online-amber">Online amber tool</a></li>
+              <li><a href="#amd-script">Script for calculating aMD parameters</a></li>
+            </ul>
+          </li>
+          <li><a href="#free-energy">Free Energy</a></li>
+          <li><a href="#mixed-solvent">Mixed solvent MD</a></li>
+        </ul>
+      </div>
+      
+      <div class="menu-item">
+        <a href="#Scientific-Drawing">Scientific Drawing</a>
+        <ul>
+          <li><a href="#pymol">Pymol</a></li>
+          <li><a href="#colormap-lab">ColorMap Lab</a></li>
+          <li><a href="#barplot-tool">Data Analysis and Bar Plot Tool</a></li>
+          <li><a href="#chem-editor">Online chemical structure drawing</a></li>
+          <li><a href="#corner-tool">Corner cutting tool</a></li>
+          <li class="menu-item"> <a href="#kmeans">Fundamentals of R Programming</a>
+            <ul>
+              <li><a href="#kmeans">Parallel kmeans scripts</a></li>
+              <li><a href="#ggplot2">ggplot2</a></li>
+              <li><a href="#binder">Binder</a></li>
+              <li><a href="#trapp">TRAPP Multiple Comparison Script</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="menu-item">
+        <a href="#Text-Tool">Text Tool</a>
+        <ul>
+          <li><a href="#text-compare">Text comparison tool</a></li>
+          <li><a href="#pdf-reader">PDF reader</a></li>
+        </ul>
+      </div>
+      
+      <div class="menu-item">
+        <a href="#AI-Tool">AI Tool</a>
+        <ul>
+          <li><a href="#gemini">Gemini Chat Tool</a></li>
+          <li><a href="#zhipu">ZHIPU Chat Tool</a></li>
+        </ul>
+      </div>
+      
+      <div class="menu-item">
+        <a href="#Other">Other</a>
+        <ul>
+          <li><a href="#env-setup">Scientific research environment</a></li>
+          <li><a href="#calculator">Online calculator</a></li>
+        </ul>
+      </div>
+
+      <a href="home-page.html" class="btn">Get Started</a>
+    </div>
+  </nav>
+  
+  <main style="padding: 40px 0 60px 0;">
+    <div id="PDB-operation" data-category="PDB-operation">
+      <div id="pdb-preprocessing" class="markdown-box fade-up fade-delay-2">
+        <div id="pdb-preprocessing-md" class="tool-content markdown-body" style="text-align: justify;" ></div>
+      </div>
+      <div id="format-converter" class="markdown-box fade-up fade-delay-4">
+        <div id="format-converter-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+    </div>
+
+    <div id="MD-Simulation" data-category="MD-Simulation">
+      <div id="auto-pdb2gmx" class="markdown-box fade-up fade-delay-2">
+        <div id="pdb2gmx-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="gmx-analysis" class="markdown-box fade-up fade-delay-4">
+        <div id="gmx-analysis-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="online-amber" class="markdown-box fade-up fade-delay-6">
+        <div id="online-amber-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="amd-script" class="markdown-box fade-up fade-delay-2">
+        <div id="amd-script-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="free-energy" class="markdown-box fade-up fade-delay-4">
+        <div id="free-energy-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="mixed-solvent" class="markdown-box fade-up fade-delay-6">
+        <div id="mixed-solvent-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+    </div>
+
+    <div id="Scientific-Drawing" data-category="Scientific-Drawing">
+      <div id="pymol" class="markdown-box fade-up fade-delay-2">
+        <div id="pymol-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="colormap-lab" class="markdown-box fade-up fade-delay-1">
+        <div id="colormap-lab-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="barplot-tool" class="markdown-box fade-up fade-delay-2">
+        <div id="barplot-tool-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="chem-editor" class="markdown-box fade-up fade-delay-3">
+        <div id="chem-editor-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="corner-tool" class="markdown-box fade-up fade-delay-4">
+        <div id="corner-tool-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="kmeans" class="markdown-box fade-up fade-delay-5">
+        <div id="kmeans-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="ggplot2" class="markdown-box fade-up fade-delay-6">
+        <div id="ggplot2-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="binder" class="markdown-box fade-up fade-delay-6">
+        <div id="binder-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="trapp" class="markdown-box fade-up fade-delay-6">
+        <div id="trapp-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+    </div>
+
+    <div id="Text-Tool" data-category="Text-Tool">
+      <div id="text-compare" class="markdown-box fade-up fade-delay-2">
+        <div id="text-compare-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="pdf-reader" class="markdown-box fade-up fade-delay-4">
+        <div id="pdf-reader-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+    </div>
+
+    <div id="AI-Tool" data-category="AI-Tool">
+      <div id="gemini" class="markdown-box fade-up fade-delay-2">
+        <div id="gemini-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="zhipu" class="markdown-box fade-up fade-delay-4">
+        <div id="zhipu-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+    </div>
+    
+    <div id="Other" data-category="Other">
+      <div id="env-setup" class="markdown-box fade-up fade-delay-2">
+        <div id="env-setup-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+      <div id="calculator" class="markdown-box fade-up fade-delay-4">
+        <div id="calculator-md" class="tool-content markdown-body" style="text-align: justify;"></div>
+      </div>
+    </div>
+
+
+  </main>
+ 
+
+
+  <script>
+    let prevScroll = window.pageYOffset;
+    const navbar = document.getElementById('navbar');
+    window.onscroll = function () {
+      const currentScroll = window.pageYOffset;
+      if (prevScroll > currentScroll || currentScroll < 20) {
+        navbar.classList.remove("hide-navbar");
+      } else {
+        navbar.classList.add("hide-navbar");
+      }
+      prevScroll = currentScroll;
+    };
+    navbar.addEventListener("mouseenter", () => {
+      navbar.classList.remove("hide-navbar");
+    });
+  </script>
+
+  <script>
+    // 处理点击菜单跳转
+    document.querySelectorAll('nav .menu a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href').slice(1);
+        const targetEl = document.getElementById(targetId);
+        const categoryBlock = targetEl?.closest('[data-category]');
+
+        if (categoryBlock) {
+          const categoryName = categoryBlock.getAttribute('data-category');
+          document.querySelectorAll('[data-category]').forEach(block => {
+            block.style.display = (block.getAttribute('data-category') === categoryName) ? 'block' : 'none';
+          });
+
+          // 延时滚动定位
+          setTimeout(() => {
+            scrollWithOffset(targetEl);
+          }, 50);
+
+          e.preventDefault();
+        }
+      });
+    });
+
+    // 页面加载时，根据 hash 定位并控制显示
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = location.hash.slice(1);
+      const targetEl = document.getElementById(hash);
+      const categoryBlock = targetEl?.closest('[data-category]');
+
+      if (categoryBlock) {
+        const categoryName = categoryBlock.getAttribute('data-category');
+        document.querySelectorAll('[data-category]').forEach(block => {
+          block.style.display = (block.getAttribute('data-category') === categoryName) ? 'block' : 'none';
+        });
+
+        setTimeout(() => {
+          scrollWithOffset(targetEl);
+        }, 50);
+      } else {
+        // 默认只显示第一个分类
+        const first = document.querySelector('[data-category]');
+        if (first) first.style.display = 'block';
+        document.querySelectorAll('[data-category]:not(:first-child)').forEach(block => block.style.display = 'none');
+      }
+    });
+  </script>
+
+  
+
+  
+  <script>
+    function loadMarkdown(url, elementId) {
+      fetch(url)
+        .then(res => res.ok ? res.text() : Promise.reject('Load failed'))
+        .then(md => { document.getElementById(elementId).innerHTML = marked.parse(md); })
+        .catch(err => {
+          document.getElementById(elementId).innerHTML = "<p style='color:red;'>Failed to load content.</p>";
+          console.error(`Markdown load error for ${elementId}:`, err);
+        });
+    }
+
+    // 简洁调用
+    loadMarkdown('https://raw.githubusercontent.com/sean28/pdb-pre-processing/main/README.md', 'pdb-preprocessing-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/format-converter/main/README.md', 'format-converter-md');
+
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Auto-Protonation-pdb2gmx-Script/main/README.md', 'pdb2gmx-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Auto-gromacs-result-analysis-program/main/README.md', 'gmx-analysis-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/sean28.github.io/gh-pages/README-online-amber.md', 'online-amber-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/sean28.github.io/gh-pages/README-amd-script.md', 'amd-script-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/sean28.github.io/gh-pages/Free-Energy-Calculation.md', 'free-energy-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/MixMD/main/README.md', 'mixed-solvent-md');
+
+    loadMarkdown('https://raw.githubusercontent.com/sean28/pymol-command/main/README.md', 'pymol-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/ColorMap-Lab/main/README.md', 'colormap-lab-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Data-Analysis-and-Bar-Plot-Tool/main/README.md', 'barplot-tool-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Online-Chemical-Structure-Drawing-Tool/main/README.md', 'chem-editor-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Glass-corner-cutting-tool/main/README.md', 'corner-tool-md');
+    
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Parallel-KMeans/main/README.md', 'kmeans-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/sean28.github.io/gh-pages/README-ggplot2.md', 'ggplot2-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/sean28.github.io/gh-pages/README-binder.md', 'binder-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/sean28.github.io/gh-pages/README-trapp.md', 'trapp-md');
+
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Text-Comparison-Tool/main/README.md', 'text-compare-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/PDF-reader/main/README.md', 'pdf-reader-md');
+
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Gemini-talk/main/README.md', 'gemini-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/ZHIPU-talk/main/README.md', 'zhipu-md');
+
+    loadMarkdown('https://raw.githubusercontent.com/sean28/scientific-research-environment/main/README.md', 'env-setup-md');
+    loadMarkdown('https://raw.githubusercontent.com/sean28/Online_calculator/main/README.md', 'calculator-md');
+  </script>
+  <script>
+    function toggleMenu() {
+        const menu = document.querySelector('.menu');
+        const button = document.querySelector('.menu-toggle');
+        menu.classList.toggle('show');
+        button.innerText = menu.classList.contains('show') ? '✕' : '☰';
+
+        // 移动端添加点击展开功能（只添加一次）
+        if (window.innerWidth <= 768 && !menu.dataset.bindClick) {
+          menu.dataset.bindClick = 'true';
+          document.querySelectorAll('.menu-item > a').forEach(link => {
+            link.addEventListener('click', function (e) {
+              const parent = this.parentElement;
+              if (parent.querySelector('ul')) {
+                e.preventDefault();
+                parent.classList.toggle('expanded');
+              }
+            });
+          });
+        }
+    }
+    function scrollWithOffset(el) {
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible'); // 滚出视野就隐藏
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
