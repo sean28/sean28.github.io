@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>授权码生成器</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    input, textarea, button { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
+    label { font-weight: bold; }
+    .result { background: #f4f4f4; padding: 10px; border: 1px dashed #aaa; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h2>🎟️ 授权码生成器</h2>
+
+  <label for="serial">设备序列号（Serial Number）：</label>
+  <input type="text" id="serial" placeholder="例如：GVXCP90GX2" />
+
+  <label for="secret">授权密钥（Secret Key）：</label>
+  <input type="text" id="secret" value="MySuperSecretKey2025" />
+
+  <button onclick="generateCode()">生成授权码</button>
+
+  <label>生成结果：</label>
+  <div class="result" id="result">（生成结果将在此显示）</div>
+
+  <script>
+    async function generateCode() {
+      const serial = document.getElementById("serial").value.trim();
+      const secret = document.getElementById("secret").value;
+
+      if (!serial || !secret) {
+        alert("请输入序列号和密钥！");
+        return;
+      }
+
+      const enc = new TextEncoder();
+      const key = await window.crypto.subtle.importKey(
+        "raw",
+        enc.encode(secret),
+        { name: "HMAC", hash: "SHA-256" },
+        false,
+        ["sign"]
+      );
+
+      const signature = await window.crypto.subtle.sign("HMAC", key, enc.encode(serial));
+      const base64url = btoa(String.fromCharCode(...new Uint8Array(signature)))
+        .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+      document.getElementById("result").textContent = base64url;
+    }
+  </script>
+</body>
+</html>
