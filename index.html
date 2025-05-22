@@ -5,7 +5,7 @@
   <title>Dr. Sean’s Research Group</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f6f9fc url('background.png') no-repeat right -90px top 130px / 900px auto;}
+    body { margin: 0; font-family:"PingFang SC","Arial Rounded MT Bold","Helvetica Rounded","Microsoft YaHei UI","Segoe UI",'Segoe UI', sans-serif; background: #f6f9fc url('background.png') no-repeat right -90px top 130px / 900px auto;}
     nav { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; padding: 1.5em 2em; background: rgba(255,255,255,0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.3); border-radius: 25px 25px 25px 25px; margin-top: 35px; position: sticky; top: 20px; z-index: 999; max-width: 1125px; margin-left: auto; margin-right: auto; }
     nav .logo { font-size: 20px; font-weight: bold; color: #222; }
     nav .menu a { margin-left: 2em; text-decoration: none; font-size: 18px; color: #333; font-weight: 500; }
@@ -20,8 +20,8 @@
     .hero-text h1 span { color: #007bff; }
     .hero-text p { font-size: 16px; color: #555; margin-bottom: 1.5em; }
     .hero-text .btn { background: #0d6efd; color: #fff; padding: 0.6em 1.4em; border-radius: 25px; text-decoration: none; font-weight: bold; }
-    .features { display: flex; flex-wrap: wrap; justify-content: center; gap: 10em; padding: 2em; margin-top: 2em; margin-bottom: 2em; border-radius: 20px; background: rgba(255, 255, 255, 0.4); box-shadow: 0 0 30px rgba(0,0,0,0.08); max-width: 1125px; max-height: 70px; margin-left: auto; margin-right: auto; }
-    .feature-item { border-radius: 25%; text-align: center; justify-content: center; height: 100px; width: 100px; transition: all 0.3s ease; transform: translateY(0);margin-top: -10px; }
+    .features{display:flex;flex-wrap:wrap;justify-content:center;row-gap:1em;column-gap:4.5em;padding:2em;margin-top:2em;margin-bottom:2em;border-radius:20px;background:rgba(255,255,255,0.4);box-shadow:0 0 30px rgba(0,0,0,0.08);max-width:1125px;max-height:70px;margin-left:auto;margin-right:auto;}
+    .feature-item { border-radius: 25%; text-align: center; justify-content: center; height: 100px; width: 100px; transition: all 0.3s ease; transform: translateY(0);margin-top: -15px; }
     .feature-item:hover {transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
     .feature-icon { font-size: 40px; margin-top: 10px; margin-bottom: 0.2em; background: #e9f2ff; width: 60px; height: 60px; line-height: 60px; border-radius: 20%; display: inline-block; color: #0d6efd; }
     .feature-label { font-size: 16px; color: #333; }
@@ -101,22 +101,42 @@
   </section>
 
   <section class="features fade-up fade-delay-1 ">
+  <a href="tool-page.html#PDB-operations" style="text-decoration:none;">
     <div class="feature-item">
-      <div class="feature-icon">📘</div>
-      <div class="feature-label">Research</div>
+      <div class="feature-icon">🧬</div>
+      <div class="feature-label">PDB</div>
     </div>
+  </a>
+  <a href="tool-page.html#MD-Simulation" style="text-decoration:none;">
+    <div class="feature-item">
+      <div class="feature-icon">💻</div>
+      <div class="feature-label">MD</div>
+    </div>
+  </a>
+  <a href="tool-page.html#Scientific-Drawing" style="text-decoration:none;"> 
+    <div class="feature-item">
+      <div class="feature-icon">📊</div>
+      <div class="feature-label">Drawing</div>
+    </div>
+  </a>
+  <a href="tool-page.html#Text-Tool" style="text-decoration:none;">
+    <div class="feature-item">
+      <div class="feature-icon">📄</div>
+      <div class="feature-label">Text </div>
+    </div>
+  </a>
+  <a href="tool-page.html#AI-Tool" style="text-decoration:none;">
+    <div class="feature-item">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-label">AI</div>
+    </div>
+  </a>
+  <a href="tool-page.html#Other" style="text-decoration:none;">
     <div class="feature-item">
       <div class="feature-icon">💼</div>
-      <div class="feature-label">Work</div>
+      <div class="feature-label">Other</div>
     </div>
-    <div class="feature-item">
-      <div class="feature-icon">📈</div>
-      <div class="feature-label">Learning</div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">📝</div>
-      <div class="feature-label">Recording</div>
-    </div>
+  </a>
   </section>
 
   <!-- Tool Directory Title -->
@@ -174,7 +194,7 @@
     <div class="tool-card fade-up fade-delay-6">
       <div class="tool-card-inner">
         <div>
-          <h3> 🧰 Other</h3>
+          <h3> 💼 Other</h3>
           <p>This section provides a collection of practical resources beyond core simulation and analysis, covering environment setup, workflow automation, and utility tools for daily scientific tasks.</p>
           <a href="tool-page.html#Other">Read More</a>
         </div>
