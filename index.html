@@ -20,12 +20,17 @@
     .hero-text h1 span { color: #007bff; }
     .hero-text p { font-size: 16px; color: #555; margin-bottom: 1.5em; }
     .hero-text .btn { background: #0d6efd; color: #fff; padding: 0.6em 1.4em; border-radius: 25px; text-decoration: none; font-weight: bold; }
-    .features{display:flex;flex-wrap:wrap;justify-content:center;row-gap:1em;column-gap:4.5em;padding:1em 1em;margin-top:2em;margin-bottom:2em;border-radius:25px;background:rgba(255,255,255,0.4);box-shadow:0 0 30px rgba(0,0,0,0.08);max-width:1125px;max-height:none;margin-left:auto;margin-right:auto;}
-    .feature-item {border-radius: 25%; text-align: center; justify-content: center; height: 100px; width: 100px;  transition: transform 1s ease, box-shadow 0.3s ease; transform: translateY(0);margin-top: 0px; }
-    .feature-item:hover {transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
-    .feature-icon { font-size: 40px; margin-top: 10px; margin-bottom: 0.2em; background: #e9f2ff; width: 60px; height: 60px; line-height: 60px; border-radius: 20%; display: inline-block; color: #0d6efd; }
-    .feature-label { font-size: 16px; color: #333; }
     
+    .features{display:flex;flex-wrap:wrap;justify-content:center;row-gap:1em;column-gap:4.5em;padding:1em 1em;margin-top:2em;margin-bottom:2em;border-radius:30px;background:rgba(255,255,255,0.4);box-shadow:0 0 30px rgba(0,0,0,0.15);max-width:1150px;max-height:70px;margin-left:auto;margin-right:auto;}
+    .feature-item {border-radius: 25%; text-align: center; justify-content: center; height: 90px; width: 90px;  transition: transform 1s ease, box-shadow 0.3s ease; transform: translateY(0);margin-top: -10px; }
+    .feature-item:hover {transform: translateY(-5px) scale(0.9); box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
+    .feature-icon {font-size: 40px; margin-top: 5px; margin-bottom: 0.05em; background: #e9f2ff; width: 60px; height: 60px; line-height: 60px; border-radius: 20%; display: inline-block; color: #0d6efd; }
+    .feature-label {font-size: 16px; color: #333; }
+    
+    .drawer-toggle{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:1001;padding:8px 12px;border:none;border-radius:8px 0 0 8px;background:#ffffff;color:#000000c8;cursor:pointer;font-size:20px;}
+    .drawer {position:fixed; top: 50%; right: 0; transform: translate(100%, -50%); transition: transform 0.4s ease; z-index: 1000; display: flex; flex-wrap: wrap; justify-content: center; row-gap: 1em; column-gap: 2em; padding: 1.5em; border-radius: 20px 0 0 20px; background: rgba(255, 255, 255, 0.95); box-shadow: 0 0 25px rgba(0,0,0,0.35); width: 260px;  max-width: 90%; height: auto;}
+    .drawer.open {transform: translate(0, -50%);}
+  
     .fade-up{opacity:0;transform:translateY(40px) scale(0.85);transition:opacity 1s ease,transform 1s ease;}
     .fade-up.visible{opacity:1;transform:translateY(0);}
     .fade-delay-1 { animation-delay: 0.2s; }
@@ -82,7 +87,7 @@
 <body>
 
   <nav id="navbar">
-    <div class="logo">CADD & AIDD Platform</div>
+    <a class="logo" href="#home" style="text-decoration: none">CADD & AIDD Platform</a>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="menu">
       <a href="#home">Home</a>
@@ -99,6 +104,57 @@
       <a href="#directory" class="btn">Get Started</a>
     </div>
   </section>
+
+  <!-- 抽屉开关按钮 -->
+  <button id="drawerToggle" class="drawer-toggle">
+    &lt;
+  </button>
+  
+  <!-- 抽屉内容 -->
+  <div id="featureDrawer" class="drawer">
+      <!-- MixMD -->
+      <a href="https://cadd.sean28299.dpdns.org/" target="_blank" style="text-decoration:none;">
+        <div class="feature-item">
+          <div class="feature-icon">🧪</div>
+          <div class="feature-label">MixMD</div>
+        </div>
+      </a>
+      <!-- PDB Repair -->
+      <a href="https://sean28.github.io/pdb-pre-processing/" target="_blank" style="text-decoration:none;">
+        <div class="feature-item">
+          <div class="feature-icon">🔧</div>
+          <div class="feature-label">PDB Repair</div>
+        </div>
+      </a>
+      <!-- Amber -->
+      <a href="https://amber.sean28299.dpdns.org/" target="_blank" style="text-decoration:none;">
+        <div class="feature-item">
+          <div class="feature-icon">🔥</div>
+          <div class="feature-label">Amber</div>
+        </div>
+      </a>
+      <!-- Converter -->
+      <a href="https://convert.sean28299.dpdns.org/" target="_blank" style="text-decoration:none;">
+        <div class="feature-item">
+          <div class="feature-icon">📂</div>
+          <div class="feature-label">Convert</div>
+        </div>
+      </a>
+      <!-- Chart -->
+      <a href="https://sean28.github.io/Trajectory-Visualization/" target="_blank" style="text-decoration:none;">
+        <div class="feature-item">
+          <div class="feature-icon">📈</div>
+          <div class="feature-label">Chart</div>
+        </div>
+      </a>
+      <!-- CSS -->
+      <a href="https://sean28.github.io/css-format/" target="_blank" style="text-decoration:none;">
+        <div class="feature-item">
+          <div class="feature-icon">📃</div>
+          <div class="feature-label">CSS</div>
+        </div>
+      </a>
+  </div>
 
   <section class="features fade-up fade-delay-1 ">
   <a href="tool-page.html#PDB-operations" style="text-decoration:none;">
@@ -235,8 +291,7 @@
     navbar.addEventListener("mouseenter", () => {
       navbar.classList.remove("hide-navbar");
     });
-  </script>
-  <script>
+
     function toggleMenu() { document.querySelector('.menu').classList.toggle('show'); }
     if (window.innerWidth <= 768) {
       document.querySelectorAll('.menu-item > a').forEach(link => {
@@ -265,6 +320,19 @@
       }, {
         threshold: 0.15
       });
+
+    // Drawer button
+    const drawer = document.getElementById("featureDrawer");
+    const toggleBtn = document.getElementById("drawerToggle");
+    toggleBtn.addEventListener("click", () => {
+      if (drawer.classList.contains("open")) {
+        drawer.classList.remove("open");
+        toggleBtn.innerHTML = "&lt;"; // 关上 → 显示 >
+      } else {
+        drawer.classList.add("open");
+        toggleBtn.innerHTML = "&gt;"; // 打开 → 显示 <
+      }
+    });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
