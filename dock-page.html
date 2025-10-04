@@ -6,7 +6,7 @@
   <style>
     :root{--cols:5;}
     body{margin:0;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;background:url('alien.jpeg') no-repeat center center fixed;background-size:cover;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;}
-    .dock{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:center;gap:1.5em;padding:1em 2em;margin-bottom:3em;background:rgba(255,255,255,0.1);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.3);transition:all 0.5s ease;z-index:1001;}
+    .dock{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:center;gap:1.5em;padding:1em 2em;margin-bottom:3em;background:rgba(255,255,255,0.1);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:1001;}
     .dock{transform:translateY(100%); opacity:0;pointer-events:none;transition:transform 0.6s ease, opacity 0.8s ease;}
     .dock.top{transform:translateY(-100%);}
     .dock.visible{transform:translateY(0); opacity:1;pointer-events:auto;}
@@ -16,6 +16,8 @@
     .dock-label{position:absolute;bottom:5px;font-size:14px;font-weight:550;color:#fff;text-shadow: 0 0 3px rgba(0,0,0,0.8); opacity:0;transition:opacity 0.3s ease,transform 0.3s ease;transform:translateY(5px);}
     .dock-item:hover .dock-label{opacity:1;transform:translateY(0);}
     .dock a{text-decoration:none;color:inherit;}
+    .dock-item.active {outline: 1px solid rgb(255, 255, 255);transform:scale(1.05) translateY(-10px);box-shadow:0 4px 15px rgb(255, 255, 255);}
+    .dock-item.active .dock-label { opacity: 1; transform: translateY(0);}
     /* 抽屉 */
     .drawer{position:fixed;left:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.4);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);display:grid;grid-template-columns:repeat(var(--cols),140px);justify-content:center;align-content:flex-start;row-gap:1.8em;column-gap:1.5em;overflow-y:auto;transition:opacity 1.5s ease,transform 0.6s ease;z-index:1000;opacity:0;transform:translateY(20px);pointer-events:none;padding:2em;box-sizing:border-box;}
     .drawer.open{opacity:0.9;transform:translateY(0);pointer-events:auto;padding-top:160px;}
@@ -45,12 +47,12 @@
     .flip-card::after{content:'';position:absolute;width:100%;height:1px;background:#333;top:50%;left:0;}
     .date-display{position:fixed;width:290px;display: flex; align-items: center;justify-content: center;top:32%;left:180px;font-size:20px;color:white;font-family:"Arial Rounded MT Bold", "SF Pro Rounded", system-ui, sans-serif;z-index:1500;background:linear-gradient(to bottom,#555555,#000000);padding:4px 10px;border-radius:10px;backdrop-filter:blur(6px);}
     /*汇率*/
-   .exchange-widget{position:fixed;top:20%;right:230px;transform:translateY(-50%);background:rgba(255, 255, 255, 0.25);backdrop-filter:blur(10px);padding:10px 12px;border-radius:12px;font-size:14px;font-weight:bold;color:#000;z-index:1200;width:120px;box-shadow:0 0 10px rgba(0,0,0,0.2);}
-   .exchange-title{font-size:15px;margin-bottom:2px;text-align:left;}
-   .exchange-widget .rate-item{display:flex;justify-content:space-between;font-weight:500;}
-    /*IP*/
-   .ip-widget{position:fixed;top:37%;right:230px;transform:translateY(-50%);background:rgba(255, 255, 255, 0.25);backdrop-filter:blur(10px);padding:10px 12px;border-radius:12px;font-size:14px;font-weight:bold;color:#000;z-index:1200;width:120px;box-shadow:0 0 10px rgba(0,0,0,0.2);}
-   .ip-title{font-size:15px;margin-bottom:2px;text-align:left;}
+    .exchange-widget{position:fixed;top:20%;right:230px;transform:translateY(-50%);background:rgba(255, 255, 255, 0.25);backdrop-filter:blur(10px);padding:10px 12px;border-radius:12px;font-size:14px;font-weight:bold;color:#000;z-index:1200;width:120px;box-shadow:0 0 10px rgba(0,0,0,0.2);}
+    .exchange-title{font-size:15px;margin-bottom:2px;text-align:left;}
+    .exchange-widget .rate-item{display:flex;justify-content:space-between;font-weight:500;}
+     /*IP*/
+    .ip-widget{position:fixed;top:37%;right:230px;transform:translateY(-50%);background:rgba(255, 255, 255, 0.25);backdrop-filter:blur(10px);padding:10px 12px;border-radius:12px;font-size:14px;font-weight:bold;color:#000;z-index:1200;width:120px;box-shadow:0 0 10px rgba(0,0,0,0.2);}
+    .ip-title{font-size:15px;margin-bottom:2px;text-align:left;}
     /*设置*/
     .settingsBtn{position:fixed;top:10px;right:20px;z-index:1300;font-size:20px;background:rgba(255,255,255,0.2);border:none;padding:8px 12px;border-radius:10px;cursor:pointer;}
     .settingsPanel{position:fixed;display: none;top:50px;right:20px;z-index:1300;background:white;padding:12px 16px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.2);display:none;font-size:14px;}
@@ -189,6 +191,19 @@
     const colRange = document.getElementById('colRange');
 
     /* ========== 2. 渲染 Dock & 抽屉 ========== */
+    // 当前滑轮选中的索引
+      let currentIndex = 0;
+
+    // 高亮指定书签并滚动到视图
+    function highlightItem(index) {
+      const allItems = document.querySelectorAll('.dock-item');
+      allItems.forEach(el => el.classList.remove('active'));
+      if (allItems[index]) {
+        allItems[index].classList.add('active');
+        allItems[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }
+
     function renderAll() {
       const cols = parseInt(colRange.value);
       document.documentElement.style.setProperty('--cols', cols);
@@ -269,6 +284,8 @@
         if (i < cols) dock.appendChild(el);
         else drawer.appendChild(el);
       });
+      // 保持当前选中状态
+      highlightItem(currentIndex);
     }
 
     function applyDockGradients() {
@@ -319,13 +336,35 @@
     document.getElementById('lockToggle').addEventListener('click', function () {
       scrollLocked = !scrollLocked; this.textContent = scrollLocked ? '🔗' : '⛓️‍💥';
     });
-    document.addEventListener('wheel', (e) => {
-      if (scrollLocked || e.ctrlKey || e.metaKey) return;
-      e.preventDefault(); const delta = Math.sign(e.deltaY);
-      const current = parseInt(colRange.value);
-      const next = Math.min(6, Math.max(2, current + (delta > 0 ? -1 : 1)));
-      if (next !== current) { colRange.value = next; renderAll(); }
-    }, { passive: false });
+    // ① 滚轮控制 APP 列数（只有解锁时才生效）
+      document.addEventListener('wheel', (e) => {
+        if (!scrollLocked && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          const delta = Math.sign(e.deltaY);
+          const current = parseInt(colRange.value);
+          const next = Math.min(6, Math.max(2, current + (delta > 0 ? -1 : 1)));
+          if (next !== current) {
+            colRange.value = next;
+            renderAll();
+          }
+        }
+      }, { passive: false });
+
+      // ② 滚轮控制书签高亮（只有锁定时才生效）
+      document.addEventListener('wheel', (e) => {
+        if (scrollLocked && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          const delta = Math.sign(e.deltaY);
+          const items = document.querySelectorAll('.dock-item');
+          if (items.length === 0) return;
+
+          if (delta > 0) currentIndex = (currentIndex + 1) % items.length;
+          else currentIndex = (currentIndex - 1 + items.length) % items.length;
+
+          highlightItem(currentIndex);
+        }
+      }, { passive: false });
+     
     document.addEventListener('mousemove', (e) => {
       if (!document.getElementById('toggleDockFloat').checked) return;
       const y = e.clientY; const screenH = window.innerHeight; const triggerDistance = 180;
