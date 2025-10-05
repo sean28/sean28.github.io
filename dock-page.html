@@ -248,7 +248,7 @@
       });
     /* ========== 2. 渲染 Dock & 抽屉 ========== */
     // 当前滑轮选中的索引
-      let currentIndex = 0;
+      let currentIndex = -1;
 
     // 高亮指定书签并滚动到视图
     function highlightItem(index) {
@@ -365,7 +365,7 @@
         });
 
         // 保持当前选中状态
-        highlightItem(currentIndex);
+      // highlightItem(currentIndex);
       }
 
     function applyDockGradients() {
