@@ -302,9 +302,11 @@
       ${(link.href !== "#add" && document.getElementById('toggleDelBtn').checked) ? '<span class="del-btn">✖</span>' : ''}
     `;
 
-          if (link.colorIdx !== undefined) {
-            el.style.background = gradients[link.colorIdx];
+          if (link.colorIdx === undefined) {
+            link.colorIdx = Math.floor(Math.random() * gradients.length);
+            localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
           }
+          el.style.background = gradients[link.colorIdx];
 
           if (isDock) dock.appendChild(el);
           else drawer.appendChild(el);
