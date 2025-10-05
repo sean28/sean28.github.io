@@ -6,20 +6,32 @@
   <style>
     :root{--cols:5;}
     body{margin:0;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;background:url('alien.jpeg') no-repeat center center fixed;background-size:cover;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;}
-    .dock{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:center;gap:1.5em;padding:1em 2em;margin-bottom:3em;background:rgba(255,255,255,0.1);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:1001;}
+    .dock{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:clip;justify-content:center;gap:1.5em;padding:1em 2em;margin-bottom:3em;background:rgba(255,255,255,0.1);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:1001;}
     .dock{transform:translateY(100%); opacity:0;pointer-events:none;transition:transform 0.6s ease, opacity 0.8s ease;}
     .dock.top{transform:translateY(-100%);}
     .dock.visible{transform:translateY(0); opacity:1;pointer-events:auto;}
     .dock-item{position:relative;width:140px;flex:0 0 140px;height:80px;border-radius:15px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;transition:transform 0.3s ease,box-shadow 0.3s ease;text-decoration:none;}
-    .dock-item:hover{transform:scale(1.05) translateY(-10px);box-shadow:0 8px 25px rgba(0,0,0,0.6);}
-    .dock-item .icon{font-size:45px;line-height:1;margin:0;margin-bottom:6px}
-    .dock-label{position:absolute;bottom:5px;font-size:14px;font-weight:550;color:#fff;text-shadow: 0 0 3px rgba(0,0,0,0.8); opacity:0;transition:opacity 0.3s ease,transform 0.3s ease;transform:translateY(5px);}
-    .dock-item:hover .dock-label{opacity:1;transform:translateY(0);}
+    .dock-item:hover{transform:scale(1.18) translateY(0px);box-shadow:0 8px 25px rgba(0,0,0,0);z-index: 2000;}
+    .dock-item .icon{font-size:55px;line-height:1;margin:0;margin-bottom:6px}
+    .dock-label{position:absolute;top:103%;left:50%;transform:translateX(-50%) translateY(6px);width:140px;font-size:15px;font-weight:450;color:#fff;text-shadow:0 0 3px rgba(0,0,0,0.8);opacity:0;transition:opacity 0.3s ease, transform 0.3s ease;pointer-events:none;white-space:normal;word-break:break-word;text-align:center;}
+    .dock-item:hover .dock-label {opacity: 0;transform: translateX(-50%) translateY(0);}
     .dock a{text-decoration:none;color:inherit;}
-    .dock-item.active {outline: 1px solid rgb(255, 255, 255);transform:scale(1.05) translateY(-10px);box-shadow:0 4px 15px rgb(255, 255, 255);}
-    .dock-item.active .dock-label { opacity: 1; transform: translateY(0);}
+    .dock-item.active {animation: bounce 0.8s ease-in-out infinite;outline: 3px solid rgb(255, 255, 255,0);transform:scale(1.18) translateY(0px);box-shadow:0 4px 15px rgb(255, 255, 255,0);}
+    .dock-item.active .dock-label { opacity: 0;transform: translateX(-50%) translateY(0);}
+    /* 动画 */
+    @keyframes bounce {
+    0%,100%  { transform: scale(1.18) translateX(2); }
+    25%      { transform: scale(1.18) translateY(2px); }
+    50%      { transform: scale(1.18) translateX(-2px); }
+    75%      { transform: scale(1.18) translateY(-2px); }
+    }
     /* 抽屉 */
-    .drawer{position:fixed;left:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.4);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);display:grid;grid-template-columns:repeat(var(--cols),140px);justify-content:center;align-content:flex-start;row-gap:1.8em;column-gap:1.5em;overflow-y:auto;transition:opacity 1.5s ease,transform 0.6s ease;z-index:1000;opacity:0;transform:translateY(20px);pointer-events:none;padding:2em;box-sizing:border-box;}
+    .drawer{position:fixed;left:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.4);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);display:grid;grid-template-columns:repeat(var(--cols),140px);justify-content:center;align-content:flex-start;row-gap:3em;column-gap:1.5em;overflow-y:auto;transition:opacity 1.5s ease,transform 0.6s ease;z-index:1000;opacity:0;transform:translateY(20px);pointer-events:none;padding:2em;box-sizing:border-box;}
+    .drawer-label{position:absolute;top:105%;left:50%;transform:translateX(-50%) translateY(10px);width:140px;font-size:14px;font-weight:400;color:#fff;text-shadow:0 0 3px rgba(0,0,0,0.8);opacity:0;transition:opacity 0.3s ease, transform 0.3s ease;pointer-events:none;white-space:normal;word-break:break-word;text-align:center;}
+    .drawer .dock-item:hover {opacity: 1;transform:scale(1.18) translateY(0px);}
+    .drawer .dock-item:hover .drawer-label {opacity: 1;transform: translateX(-50%) translateY(0);}
+    .drawer .dock-item.active{outline:3px solid rgb(255, 255, 255,0);transform:scale(1.18) translateY(0px);box-shadow:0 4px 15px rgb(255, 255, 255,0);}
+    .drawer .dock-item.active .drawer-label{opacity:1;transform:translateX(-50%) translateY(0);}
     .drawer.open{opacity:0.9;transform:translateY(0);pointer-events:auto;padding-top:160px;}
     .drawer .dock-item{width:140px;height:80px;}
     #drawerToggle{position:fixed;bottom:5px;right:50%;transform:translateX(50%);z-index:1100;padding:10px 20px;border:none;border-radius:20px;background:rgba(0,0,0,0);color:#00000050;font-size:25px;font-weight:bold;-webkit-text-stroke:1.5px #00000050;cursor:pointer;}
@@ -118,7 +130,10 @@
     <label><input type="checkbox" id="toggleIP" /> IP地址🌏</label><br>
     <label><input type="checkbox" id="toggleAppModule" /> APP滑块📱</label><br>
     <label><input type="checkbox" id="toggleDelBtn" /> 删除书签🔖</label><br>
-    <label><input type="checkbox" id="toggleDockFloat" /> Dock栏浮显🎛️</label><br>
+    <label><input type="checkbox" id="toggleWallpaper" checked /> 显示壁纸🌆</label><br>
+    <label><input type="checkbox" id="toggleDockFloat" /> 浮动Dock🖲️</label><br>
+    <button id="importWallpaperBtn">设置壁纸</button>
+    <button id="resetWallpaperBtn">重置壁纸</button><br>
     <button id="importBtn">导入数据</button>
     <button id="exportBtn">导出数据</button><br>
     <button id="refreshColorsBtn">刷新颜色</button>
@@ -154,18 +169,18 @@
     /* ========== 1. 配置 & 数据 ========== */
     const defaultLinks = [
       { href: "https://sean28.github.io", icon: "🔬", label: "Lab" },
-      { href: "https://sean28.github.io/pdb-pre-processing/", icon: "🧬", label: "PDB Repair" },
+      { href: "https://sean28.github.io/pdb-pre-processing/", icon: "🧬", label: "PDB" },
       { href: "https://libretv-7lu.pages.dev", icon: "🎬", label: "TV" },
       { href: "https://amber.sean28299.dpdns.org/", icon: "🔥", label: "Amber" },
       { href: "https://sean28.github.io/ZHIPU-talk/", icon: "👽", label: "AI" },
       { href: "https://cadd.sean28299.dpdns.org/", icon: "🧪", label: "MixMD" },
       { href: "https://img.ithome.com/app/magiclines/index.html?fitsystemWindow=1&hidemenu=1&isrmmp=1&v=3&from=singlemessage&isappinstalled=0", icon: "🕹️", label: "魔珠" },
-      { href: "https://sean28.github.io/Glass-corner-cutting-tool/", icon: "🖲️", label: "Corner " },
+      { href: "https://sean28.github.io/Glass-corner-cutting-tool/", icon: "🖱️", label: "Corner " },
       { href: "https://65ff1fda.moontv-txr.pages.dev", icon: "📽️", label: "MoonTV" },
-      { href: "https://sean28.github.io/Trajectory-Visualization/", icon: "📈", label: "Chart" },
+      { href: "https://sean28.github.io/Trajectory-Visualization/", icon: "📉", label: "Chart" },
       { href: "https://sean28.github.io/license-generator/", icon: "🎟️", label: "Code" },
       { href: "http://iziwei.com.cn", icon: "🔮", label: "斗数" },
-      { href: "https://convert.sean28299.dpdns.org/", icon: "🔄", label: "Convert" },
+      { href: "https://convert.sean28299.dpdns.org/", icon: "🗄️", label: "Convert" },
       { href: "https://sean28.github.io/css-format/", icon: "📝", label: "CSS" },
       { href: "https://sean28.github.io/Formula-export/", icon: "🎓", label: "Formula" },
       { href: "https://sean28.github.io/Text-comparison-tool/", icon: "📑", label: "Compare" },
@@ -190,103 +205,168 @@
     const drawer = document.getElementById('drawer');
     const colRange = document.getElementById('colRange');
 
+    // 导入壁纸
+      document.getElementById('importWallpaperBtn').addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = e => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = ev => {
+            const imgUrl = ev.target.result;
+            document.body.style.backgroundImage = `url(${imgUrl})`;
+            localStorage.setItem('customWallpaper', imgUrl);
+          };
+          reader.readAsDataURL(file);
+        };
+        input.click();
+      });
+      // 重置壁纸
+        document.getElementById('resetWallpaperBtn').addEventListener('click', () => {
+          document.body.style.backgroundImage = "url('alien.jpeg')";
+          document.body.style.backgroundColor = '';
+          localStorage.removeItem('customWallpaper');
+          localStorage.setItem('wallpaperVisible', '1');
+          document.getElementById('toggleWallpaper').checked = true;
+          alert("壁纸已恢复为默认");
+        });
+
+      // 壁纸开关
+      document.getElementById('toggleWallpaper').addEventListener('change', (e) => {
+        const checked = e.target.checked;
+        if (checked) {
+          const saved = localStorage.getItem('customWallpaper');
+          if (saved) document.body.style.backgroundImage = `url(${saved})`;
+          else document.body.style.backgroundImage = `url('alien.jpeg')`;
+        } else {
+          document.body.style.backgroundImage = 'none';
+          document.body.style.backgroundColor = '#00000050'; // 纯黑背景
+        }
+        localStorage.setItem('wallpaperVisible', checked ? '1' : '0');
+      });
     /* ========== 2. 渲染 Dock & 抽屉 ========== */
     // 当前滑轮选中的索引
       let currentIndex = 0;
 
     // 高亮指定书签并滚动到视图
     function highlightItem(index) {
-      const allItems = document.querySelectorAll('.dock-item');
-      allItems.forEach(el => el.classList.remove('active'));
-      if (allItems[index]) {
-        allItems[index].classList.add('active');
-        allItems[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        const allItems = document.querySelectorAll('.dock-item');
+        allItems.forEach(el => el.classList.remove('active'));
+
+        if (allItems[index]) {
+          const el = allItems[index];
+          el.classList.add('active');
+          el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+
+          // 判断是否在抽屉里
+          if (drawer.contains(el) && !open) {
+            // 自动打开抽屉
+            open = true;
+            drawer.classList.add('open');
+            dock.classList.add('top');
+            drawerToggle.textContent = "∨";
+            updateVisibility();
+          }
+          else if (dock.contains(el) && open) {
+            // 如果切回 dock，可选：自动关闭抽屉
+            open = false;
+            drawer.classList.remove('open');
+            dock.classList.remove('top');
+            drawerToggle.textContent = "∧";
+            updateVisibility();
+          }
+        }
       }
-    }
 
     function renderAll() {
-      const cols = parseInt(colRange.value);
-      document.documentElement.style.setProperty('--cols', cols);
-      dock.innerHTML = '';
-      drawer.innerHTML = '';
+        const cols = parseInt(colRange.value);
+        document.documentElement.style.setProperty('--cols', cols);
+        dock.innerHTML = '';
+        drawer.innerHTML = '';
 
-      allLinks.forEach((link, i) => {
-        const el = document.createElement('a');
-        el.className = 'dock-item';
-        el.href = link.href;
-        el.target = '_blank';
-        el.innerHTML = `
-          <span class="icon">${link.icon}</span>
-          <span class="dock-label">${link.label}</span>
-          ${(link.href !== "#add" && document.getElementById('toggleDelBtn').checked) ? '<span class="del-btn">✖</span>' : ''}
-        `;
-        if (link.colorIdx !== undefined) {
-          el.style.background = gradients[link.colorIdx];
-        };
+        allLinks.forEach((link, i) => {
+          const el = document.createElement('a');
+          el.className = 'dock-item';
+          el.href = link.href;
+          el.target = '_blank';
 
-        if (i < cols) dock.appendChild(el);
-        else drawer.appendChild(el);
+          // 判断在 dock 还是 drawer
+          const isDock = i < cols;
+          const labelClass = isDock ? "dock-label" : "drawer-label";
 
-        // ✅ 拖拽功能
-        el.setAttribute('draggable', true);
-        el.dataset.index = i;
+          el.innerHTML = `
+      <span class="icon">${link.icon}</span>
+      <span class="${labelClass}">${link.label}</span>
+      ${(link.href !== "#add" && document.getElementById('toggleDelBtn').checked) ? '<span class="del-btn">✖</span>' : ''}
+    `;
 
-        el.addEventListener('dragstart', (e) => {
-          e.dataTransfer.setData('text/plain', i);
-          e.dataTransfer.effectAllowed = 'move';
-        });
-
-        el.addEventListener('dragover', (e) => {
-          e.preventDefault();
-          e.dataTransfer.dropEffect = 'move';
-        });
-
-        el.addEventListener('drop', (e) => {
-          e.preventDefault();
-          const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
-          const toIndex = parseInt(e.currentTarget.dataset.index);
-          if (fromIndex !== toIndex) {
-            const moved = allLinks.splice(fromIndex, 1)[0];
-            allLinks.splice(toIndex, 0, moved);
-            localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
-            renderAll();
+          if (link.colorIdx !== undefined) {
+            el.style.background = gradients[link.colorIdx];
           }
-        });
 
-        // 添加按钮
-        if (link.href === "#add") {
-          el.addEventListener("click", e => {
-            e.preventDefault();
-            const label = prompt("请输入名称"); if (!label) return;
-            const icon = prompt("请输入图标 Emoji"); if (!icon) return;
-            const href = prompt("请输入链接"); if (!href) return;
-            allLinks.splice(allLinks.length - 1, 0, { label, icon, href });
-            localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
-            renderAll();
+          if (isDock) dock.appendChild(el);
+          else drawer.appendChild(el);
+
+          // ✅ 拖拽功能
+          el.setAttribute('draggable', true);
+          el.dataset.index = i;
+
+          el.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', i);
+            e.dataTransfer.effectAllowed = 'move';
           });
-        }
 
-        // 删除按钮
-        if (link.href !== "#add") {
-          const del = el.querySelector('.del-btn');
-          if (del) {
-            del.addEventListener('click', e => {
-              e.stopPropagation(); e.preventDefault();
-              if (confirm(`确认删除 "${link.label}" 吗？`)) {
-                allLinks = allLinks.filter(l => l.href !== link.href);
-                localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
-                renderAll();
-              }
+          el.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+          });
+
+          el.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+            const toIndex = parseInt(e.currentTarget.dataset.index);
+            if (fromIndex !== toIndex) {
+              const moved = allLinks.splice(fromIndex, 1)[0];
+              allLinks.splice(toIndex, 0, moved);
+              localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
+              renderAll();
+            }
+          });
+
+          // 添加按钮
+          if (link.href === "#add") {
+            el.addEventListener("click", e => {
+              e.preventDefault();
+              const label = prompt("请输入名称"); if (!label) return;
+              const icon = prompt("请输入图标 Emoji"); if (!icon) return;
+              const href = prompt("请输入链接"); if (!href) return;
+              allLinks.splice(allLinks.length - 1, 0, { label, icon, href });
+              localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
+              renderAll();
             });
           }
-        }
 
-        if (i < cols) dock.appendChild(el);
-        else drawer.appendChild(el);
-      });
-      // 保持当前选中状态
-      highlightItem(currentIndex);
-    }
+          // 删除按钮
+          if (link.href !== "#add") {
+            const del = el.querySelector('.del-btn');
+            if (del) {
+              del.addEventListener('click', e => {
+                e.stopPropagation(); e.preventDefault();
+                if (confirm(`确认删除 "${link.label}" 吗？`)) {
+                  allLinks = allLinks.filter(l => l.href !== link.href);
+                  localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
+                  renderAll();
+                }
+              });
+            }
+          }
+        });
+
+        // 保持当前选中状态
+        highlightItem(currentIndex);
+      }
 
     function applyDockGradients() {
       const items = document.querySelectorAll('#dock .dock-item'); let last = -1;
@@ -560,4 +640,56 @@
       }
 
     loadExchangeRates(); loadIPAddress();
+    // 恢复壁纸
+      const savedWallpaper = localStorage.getItem('customWallpaper');
+      const wallpaperVisible = localStorage.getItem('wallpaperVisible') !== '0';
+      if (savedWallpaper && wallpaperVisible) {
+        document.body.style.backgroundImage = `url(${savedWallpaper})`;
+      }
+      document.getElementById('toggleWallpaper').checked = wallpaperVisible;
+      if (!wallpaperVisible) {
+        document.body.style.backgroundImage = 'none';
+        document.body.style.backgroundColor = '#2c2c2c';
+      }
+    // ========== 键盘控制 Dock/Drawer 高亮 ==========
+    document.addEventListener('keydown', (e) => {
+        const items = document.querySelectorAll('.dock-item');
+        if (items.length === 0) return;
+
+        const cols = parseInt(colRange.value);
+        const total = items.length;
+
+        if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % total;
+          highlightItem(currentIndex);
+        } else if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + total) % total;
+          highlightItem(currentIndex);
+        } else if (e.key === 'ArrowDown') {
+          currentIndex = (currentIndex + cols) % total;
+          highlightItem(currentIndex);
+        } else if (e.key === 'ArrowUp') {
+          currentIndex = (currentIndex - cols + total) % total;
+          highlightItem(currentIndex);
+        } else if (e.key === 'Enter') {
+          if (items[currentIndex]) items[currentIndex].click();
+        } else if (e.code === 'Space') {
+          // 空格键切换抽屉
+          e.preventDefault(); // 阻止页面滚动
+          open = !open;
+          drawer.classList.toggle('open', open);
+          dock.classList.toggle('top', open);
+          drawerToggle.textContent = open ? "∨" : "∧";
+          updateVisibility();
+        } else if (e.key === 'Escape') {
+          // Esc关闭抽屉
+          if (open) {
+            open = false;
+            drawer.classList.remove('open');
+            dock.classList.remove('top');
+            drawerToggle.textContent = "∧";
+            updateVisibility();
+          }
+        }
+      });
   </script>
