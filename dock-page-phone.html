@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Dock Mobile v2</title>
+<style>
+:root{--safe:env(safe-area-inset-bottom);--gap:10px;--dockH:72px;--wheel:150px;--controlsH:200px;--controlsShift:60px;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{background:url('alien_phone.jpeg') no-repeat center calc(50% - 120px)/cover}
+a{text-decoration:none;color:inherit}
+
+/* 布局：上书签区、下控制区 */
+#app{min-height:100vh;display:flex;flex-direction:column}
+#content{position:relative;flex:1 1 auto;overflow:hidden;padding:12px 12px}
+#controls{position:relative;flex:0 0 calc(var(--controlsH) + var(--safe));height:calc(var(--controlsH) + var(--safe));padding-bottom:var(--safe);display:flex;align-items:center;justify-content:center;background:linear-gradient(to top,rgba(0,0,0,.35),rgba(0,0,0,.15));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-bottom:var(--controlsShift);}
+
+/* Dock：置于书签区底部，不换行，不滚动，自动压缩 */
+.dock{position:absolute;left:0px;right:0px;bottom:5px;display:flex;gap:var(--gap);padding:12px 14px;border-radius:20px;background:rgba(255,255,255,.12);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);align-items:center;justify-content:space-between}
+.dock-item{flex:1 1 0;min-width:0;height:46px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.dock-item .icon{font-size:32px;line-height:1}
+.dock-item.active{outline:3px solid rgba(255,255,255,0);box-shadow:0 0 12px rgba(255,255,255,0.4) inset}
+
+/* 抽屉：只在书签区内部展开，不覆盖控制区；默认关闭 */
+.drawer{position:absolute;top:12px;left:12px;right:12px;bottom:calc(var(--dockH) + 20px);display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:22px;padding:8px;border-radius:18px;backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);opacity:0;transform:translateY(18px);pointer-events:none;transition:opacity .28s ease,transform .28s ease}
+.drawer.open{opacity:1;transform:translateY(0);pointer-events:auto;bottom:12px;}
+.drawer .dock-item{height:50px;border-radius:16px}
+.drawer .icon{font-size:36px}
+.dock-label,.drawer-label{display:none}
+/*动画*/
+.dock-item {transition:transform .18s ease;will-change:transform;transform-origin:center;}
+.dock-item.active {transform:scale(1.18);}
+/*Label*/
+/* 抽屉中选中项在 item 下方显示 label */
+.drawer .dock-item{position:relative;padding-bottom:0px;} /* 预留下方空间，防止挤到下一行 */
+.drawer .dock-item::after{
+  content:attr(data-label);
+  position:absolute; top:100%; left:50%;
+  transform:translate(-50%,6px);
+  font-size:12px; line-height:1; color:#fff;
+  white-space:nowrap; max-width:120%; overflow:hidden; text-overflow:ellipsis;
+  opacity:0; transition:opacity .16s ease,transform .16s ease; pointer-events:none;
+}
+.drawer .dock-item.active::after{opacity:1;transform:translate(-50%,0);}
+
+/* 色卡 */
+.card-0{background:linear-gradient(to bottom,#FF5F6D,#C81D25)}
+.card-1{background:linear-gradient(to bottom,#4facfe,#003cba)}
+.card-2{background:linear-gradient(to bottom,#43e97b,#0c9b47)}
+.card-3{background:linear-gradient(to bottom,#f6d365,#f39c12)}
+.card-4{background:linear-gradient(to bottom,#a18cd1,#4e3aa5)}
+.card-5{background:linear-gradient(to bottom,#555,#000)}
+.card-6{background:linear-gradient(to bottom,#ccc,#777)}
+.card-7{background:linear-gradient(to bottom,#fff,#eee)}
+a[href="#add"]{background:linear-gradient(to bottom,#ccc,#777)!important}
+
+/* 控制区：iPod 圆盘 + 小角标（含防误触样式） */
+#controls{border-radius:25px;overflow:hidden;}#controls::before{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(255,255,255,.35);box-shadow:0 0 0 1px rgba(255,255,255,.12) inset;pointer-events:none;}
+.wheel{position:absolute;bottom:8px;width:var(--wheel);height:var(--wheel);border-radius:50%;
+background:radial-gradient(ellipse at center, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 60%, rgba(0,0,0,.25) 61%, rgba(0,0,0,.3) 100%);
+backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);touch-action:none;user-select:none}
+.wheel .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:24px;color:#222;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.wheel .badge{position:absolute;right:-25px;top:8px;font-size:20px;padding:4px 8px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff}
+.wheel .badge.snd{position:absolute;right:-65px;top:8px;font-size:20px;padding:4px 4px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff}
+
+/* 抽屉按钮（新增防双击缩放属性） */
+#drawerToggle{position:absolute;left:50%;top:calc(47% - (var(--wheel)/2) - 12px);transform:translateX(-50%);z-index:2;padding:2px 16px;line-height:1;align-items:center;justify-content:center;border:none;border-radius:12px;background:rgba(0,0,0,.28);color:#fff;font-size:25px;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
+.drawer{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}/* 抽屉内部滚动，不再“带动页面” */
+.dock.hidden{opacity:0;visibility:hidden;pointer-events:none;}/* 不用 display:none，避免绝对定位重算 */
+
+/* 左侧纵向滑条（控制分界） */
+#splitHandle{--splitPad:14px;position:absolute;left:14px;top:10px;bottom:calc(var(--safe) + 10px);width:24px;border-radius:12px;background:rgba(255,255,255,.10);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);touch-action:none;-webkit-user-select:none;user-select:none;z-index:3}
+#splitHandle::before{content:"";position:absolute;left:11px;top:var(--splitPad);bottom:var(--splitPad);width:2px;background:rgba(255,255,255,.35);border-radius:1px}
+#splitHandle .thumb{position:absolute;left:4px;width:16px;height:36px;border-radius:10px;background:rgba(255,255,255,.9);box-shadow:0 3px 10px rgba(0,0,0,.25);transform:translateY(0)}
+
+:root{--safeT:env(safe-area-inset-top);--clockGap:6px;--dateH:35px;--dateW:clamp(250px,80vw,200px);--flipH:120px;--cardW:120px;--cardR:28px;}
+
+.clock{position:absolute;left:12px;right:12px;color:#fff;z-index:6;transition:opacity .22s ease,transform .22s ease;}
+.clock.hidden{opacity:0;transform:translateY(-6px);pointer-events:none;}
+
+.time-widget{top:calc(var(--safeT) + 8px);height:var(--flipH);padding:0;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;display:flex;align-items:center;justify-content:center;}
+.time-widget .time{font-variant-numeric:tabular-nums;font-size:26px;font-weight:600;letter-spacing:.5px;line-height:1;}
+.time-widget .time .colon{opacity:.85;margin:0 2px;}
+
+.flat-clock{display:flex;gap:10px;align-items:center;justify-content:center;height:100%;}
+
+.card-flat{position:relative;width:var(--cardW);height:var(--flipH);border-radius:var(--cardR);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-variant-numeric:tabular-nums;font-size:calc(var(--flipH)*0.6);line-height:1;background:linear-gradient(#3e3e3e,#151515);}
+.card-flat::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.08);}
+.card-flat{box-shadow:none!important;}
+.card-flat::after{display:none!important;}
+
+.date-widget{top:calc(var(--safeT) + 8px + var(--flipH) + var(--clockGap));height:var(--dateH);padding:8px 14px;border-radius:10px;left:50%!important;right:auto!important;width:var(--dateW)!important;transform:translateX(-50%);background:linear-gradient(#3e3e3e,#151515);display:flex;align-items:center;justify-content:center;color:#fff;}
+.date-widget .date{font-size:14px;font-weight:600;letter-spacing:.3px;opacity:1;}
+.date-widget{box-shadow:none!important;}
+.date-widget::after{display:none!important;}
+
+</style>
+</head>
+<body>
+<div id="clockTime" class="clock time-widget">
+  <div class="flat-clock">
+    <div class="card-flat" id="cardHf">00</div>
+    <div class="card-flat" id="cardMf">00</div>
+  </div>
+</div>
+<div id="clockDate" class="clock date-widget">
+  <div class="date" id="clkD">—</div>
+</div>
+
+<div id="app">
+  <main id="content">
+    <div id="drawer" class="drawer"></div>
+    <div id="dock" class="dock"></div>
+  </main>
+
+  <section id="controls">
+    <button id="drawerToggle">▲</button>
+    <div id="splitHandle"><div class="thumb"></div></div>
+    <div id="wheel" class="wheel" aria-label="iPod Click Wheel">
+      <div class="badge" id="dirBadge">↻</div>
+      <div class="badge snd" id="sndBadge">🔇</div>
+      <div class="center" id="wheelCenter"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* 数据 */
+const defaultLinks=[{href:"https://sean28.github.io",icon:"🔬",label:"Lab"},{href:"https://sean28.github.io/pdb-pre-processing/",icon:"🧬",label:"PDB"},{href:"https://libretv-7lu.pages.dev",icon:"🎬",label:"TV"},{href:"https://amber.sean28299.dpdns.org/",icon:"🔥",label:"Amber"},{href:"https://sean28.github.io/ZHIPU-talk/",icon:"👽",label:"AI"},{href:"https://cadd.sean28299.dpdns.org/",icon:"🧪",label:"MixMD"},{href:"https://sean28.github.io/small-tool/mozhu/",icon:"🕹️",label:"魔珠"},{href:"https://sean28.github.io/Glass-corner-cutting-tool/",icon:"🖱️",label:"Corner"},{href:"https://65ff1fda.moontv-txr.pages.dev",icon:"📽️",label:"MoonTV"},{href:"https://sean28.github.io/Trajectory-Visualization/",icon:"📉",label:"Chart"},{href:"https://sean28.github.io/license-generator/",icon:"🎟️",label:"Code"},{href:"http://iziwei.com.cn",icon:"🔮",label:"斗数"},{href:"https://convert.sean28299.dpdns.org/",icon:"🗄️",label:"Convert"},{href:"https://sean28.github.io/css-format/",icon:"📝",label:"CSS"},{href:"https://sean28.github.io/Formula-export/",icon:"🎓",label:"Formula"},{href:"https://sean28.github.io/Text-comparison-tool/",icon:"📑",label:"Compare"},{href:"#add",icon:"＋",label:"Add"}];
+const gradients=["card-0","card-1","card-2","card-3","card-4","card-5","card-6","card-7"];
+let allLinks=JSON.parse(localStorage.getItem("allLinksOrder")||"null")||defaultLinks.slice();
+
+const dockEl=document.getElementById('dock');
+const drawerEl=document.getElementById('drawer');
+let currentIndex=0, open=false;
+const DOCK_COUNT=4;
+
+/* 渲染 */
+function makeItem(link, idx) {
+  const a = document.createElement('a');
+  a.className = `dock-item ${gradients[idx % gradients.length]}`;
+  a.href = link.href; a.target = '_blank';
+  a.innerHTML = `<span class="icon">${link.icon}</span>`;
+  a.setAttribute('data-label', link.label || ''); // ★ 用于 ::after 显示
+  a.addEventListener('click', e => { if (link.href === "#add") { e.preventDefault(); addOne(); } });
+  return a;
+}
+function render(){
+  dockEl.innerHTML=''; drawerEl.innerHTML='';
+  allLinks.forEach((link,i)=>{(i<DOCK_COUNT?dockEl:drawerEl).appendChild(makeItem(link,i));});
+  syncActive();
+}
+function syncActive() {
+  // 清空两边高亮
+  dockEl.querySelectorAll('.dock-item').forEach(n => n.classList.remove('active'));
+  drawerEl.querySelectorAll('.dock-item').forEach(n => n.classList.remove('active'));
+  // 仅当前可见列表
+  const list = open ? drawerEl.querySelectorAll('.dock-item') : dockEl.querySelectorAll('.dock-item');
+  if (!list.length) return;
+  const vi = open ? Math.max(0, Math.min(list.length - 1, currentIndex - DOCK_COUNT))
+                  : Math.max(0, Math.min(list.length - 1, currentIndex));
+  list[vi].classList.add('active');
+  if (open) list[vi].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+}
+function addOne(){
+  const label=prompt("名称"); if(!label) return;
+  const icon=prompt("Emoji 图标"); if(!icon) return;
+  const href=prompt("链接"); if(!href) return;
+  allLinks.splice(allLinks.length-1,0,{label,icon,href});
+  localStorage.setItem("allLinksOrder",JSON.stringify(allLinks));
+  render();
+}
+
+/* 抽屉 */
+const drawerToggle=document.getElementById('drawerToggle');
+drawerToggle.addEventListener('click',()=>toggleDrawer(!open)); // 桌面/模拟器用
+
+// ✅ 移动端防双击缩放：用 touchend 接管，并加防抖
+let toggleLock=false;
+drawerToggle.addEventListener('touchend',(e)=>{
+  e.preventDefault(); e.stopPropagation();       // 阻断合成 click 与双击缩放
+  if(toggleLock) return; toggleLock=true;
+  toggleDrawer(!open);
+  setTimeout(()=>toggleLock=false,220);
+},{passive:false});
+
+function toggleDrawer(state) {
+  open = state;
+  drawerEl.classList.toggle('open', open);
+  drawerToggle.textContent = open ? "▼" : "▲";
+  // 显隐 dock
+  dockEl.classList.toggle('hidden', open);
+  clockTimeEl.classList.toggle('hidden', open);
+  clockDateEl.classList.toggle('hidden', open);
+  // 夹紧 currentIndex
+  const items = document.querySelectorAll('.dock-item');
+  const total = items.length;
+  if (open) {
+    const len = Math.max(total - DOCK_COUNT, 0);
+    if (len > 0) {
+      if (currentIndex < DOCK_COUNT || currentIndex >= DOCK_COUNT + len) currentIndex = DOCK_COUNT;
+    }
+  } else {
+    const len = Math.min(DOCK_COUNT, total);
+    if (len > 0) { if (currentIndex >= len) currentIndex = len - 1; } else { currentIndex = 0; }
+  }
+  syncActive();
+}
+
+/* 圆盘：旋转=移动，点中心=打开，长按中心=开/关抽屉 */
+const wheel=document.getElementById('wheel'), center=document.getElementById('wheelCenter'), dirBadge=document.getElementById('dirBadge');
+let invert=JSON.parse(localStorage.getItem('wheelInvert')||'false'); dirBadge.textContent=invert?'↺':'↻';
+dirBadge.addEventListener('click',e=>{e.stopPropagation();invert=!invert;localStorage.setItem('wheelInvert',JSON.stringify(invert));dirBadge.textContent=invert?'↺':'↻';});
+  // 声音开关
+  const sndBadge = document.getElementById('sndBadge');
+  let soundOn = JSON.parse(localStorage.getItem('soundOn') || 'false'); // 默认关
+  function syncSnd() { sndBadge.textContent = soundOn ? '🔊' : '🔇'; sndBadge.title = soundOn ? '声音已开' : '声音已关'; }
+  syncSnd();
+  sndBadge.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    soundOn = !soundOn; localStorage.setItem('soundOn', JSON.stringify(soundOn));
+    syncSnd();
+    if (soundOn) { try { if (audioCtx.state !== 'running') await audioCtx.resume(); } catch (e) { } }
+  });
+
+  let tracking = false, lastAngle = 0, acc = 0, step = 22.5, pressTimer = null;
+  function getAngle(ev) {
+    const r = wheel.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - cx;
+    const y = (ev.touches ? ev.touches[0].clientY : ev.clientY) - cy;
+    return Math.atan2(y, x) * 180 / Math.PI;
+  }
+  function wheelDown(ev) {
+    tracking = true; lastAngle = getAngle(ev); acc = 0;
+    wheel.setPointerCapture?.(ev.pointerId);
+  }
+
+  // ====== 加入 iPod 拨轮音效 ======
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const clickWave = (() => { const r = new Float32Array([0, 0, 0.6, 0, 0.3]); const i = new Float32Array([0, 1, 0, 0.5, 0]); return audioCtx.createPeriodicWave(r, i, { disableNormalization: true }); })();
+    let lastSoundTime = 0;
+
+    function playCenterBeep() {
+      if (!soundOn) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "clickWave";                                 // 方波，电子“bi”
+      osc.frequency.setValueAtTime(300, audioCtx.currentTime); // 50Hz
+      gain.gain.setValueAtTime(1.5, audioCtx.currentTime);    // 音量
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.12);
+      // 可选：navigator.vibrate?.(15); // 需要震动可放开
+    }
+
+    function playClick() {
+      if (!soundOn) return;
+      const now = Date.now();
+      if (now - lastSoundTime > 100) { // 节流，150ms 一次
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = "square"; // 方波，电子“bi”
+        osc.frequency.setValueAtTime(10, audioCtx.currentTime); // 高频 beep
+        gain.gain.setValueAtTime(1.5, audioCtx.currentTime);    // 音量
+
+        // 渐弱，让声音更自然
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.1);
+
+        lastSoundTime = now;
+      }
+    }
+
+  function wheelMove(ev) {
+    if (!tracking) return;
+    const a = getAngle(ev);
+    let d = a - lastAngle;
+    if (d > 180) d -= 360; else if (d < -180) d += 360;
+    acc += (invert ? -d : d);
+    lastAngle = a;
+    while (Math.abs(acc) >= step) {
+      if (acc > 0) next();
+      else prev();
+      playClick(); // 🔔 每转一步“bi”
+      acc += (acc > 0 ? -step : step);
+    }
+  }
+  function wheelUp() { tracking = false; acc = 0; }
+
+  function next() {
+    const total = document.querySelectorAll('.dock-item').length;
+
+    if (open) {
+      // 抽屉区：索引范围 [DOCK_COUNT, total-1]
+      const start = DOCK_COUNT;
+      const end = total - 1;
+      if (start > end) return;                 // 抽屉里没有项
+      if (currentIndex < start) currentIndex = start; // 越界夹紧到抽屉首项
+      if (currentIndex < end) {                // 还没到最后一个 → 往后移
+        currentIndex += 1;
+        syncActive();
+      }
+      // 到了最后一个就不动
+    } else {
+      // Dock 区：索引范围 [0, len-1]
+      const len = Math.min(DOCK_COUNT, total);
+      const end = len - 1;
+      if (end < 0) return;                     // Dock 为空
+      if (currentIndex > end) currentIndex = end;     // 越界夹紧到 Dock 末项
+      if (currentIndex < end) {                // 还没到最后一个 → 往后移
+        currentIndex += 1;
+        syncActive();
+      }
+      // 到了最后一个就不动
+    }
+  }
+
+  function prev() {
+    const total = document.querySelectorAll('.dock-item').length;
+
+    if (open) {
+      // 抽屉区：索引范围 [DOCK_COUNT, total-1]
+      const start = DOCK_COUNT;
+      const end = total - 1;
+      if (start > end) return;                 // 抽屉里没有项
+      if (currentIndex > end) currentIndex = end;     // 越界夹紧到抽屉末项
+      if (currentIndex > start) {              // 还没到第一个 → 往前移
+        currentIndex -= 1;
+        syncActive();
+      }
+      // 到了第一个就不动
+    } else {
+      // Dock 区：索引范围 [0, len-1]
+      const len = Math.min(DOCK_COUNT, total);
+      const end = len - 1;
+      if (end < 0) return;                     // Dock 为空
+      if (currentIndex > end) currentIndex = end;     // 越界夹紧
+      if (currentIndex > 0) {                  // 还没到第一个 → 往前移
+        currentIndex -= 1;
+        syncActive();
+      }
+      // 到了第一个就不动
+    }
+  }
+  center.addEventListener('click', async () => {
+    try { if (audioCtx.state !== 'running') await audioCtx.resume(); } catch (e) { }
+    playCenterBeep();  // 先播“bi”
+    const list = open ? drawerEl.querySelectorAll('.dock-item') : dockEl.querySelectorAll('.dock-item');
+    const vi = open ? currentIndex - DOCK_COUNT : currentIndex;
+    list[vi]?.click(); // 再打开当前项
+  });
+center.addEventListener('touchstart',()=>{pressTimer=setTimeout(()=>toggleDrawer(!open),500);},{passive:true});
+center.addEventListener('touchend',()=>clearTimeout(pressTimer),{passive:true});
+if('onpointerdown'in window){wheel.addEventListener('pointerdown',wheelDown);wheel.addEventListener('pointermove',wheelMove);wheel.addEventListener('pointerup',wheelUp);}else{wheel.addEventListener('touchstart',wheelDown,{passive:true});wheel.addEventListener('touchmove',wheelMove,{passive:false});wheel.addEventListener('touchend',wheelUp,{passive:true});}
+
+/* （可选保险）禁用 iOS 捏合手势 */
+['gesturestart','gesturechange','gestureend'].forEach(t=>{
+  window.addEventListener(t,(e)=>e.preventDefault(),{passive:false});
+});
+// iOS 会偶发 touchcancel，补充清理
+document.addEventListener('touchcancel', () => {
+  if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+  pressStart = null;
+}, { passive: true });
+
+  // === 时钟（卡片风格，无秒）===
+  const hEl = document.getElementById('cardHf');
+  const mEl = document.getElementById('cardMf');
+  const clkD = document.getElementById('clkD');
+  const clockTimeEl = document.getElementById('clockTime');
+  const clockDateEl = document.getElementById('clockDate');
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function updClock() {
+    const now = new Date();
+    hEl.textContent = pad(now.getHours());
+    mEl.textContent = pad(now.getMinutes());
+    const wk = '日一二三四五六'[now.getDay()];
+    clkD.textContent = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 周${wk}`;
+  }
+  // 对齐到下一个整分钟，再每分钟刷新
+  function scheduleMinuteTick() {
+    const now = new Date();
+    const ms = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+    setTimeout(() => { updClock(); setInterval(updClock, 60 * 1000); }, Math.max(0, ms));
+  }
+  updClock();
+  scheduleMinuteTick();
+/* 初始化：默认抽屉关闭 */
+render();
+toggleDrawer(false);
+  // ===== 左侧滑条：拖动调节 #controls 上移距离（--controlsShift），最多到屏幕中线 =====
+  const root = document.documentElement;
+  const controls = document.getElementById('controls');
+  const splitHandle = document.getElementById('splitHandle');
+  const thumb = splitHandle.querySelector('.thumb');
+
+  let drag = false, startY = 0, startShift = 0, maxRaise = 0;
+
+  function getShiftPx() {
+    const v = getComputedStyle(root).getPropertyValue('--controlsShift').trim();
+    const n = parseFloat(v); return isNaN(n) ? 0 : n;
+  }
+  function setShiftPx(px) {
+    const clamped = Math.max(0, Math.min(px, maxRaise));
+    root.style.setProperty('--controlsShift', Math.round(clamped) + 'px');
+    updateThumb();
+  }
+  function recalcBounds() {
+    const vh = window.innerHeight;
+    const h = controls.getBoundingClientRect().height;
+    // 最高到屏幕中线：controls 顶边 >= vh/2
+    // margin-bottom = raise；顶边 = vh - h - raise
+    // 要 vh - h - raise >= vh/2  →  raise <= vh/2 - h
+    maxRaise = Math.max(0, (vh / 2) - h);
+    // 若当前超限，夹紧
+    setShiftPx(Math.min(getShiftPx(), maxRaise));
+  }
+  function updateThumb() {
+      const track = splitHandle.getBoundingClientRect();
+      const th = thumb.getBoundingClientRect().height || 36;
+
+      // 读取 CSS 变量 --splitPad（没有就回落 14）
+      const pad = parseFloat(getComputedStyle(splitHandle).getPropertyValue('--splitPad')) || 14;
+
+      // 可滑动行程：总高 - 拇指高 - 上下留白
+      const range = Math.max(0, track.height - th - pad * 2);
+
+      // ratio：0=最低（不抬），1=最高（到屏幕中线）
+      const ratio = maxRaise > 0 ? (getShiftPx() / maxRaise) : 0;
+
+      // 让拇指与手势同向：越往上拖，越靠上；并加上基准 pad
+      const y = pad + range * (1 - ratio);
+
+      thumb.style.transform = `translateY(${y}px)`;
+    }
+
+  // Pointer 事件优先，自动兼容触控
+  if ('onpointerdown' in window) {
+    splitHandle.addEventListener('pointerdown', (e) => { drag = true; startY = e.clientY; startShift = getShiftPx(); splitHandle.setPointerCapture?.(e.pointerId); });
+    splitHandle.addEventListener('pointermove', (e) => { if (!drag) return; const dy = startY - e.clientY; setShiftPx(startShift + dy); });
+    splitHandle.addEventListener('pointerup', () => { drag = false; });
+    splitHandle.addEventListener('pointercancel', () => { drag = false; });
+  } else {
+    splitHandle.addEventListener('touchstart', (e) => { drag = true; startY = e.touches[0].clientY; startShift = getShiftPx(); }, { passive: true });
+    splitHandle.addEventListener('touchmove', (e) => { if (!drag) return; const dy = startY - e.touches[0].clientY; setShiftPx(startShift + dy); }, { passive: true });
+    splitHandle.addEventListener('touchend', () => { drag = false; }, { passive: true });
+    splitHandle.addEventListener('touchcancel', () => { drag = false; }, { passive: true });
+  }
+
+  // 旋转屏幕或地址栏伸缩时，重新计算边界
+  window.addEventListener('resize', recalcBounds);
+  window.addEventListener('orientationchange', recalcBounds);
+
+  // 首次计算并同步拇指位置
+  recalcBounds();
+  updateThumb();
+</script>
+</body>
+</html>
