@@ -3,80 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>TV Dock</title>
-  <style>
-    :root{--cols:5;}
-    body{margin:0;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;background:url('alien.jpeg') no-repeat center center fixed;background-size:cover;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;}
-    .dock{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:clip;justify-content:center;gap:1.5em;padding:1em 2em;margin-bottom:3em;background:rgba(255,255,255,0.1);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:1001;}
-    .dock{transform:translateY(100%); opacity:0;pointer-events:none;transition:transform 0.6s ease, opacity 0.8s ease;}
-    .dock.top{transform:translateY(-100%);}
-    .dock.visible{transform:translateY(0); opacity:1;pointer-events:auto;}
-    .dock-item{position:relative;width:140px;flex:0 0 140px;height:80px;border-radius:15px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;transition:transform 0.3s ease,box-shadow 0.3s ease;text-decoration:none;}
-    .dock-item:hover{transform:scale(1.18) translateY(0px);box-shadow:0 8px 25px rgba(0,0,0,0);z-index: 2000;}
-    .dock-item .icon{font-size:55px;line-height:1;margin:0;margin-bottom:6px}
-    .dock-label{position:absolute;top:103%;left:50%;transform:translateX(-50%) translateY(6px);width:140px;font-size:15px;font-weight:450;color:#fff;text-shadow:0 0 3px rgba(0,0,0,0.8);opacity:0;transition:opacity 0.3s ease, transform 0.3s ease;pointer-events:none;white-space:normal;word-break:break-word;text-align:center;}
-    .dock-item:hover .dock-label {opacity: 0;transform: translateX(-50%) translateY(0);}
-    .dock a{text-decoration:none;color:inherit;}
-    .dock-item.active {animation: bounce 0.8s ease-in-out infinite;outline: 3px solid rgb(255, 255, 255,0);transform:scale(1.18) translateY(0px);box-shadow:0 4px 15px rgb(255, 255, 255,0);}
-    .dock-item.active .dock-label { opacity: 0;transform: translateX(-50%) translateY(0);}
-    /* 动画 */
-    @keyframes bounce {
-    0%,100%  { transform: scale(1.18) translateX(2); }
-    25%      { transform: scale(1.18) translateY(2px); }
-    50%      { transform: scale(1.18) translateX(-2px); }
-    75%      { transform: scale(1.18) translateY(-2px); }
-    }
-    /* 抽屉 */
-    .drawer{position:fixed;left:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.4);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);display:grid;grid-template-columns:repeat(var(--cols),140px);justify-content:center;align-content:flex-start;row-gap:3em;column-gap:1.5em;overflow-y:auto;transition:opacity 1.5s ease,transform 0.6s ease;z-index:1000;opacity:0;transform:translateY(20px);pointer-events:none;padding:2em;box-sizing:border-box;}
-    .drawer-label{position:absolute;top:105%;left:50%;transform:translateX(-50%) translateY(10px);width:140px;font-size:14px;font-weight:400;color:#fff;text-shadow:0 0 3px rgba(0,0,0,0.8);opacity:0;transition:opacity 0.3s ease, transform 0.3s ease;pointer-events:none;white-space:normal;word-break:break-word;text-align:center;}
-    .drawer .dock-item:hover {opacity: 1;transform:scale(1.18) translateY(0px);}
-    .drawer .dock-item:hover .drawer-label {opacity: 1;transform: translateX(-50%) translateY(0);}
-    .drawer .dock-item.active{outline:3px solid rgb(255, 255, 255,0);transform:scale(1.18) translateY(0px);box-shadow:0 4px 15px rgb(255, 255, 255,0);}
-    .drawer .dock-item.active .drawer-label{opacity:1;transform:translateX(-50%) translateY(0);}
-    .drawer.open{opacity:0.9;transform:translateY(0);pointer-events:auto;padding-top:160px;}
-    .drawer .dock-item{width:140px;height:80px;}
-    #drawerToggle{position:fixed;bottom:5px;right:50%;transform:translateX(50%);z-index:1100;padding:10px 20px;border:none;border-radius:20px;background:rgba(0,0,0,0);color:#00000050;font-size:25px;font-weight:bold;-webkit-text-stroke:1.5px #00000050;cursor:pointer;}
-    .dock.top{position:fixed;top:20px;margin:0;border-radius:25px;width:auto;}
-    /*App滑块*/
-    .slider-container{position:fixed;top:40%;right:20px;transform:translateY(-50%);z-index:1200;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);padding:10px;border-radius:12px;display:flex;flex-direction:column;align-items:center;}
-    .slider-container label{color:#0000008b;font-size:12px;margin-bottom:8px;}
-    .slider-container input[type=range]{writing-mode:bt-lr;-webkit-appearance:slider-vertical;width:8px;height:150px;}
-    /* 锁定 */
-    #lockToggle{position:fixed;top:57%;right:20px;transform:translateY(-50%);font-size:20px;padding:6px 8px;border:none;background:rgba(255,255,255,0.3);border-radius:10px;cursor:pointer;z-index:1200;backdrop-filter:blur(10px);}
-    /* 删除按钮样式 */
-    .dock-item .del-btn{position:absolute;top:4px;right:6px;color:white;font-size:14px;background:rgba(0, 0, 0, 0.4);border-radius:50%;padding:1px 4px;cursor:pointer;z-index:2;opacity:0;transition:opacity 0.2s ease;pointer-events:none;}
-    .dock-item:hover .del-btn{opacity:1;pointer-events:auto;}
-    .dock-item .del-btn:hover{background:red;}
-    /* 搜索条 */
-    .search-bar{position:fixed;top:2%;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;z-index:1400;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);padding:8px 10px;border-radius:15px;box-shadow:0 0 8px rgba(0,0,0,0.2);}
-    .search-bar select{background:#d0d0d0;border:none;border-radius:8px;padding:5px 8px;font-size:14px;outline:none;cursor:pointer;transition:background 0.3s ease, box-shadow 0.3s ease;}
-    .search-bar input{padding:8px 8px;border:none;border-radius:10px;outline:none;background:rgba(0, 0, 0, 0.2)}
-    .search-bar input{width:450px;}
-    .search-bar button{border:none;background:rgba(0, 0, 0, 0.2);color:white;padding:8px 12px;border-radius:10px;cursor:pointer;}
-    .search-bar button:hover{background:rgba(0, 0, 0, 0.5);}
-    /* 时间 */
-    .flip-clock{position:fixed;top:10%;left:180px;display:flex;gap:10px;z-index:1500;}
-    .flip-unit{width:150px;height:150px;background: linear-gradient(to bottom,#555555,#000000);;border-radius:28px;box-shadow:inset 0 -1px 0 #222, inset 0 1px 0 #444;position:relative;display:flex;align-items:center;justify-content:center;font-family:"Arial Rounded MT Bold","SF Pro Rounded",system-ui, sans-serif;font-weight:500;font-size:96px;color:white;}
-    .flip-card::after{content:'';position:absolute;width:100%;height:1px;background:#333;top:50%;left:0;}
-    .date-display{position:fixed;width:290px;display: flex; align-items: center;justify-content: center;top:32%;left:180px;font-size:20px;color:white;font-family:"Arial Rounded MT Bold", "SF Pro Rounded", system-ui, sans-serif;z-index:1500;background:linear-gradient(to bottom,#555555,#000000);padding:4px 10px;border-radius:10px;backdrop-filter:blur(6px);}
-    /*汇率*/
-    .exchange-widget{position:fixed;top:20%;right:230px;transform:translateY(-50%);background:rgba(255, 255, 255, 0.25);backdrop-filter:blur(10px);padding:10px 12px;border-radius:12px;font-size:14px;font-weight:bold;color:#000;z-index:1200;width:120px;box-shadow:0 0 10px rgba(0,0,0,0.2);}
-    .exchange-title{font-size:15px;margin-bottom:2px;text-align:left;}
-    .exchange-widget .rate-item{display:flex;justify-content:space-between;font-weight:500;}
-     /*IP*/
-    .ip-widget{position:fixed;top:37%;right:230px;transform:translateY(-50%);background:rgba(255, 255, 255, 0.25);backdrop-filter:blur(10px);padding:10px 12px;border-radius:12px;font-size:14px;font-weight:bold;color:#000;z-index:1200;width:120px;box-shadow:0 0 10px rgba(0,0,0,0.2);}
-    .ip-title{font-size:15px;margin-bottom:2px;text-align:left;}
-    /*设置*/
-    .settingsBtn{position:fixed;top:10px;right:20px;z-index:1300;font-size:20px;background:rgba(255,255,255,0.2);border:none;padding:8px 12px;border-radius:10px;cursor:pointer;}
-    .settingsPanel{position:fixed;display: none;top:50px;right:20px;z-index:1300;background:white;padding:12px 16px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.2);display:none;font-size:14px;}
-    .settingsPanel.open { display: block; }
-    .settingsPanel label {display: block;margin: -5px 0;cursor: pointer;}
-    /* 设置按钮动画 */
-    .settingsBtn{transition:background 0.3s ease;}
-    .settingsBtn .gear{display:inline-block;transition:transform 0.5s ease;}
-    .settingsBtn.active .gear{transform:rotate(180deg);}
-    /* 固定书签颜色 */
-    .dock .dock-item[href="#add"], .drawer .dock-item[href="#add"] { background: linear-gradient(to bottom,#cccccc,#777777) !important; }
-  </style>
+  <link rel="stylesheet" href="dock-page-style.css">
 </head>
 <body>
   <!-- 搜索条 -->
@@ -128,10 +55,10 @@
     <label><input type="checkbox" id="toggleDate" /> 日期显示📆</label><br>
     <label><input type="checkbox" id="toggleExchange" /> 汇率插件💵</label><br>
     <label><input type="checkbox" id="toggleIP" /> IP地址🌏</label><br>
-    <label><input type="checkbox" id="toggleAppModule" /> APP滑块📱</label><br>
-    <label><input type="checkbox" id="toggleDelBtn" /> 删除书签🔖</label><br>
+    <label><input type="checkbox" id="toggleAppModule" /> 页面设置🎛️</label><br>
+    <label><input type="checkbox" id="toggleDelBtn" /> 编辑书签🔖</label><br>
     <label><input type="checkbox" id="toggleWallpaper" checked /> 显示壁纸🌆</label><br>
-    <label><input type="checkbox" id="toggleDockFloat" /> 浮动Dock🖲️</label><br>
+    <label><input type="checkbox" id="toggleDockFloat" /> 浮动Dock☁️</label><br>
     <button id="importWallpaperBtn">设置壁纸</button>
     <button id="resetWallpaperBtn">重置壁纸</button><br>
     <button id="importBtn">导入数据</button>
@@ -145,12 +72,13 @@
   <div class="drawer" id="drawer"></div>
   <button id="drawerToggle">∧</button>
 
-  <!-- APP滑块 & 锁定 -->
+  <!-- Dock-APP滑块 & 锁定 -->
   <div class="slider-container">
     <label for="colRange">APP</label>
     <input type="range" id="colRange" min="2" max="6" value="5" step="1">
   </div>
   <button id="lockToggle">🔗</button>
+  <button id="invertScrollToggle">🖱️</button>
 
   <script>
     // 搜索功能
@@ -297,10 +225,12 @@
           const labelClass = isDock ? "dock-label" : "drawer-label";
 
           el.innerHTML = `
-      <span class="icon">${link.icon}</span>
-      <span class="${labelClass}">${link.label}</span>
-      ${(link.href !== "#add" && document.getElementById('toggleDelBtn').checked) ? '<span class="del-btn">✖</span>' : ''}
-    `;
+  <span class="icon">${link.icon}</span>
+  <span class="${labelClass}">${link.label}</span>
+  ${(link.href !== "#add" && document.getElementById('toggleDelBtn').checked)
+              ? '<span class="del-btn">✖</span><span class="edit-btn">✎</span>'
+              : ''}
+`;
 
           if (link.colorIdx === undefined) {
             link.colorIdx = Math.floor(Math.random() * gradients.length);
@@ -363,6 +293,22 @@
                 }
               });
             }
+
+            // 编辑按钮
+            const edit = el.querySelector('.edit-btn');
+            if (edit) {
+              edit.addEventListener('click', e => {
+                e.stopPropagation(); e.preventDefault();
+                const newLabel = prompt("修改名称", link.label) || link.label;
+                const newIcon = prompt("修改图标 Emoji", link.icon) || link.icon;
+                const newHref = prompt("修改链接", link.href) || link.href;
+                link.label = newLabel;
+                link.icon = newIcon;
+                link.href = newHref;
+                localStorage.setItem("allLinksOrder", JSON.stringify(allLinks));
+                renderAll();
+              });
+            }
           }
         });
 
@@ -418,35 +364,54 @@
     document.getElementById('lockToggle').addEventListener('click', function () {
       scrollLocked = !scrollLocked; this.textContent = scrollLocked ? '🔗' : '⛓️‍💥';
     });
-    // ① 滚轮控制 APP 列数（只有解锁时才生效）
+
+    let invertScroll = JSON.parse(localStorage.getItem("invertScroll") || "false");
+      const invertBtn = document.getElementById('invertScrollToggle');
+
+      // 根据状态添加类
+      invertBtn.classList.toggle('rotated', invertScroll);
+
+      // 点击按钮切换
+      invertBtn.addEventListener('click', () => {
+        invertScroll = !invertScroll;
+        localStorage.setItem("invertScroll", JSON.stringify(invertScroll));
+        invertBtn.classList.toggle('rotated', invertScroll);
+      });
+
+
+    let wheelLocked = false;
+
       document.addEventListener('wheel', (e) => {
-        if (!scrollLocked && !e.ctrlKey && !e.metaKey) {
+        if (!e.ctrlKey && !e.metaKey) {
           e.preventDefault();
-          const delta = Math.sign(e.deltaY);
-          const current = parseInt(colRange.value);
-          const next = Math.min(6, Math.max(2, current + (delta > 0 ? -1 : 1)));
-          if (next !== current) {
-            colRange.value = next;
-            renderAll();
+
+          if (wheelLocked) return; // 手势期间忽略后续事件
+
+          const delta = invertScroll ? -e.deltaY : e.deltaY;
+          if (delta === 0) return;
+
+          if (scrollLocked) {
+            const items = document.querySelectorAll('.dock-item');
+            if (items.length === 0) return;
+            if (delta > 0) currentIndex = (currentIndex + 1) % items.length;
+            else currentIndex = (currentIndex - 1 + items.length) % items.length;
+            highlightItem(currentIndex);
+          } else {
+            const current = parseInt(colRange.value);
+            const next = Math.min(6, Math.max(2, current + (delta > 0 ? -1 : 1)));
+            if (next !== current) {
+              colRange.value = next;
+              renderAll();
+              saveSettings();
+            }
           }
+
+          // 锁定 400ms，确保一次手势只触发一次
+          wheelLocked = true;
+          setTimeout(() => { wheelLocked = false; }, 300);
         }
       }, { passive: false });
-
-      // ② 滚轮控制书签高亮（只有锁定时才生效）
-      document.addEventListener('wheel', (e) => {
-        if (scrollLocked && !e.ctrlKey && !e.metaKey) {
-          e.preventDefault();
-          const delta = Math.sign(e.deltaY);
-          const items = document.querySelectorAll('.dock-item');
-          if (items.length === 0) return;
-
-          if (delta > 0) currentIndex = (currentIndex + 1) % items.length;
-          else currentIndex = (currentIndex - 1 + items.length) % items.length;
-
-          highlightItem(currentIndex);
-        }
-      }, { passive: false });
-     
+    
     document.addEventListener('mousemove', (e) => {
       if (!document.getElementById('toggleDockFloat').checked) return;
       const y = e.clientY; const screenH = window.innerHeight; const triggerDistance = 180;
@@ -551,6 +516,7 @@
         (document.getElementById('toggleIP').checked && !isDrawerOpen) ? 'block' : 'none';
       document.querySelector('.slider-container').style.display = showAppModule ? 'flex' : 'none';
       document.getElementById('lockToggle').style.display = showAppModule ? 'block' : 'none';
+      document.getElementById('invertScrollToggle').style.display = showAppModule ? 'block' : 'none'; 
       const floatDock = document.getElementById('toggleDockFloat').checked;
       if (!floatDock || isDrawerOpen) dock.classList.add('visible'); else dock.classList.remove('visible');
       document.querySelector('.search-bar').style.display = isDrawerOpen ? 'none' : 'flex';
