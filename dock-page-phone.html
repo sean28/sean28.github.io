@@ -63,6 +63,29 @@ backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);touch-action:none;us
 .wheel .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:24px;color:#222;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .wheel .badge{position:absolute;right:-25px;top:8px;font-size:20px;padding:4px 8px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff}
 .wheel .badge.snd{position:absolute;right:-65px;top:8px;font-size:20px;padding:4px 4px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff}
+/* 🗑️删除徽标在左侧 */
+.wheel .badge.del{position:absolute;left:-25px;right:auto;top:8px;font-size:15px;padding:6px 6px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff;cursor:pointer}
+.wheel .badge.del.on{background:rgba(255,0,0,.55)}  /* 删除模式时变红 */
+/* 🧹重置徽标在🗑️左侧 */
+.wheel .badge.reset{position:absolute;left:-65px;right:auto;top:8px;font-size:15px;padding:6px 6px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff;cursor:pointer}
+/* 删除模式下：选中项红框高亮（Dock + 抽屉都生效） */
+body.del-mode .dock-item.active{transform:scale(1.05);
+  outline:2px solid rgba(255,0,0,.9)!important;
+  box-shadow:0 0 0 2px rgba(255,0,0,.25) inset,0 0 14px rgba(255,0,0,.45)!important;
+}
+/* ⚙️ 设置按钮（控制区右上角） */
+#controls .settings-btn{
+  position:absolute;top:8px;right:10px;
+  padding:6px 10px;border:0;border-radius:10px;
+  background:rgba(0,0,0,.35);color:#fff;font-size:16px;line-height:1;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+#controls .settings-btn[aria-pressed="true"]{background:rgba(0,0,0,.55);} /* 开启时稍深 */
+
+/* 默认隐藏四个徽标；开启设置时显示 */
+#controls:not(.show-settings) .wheel .badge{display:none!important;}
+#controls.show-settings .wheel .badge{display:block;}
 
 /* 抽屉按钮（新增防双击缩放属性） */
 #drawerToggle{position:absolute;left:50%;top:calc(47% - (var(--wheel)/2) - 12px);transform:translateX(-50%);z-index:2;padding:2px 16px;line-height:1;align-items:center;justify-content:center;border:none;border-radius:12px;background:rgba(0,0,0,.28);color:#fff;font-size:25px;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
@@ -120,8 +143,11 @@ backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);touch-action:none;us
     <div id="wheel" class="wheel" aria-label="iPod Click Wheel">
       <div class="badge" id="dirBadge">↻</div>
       <div class="badge snd" id="sndBadge">🔇</div>
+      <div class="badge del" id="delBadge">🗑️</div>
+      <div class="badge reset" id="resetBadge">🧹</div>
       <div class="center" id="wheelCenter"></div>
     </div>
+    <button id="settingsBtn" class="settings-btn" aria-pressed="false" aria-label="设置">⚙️</button>
   </section>
 </div>
 
@@ -237,6 +263,64 @@ dirBadge.addEventListener('click',e=>{e.stopPropagation();invert=!invert;localSt
     wheel.setPointerCapture?.(ev.pointerId);
   }
 
+  // === 删除模式 ===
+  const delBadge = document.getElementById('delBadge');
+  let deleteMode = false;
+  function setDeleteMode(on) {
+    deleteMode = !!on;
+    document.body.classList.toggle('del-mode', deleteMode);
+    delBadge.classList.toggle('on', deleteMode);
+  }
+  delBadge.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setDeleteMode(!deleteMode);
+  });
+
+  // 删除当前选中的书签（跳过“Add”项）
+  function deleteAtCurrent() {
+    const idx = currentIndex;
+    const item = allLinks[idx];
+    if (!item) return;
+    if (item.href === '#add') {                       // 不删“Add”
+      navigator.vibrate?.(20);
+      return;
+    }
+    allLinks.splice(idx, 1);
+    localStorage.setItem('allLinksOrder', JSON.stringify(allLinks));
+    if (currentIndex >= allLinks.length) currentIndex = Math.max(0, allLinks.length - 1);
+    render();                // 重新渲染
+    toggleDrawer(open);      // 保持当前抽屉状态并夹紧索引
+  }
+  
+  // === 重置（清除本页存储并回到默认） ===
+    const resetBadge = document.getElementById('resetBadge');
+    resetBadge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const ok = confirm('重置：将清空已保存的书签排序、旋转方向、声音开关等设置。\n此操作不可撤销，确定继续？');
+      if (!ok) return;
+
+      // 清除本页面使用的存储键（避免误清其它页面数据）
+      localStorage.removeItem('allLinksOrder');
+      localStorage.removeItem('wheelInvert');
+      localStorage.removeItem('soundOn');
+
+      // 退出删除模式
+      setDeleteMode(false);
+
+      // 还原内存状态 & UI
+      allLinks = defaultLinks.slice();
+      invert = false; dirBadge.textContent = '↻';
+      soundOn = false; syncSnd();
+      currentIndex = 0;
+
+      // 重新渲染并关闭抽屉
+      render();
+      if (open) toggleDrawer(false);
+
+      // 轻微反馈
+      navigator.vibrate?.(20);
+    });
+
   // ====== 加入 iPod 拨轮音效 ======
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const clickWave = (() => { const r = new Float32Array([0, 0, 0.6, 0, 0.3]); const i = new Float32Array([0, 1, 0, 0.5, 0]); return audioCtx.createPeriodicWave(r, i, { disableNormalization: true }); })();
@@ -351,10 +435,14 @@ dirBadge.addEventListener('click',e=>{e.stopPropagation();invert=!invert;localSt
   }
   center.addEventListener('click', async () => {
     try { if (audioCtx.state !== 'running') await audioCtx.resume(); } catch (e) { }
-    playCenterBeep();  // 先播“bi”
+    if (deleteMode) {         // 🔴 删除模式：中键 = 删除
+      deleteAtCurrent();
+      return;
+    }
+    playCenterBeep();         // 普通模式：中键 = 打开链接
     const list = open ? drawerEl.querySelectorAll('.dock-item') : dockEl.querySelectorAll('.dock-item');
     const vi = open ? currentIndex - DOCK_COUNT : currentIndex;
-    list[vi]?.click(); // 再打开当前项
+    list[vi]?.click();
   });
 center.addEventListener('touchstart',()=>{pressTimer=setTimeout(()=>toggleDrawer(!open),500);},{passive:true});
 center.addEventListener('touchend',()=>clearTimeout(pressTimer),{passive:true});
@@ -399,6 +487,14 @@ toggleDrawer(false);
   // ===== 左侧滑条：拖动调节 #controls 上移距离（--controlsShift），最多到屏幕中线 =====
   const root = document.documentElement;
   const controls = document.getElementById('controls');
+  // ⚙️ 设置按钮：切换显示/隐藏四个徽标
+    const settingsBtn = document.getElementById('settingsBtn');
+    settingsBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const on = controls.classList.toggle('show-settings');
+      settingsBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      navigator.vibrate?.(10);
+    });
   const splitHandle = document.getElementById('splitHandle');
   const thumb = splitHandle.querySelector('.thumb');
 
