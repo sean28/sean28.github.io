@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Publications | Dr. Sean’s Research Group</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:"PingFang SC","Arial Rounded MT Bold","Helvetica Rounded","Microsoft YaHei UI","Segoe UI",sans-serif;background:#f6f9fc;color:#222;}
+    nav{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;padding:1.5em 2em;background:rgba(255,255,255,0.95);box-shadow:0 2px 10px rgba(0,0,0,0.3);border-radius:25px;margin-top:35px;position:sticky;top:20px;z-index:999;max-width:1125px;margin-left:auto;margin-right:auto;}
+    nav .logo{font-size:20px;font-weight:bold;color:#222;}
+    nav .menu a{margin-left:2em;text-decoration:none;font-size:18px;color:#333;font-weight:500;}
+    nav .menu a:hover{color:#0d6efd;transition:0.3s;}
+    nav .menu .btn{background:#0d6efd;color:#fff;padding:0.4em 1em;border-radius:20px;text-decoration:none;}
+    nav .menu .btn:hover{background:#0056d2;color:#fff;text-decoration:none;}
+    .hero{max-width:1125px;margin:4em auto 2em;padding:3em 2em;border-radius:30px;background:linear-gradient(120deg,#eaf4ff 0%,#ffffff 75%);box-shadow:0 0 30px rgba(0,0,0,0.08);}
+    .hero h1{font-size:40px;margin:0 0 0.4em;color:#222;}
+    .hero h1 span{color:#0d6efd;}
+    .hero p{font-size:16px;color:#555;line-height:1.8;max-width:850px;margin:0;}
+    .timeline{max-width:1125px;margin:0 auto 4em;padding:0em 2em 3em;}
+    .year{margin-top:1.65em;margin-bottom:1em;font-size:28px;color:#0d6efd;border-left:6px solid #0d6efd;padding-left:0.6em;}
+    .paper{background:#fff;border-radius:20px;padding:1.4em 1.6em;margin:1em 0;box-shadow:0 4px 14px rgba(0,0,0,0.07);transition:0.3s ease;}
+    .paper:hover{transform:translateY(-4px);background:#f0f8ff;box-shadow:0 8px 22px rgba(0,0,0,0.12);}
+    .paper h3{margin:0 0 0.6em;font-size:19px;line-height:1.5;color:#222;}
+    .authors{font-size:15px;color:#555;line-height:1.8;margin:0.3em 0;}
+    .journal{font-size:15px;color:#444;line-height:1.8;margin:0.3em 0 1em;}
+    .links a{display:inline-block;margin-right:0.8em;margin-top:0.4em;padding:0.35em 0.9em;border-radius:18px;background:#e9f2ff;color:#0d6efd;text-decoration:none;font-size:14px;font-weight:600;}
+    .links a:hover{background:#0d6efd;color:#fff;}
+    .back{display:inline-block;margin-top:1em;color:#0d6efd;text-decoration:none;font-weight:600;}
+    footer{text-align:center;color:#777;font-size:14px;padding:2em 1em;}
+
+    .stats{max-width:1125px;margin:2.25em auto 0.3em;padding:0.5em 2em 0;}
+    .stats-box{background:#fff;border-radius:24px;padding:1.8em 2em;box-shadow:0 4px 16px rgba(0,0,0,0.07);}
+    .stats-header{display:flex;justify-content:space-between;align-items:flex-end;gap:1em;flex-wrap:wrap;margin-bottom:1.5em;}
+    .stats-header h2{margin:0;color:#222;font-size:26px;}
+    .stats-header p{margin:0;color:#666;font-size:15px;transform:translateY(-15px);}
+    .stats-grid{display:grid;grid-template-columns:1fr 2fr;gap:2em;align-items:end;}
+    .stats-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1em;}
+    .stat-card{background:#f6f9fc;border-radius:18px;padding:1.2em;text-align:center;}
+    .stat-number{font-size:32px;font-weight:800;color:#0d6efd;line-height:1;}
+    .stat-label{font-size:14px;color:#666;margin-top:0.6em;}
+    .bar-chart{height:240px;display:flex;align-items:flex-end;gap:1.2em;border-left:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding:0 1em 1.8em;position:relative;}
+    .bar-chart::before{content:"";position:absolute;left:0;right:0;top:33%;border-top:1px solid #ededed;}
+    .bar-chart::after{content:"";position:absolute;left:0;right:0;top:66%;border-top:1px solid #ededed;}
+    .bar-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;z-index:1;}
+    .bar{width:42px;background:#7b7b7b;border-radius:6px 6px 0 0;transition:0.3s ease;position:relative;}
+    .bar:hover{background:#0d6efd;transform:translateY(-4px);}
+    .bar span{position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-size:14px;font-weight:700;color:#555;opacity:0;transition:0.3s ease;}
+    .bar:hover span{opacity:1;}
+    .bar-year{font-size:14px;color:#777;margin-top:0.8em;}
+    @media(max-width:768px){nav{gap:1em;padding:1em 1.5em;}nav .logo{font-size:16px;}nav .menu a{display:inline-block;margin-left:0;margin-right:1em;margin-top:0.6em;font-size:15px;}.hero{margin:2em 1em;padding:2em 1.4em;}.hero h1{font-size:28px;}.stats{padding:0 1em;}.stats-box{padding:1.4em;}.stats-grid{grid-template-columns:1fr;gap:1.5em;}.stats-cards{grid-template-columns:repeat(2,1fr);}.bar-chart{gap:0.5em;padding-left:0.5em;padding-right:0.5em;}.bar{width:26px;}.timeline{padding:0 1em 2em;}.year{font-size:24px;}.paper{padding:1.2em;}.paper h3{font-size:17px;}}
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a class="logo" href="index.html#home" style="text-decoration:none">CADD & AIDD Platform</a>
+    <div class="menu">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#directory">Tool</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="publications.html">Publication</a>
+      <a href="index.html#directory" class="btn">Get Started</a>
+    </div>
+  </nav>
+
+  <section class="stats">
+    <div class="stats-box">
+      <div class="stats-header">
+        <h2>📊 Publication Statistics</h2>
+        <p>Publication count by year, updated according to the listed records.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stats-cards">
+          <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Publications</div></div>
+          <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">JCR Q1</div></div>
+          <div class="stat-card"><div class="stat-number">7</div><div class="stat-label">First/Corresponding</div></div>
+          <div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Collaborations</div></div>
+        </div>
+        <div class="bar-chart" aria-label="Publication statistics by year">
+          <div class="bar-item"><div class="bar" style="height:66.7%;"><span>2</span></div><div class="bar-year">2019</div></div>
+          <div class="bar-item"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2020</div></div>
+          <div class="bar-item"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2021</div></div>
+          <div class="bar-item"><div class="bar" style="height:100%;"><span>3</span></div><div class="bar-year">2022</div></div>
+          <div class="bar-item"><div class="bar" style="height:33.3%;"><span>1</span></div><div class="bar-year">2023</div></div>
+          <div class="bar-item"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2024</div></div>
+          <div class="bar-item"><div class="bar" style="height:100%;"><span>3</span></div><div class="bar-year">2025</div></div>
+          <div class="bar-item"><div class="bar" style="height:100%;"><span>3</span></div><div class="bar-year">2026</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="timeline">
+    <h2 class="year">2026</h2>
+    <article class="paper">
+      <h3>Structural adaptation associated with signaling preference at the human Growth Hormone Releasing Hormone Receptor</h3>
+      <p class="authors">Ming Wei Wang, Kai Ni Hang, <strong>Qiu Yue</strong>, Xianyue Chen, Yanyan Chen, Shengtian Huang, Zhaotong Cong, Qingtong Zhou.</p>
+      <p class="journal"><strong>Protein & Cell</strong>, 2026. IF: 12.8, Q1.</p>
+      <div class="links"><a href="https://doi.org/10.1093/procel/pwag016" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>Mixed Solvent MD Suite: Modular Tools for Building and Analyzing Mixed Solvent Molecular Dynamics Systems</h3>
+      <p class="authors"><strong>Qiu Yue</strong>, Qing Liu, Jian Wu Xie.</p>
+      <p class="journal"><strong>Journal of Computer Aided Molecular Design</strong>, 2026. IF: 4.179, Q2.</p>
+      <div class="links"><a href="https://doi.org/10.21203/rs.3.rs-9262224/v1" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>Comparative analysis of gastrointestinal metabolism of quinone chalcone C glucoside and flavonol O glycoside from safflower and their unique interactions with intestinal microbiota</h3>
+      <p class="authors">Jiang Hua Juan, <strong>Qiu Yue</strong>, Xu Long Huang, Bin Xian, Chao Xiang Ren, Di Wang, Tao Zhou, Jin Pei.</p>
+      <p class="journal"><strong>Journal of Ethnopharmacology</strong>, 2026. IF: 5.4, Q1.</p>
+      <div class="links"><a href="https://doi.org/10.1016/j.jep.2025.121144" target="_blank">DOI / Link</a></div>
+    </article>
+
+    <h2 class="year">2025</h2>
+    <article class="paper">
+      <h3>Review of the Crystallized Structures of the SARS CoV 2 papain like protease</h3>
+      <p class="authors"><strong>Qiu Yue</strong>, Jiang Hua Juan, Yang Yu Shun, Hu Xiao Qin, Zeng Xue Wen.</p>
+      <p class="journal"><strong>Journal of Molecular Structure</strong>, 2025, 141730. IF: 4.7, Q2.</p>
+      <div class="links"><a href="https://doi.org/10.1016/j.molstruc.2025.141730" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>Discovery of the inhibitors of SARS CoV 2 papain like protease using molecular simulation and Markov State Model</h3>
+      <p class="authors"><strong>Qiu Yue</strong>, Hong Wei Ling, Wang Xiao, Liao Cheng Pu, Jiang Shi Peng, Jiang Hua Juan.</p>
+      <p class="journal"><strong>The Journal of Physical Chemistry A</strong>, 2025. IF: 2.8, Q2.</p>
+      <div class="links"><a href="https://doi.org/10.1021/acs.jpca.5c04728" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>The role of macrophages in vascular calcification: strategies for diagnosis and treatment</h3>
+      <p class="authors">Sheng Ying Kun, <strong>Qiu Yue</strong>, Wang Xiao, Shi Jing Yi, Yin Zi Yan, Zhang Zi Le, Jiang Shi Peng, Zhang Jian, Hu Xiao Xiao, Hong Wei Ling.</p>
+      <p class="journal"><strong>Frontiers in Immunology</strong>, 2025. IF: 5.9, Q1.</p>
+      <div class="links"><a href="https://doi.org/10.3389/fimmu.2025.1724464" target="_blank">DOI / Link</a></div>
+    </article>
+
+    <h2 class="year">2023</h2>
+    <article class="paper">
+      <h3>Design and synthesis of isatin derivatives as effective SARS CoV 2 3CL protease inhibitors</h3>
+      <p class="authors">Bao Hong Lei, Tu Gao, <strong>Qiu Yue</strong>, Liu Pei, Zheng Hui Li, Yao Xiao Jun.</p>
+      <p class="journal"><strong>Chemical Biology & Drug Design</strong>, 2023. IF: 3.0, Q2.</p>
+      <div class="links"><a href="https://doi.org/10.1111/cbdd.14296" target="_blank">DOI / Link</a></div>
+    </article>
+
+    <h2 class="year">2022</h2>
+    <article class="paper">
+      <h3>Discovery of the Cryptic Sites of SARS CoV 2 Papain like Protease and Analysis of Its Druggability</h3>
+      <p class="authors"><strong>Qiu Yue</strong>, Liu Qing, Tu Gao, Yao Xiao Jun.</p>
+      <p class="journal"><strong>International Journal of Molecular Sciences</strong>, 2022, 23(19), 11265. IF: 6.208, Q1.</p>
+      <div class="links"><a href="https://doi.org/10.3390/ijms231911265" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>Long Timescale Simulations Revealed Critical Non Conserved Residues of Phosphodiesterases Affecting Selectivity of BAY60 7550</h3>
+      <p class="authors">Liu Qing, Song Meng, <strong>Qiu Yue</strong>, Elaine Lai Han Leung, Huang Qiang, Yao Xiao Jun.</p>
+      <p class="journal"><strong>Computational and Structural Biotechnology Journal</strong>, 2022. IF: 7.271, Q1.</p>
+      <div class="links"><a href="https://doi.org/10.1016/j.csbj.2022.09.013" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>In Silico Study of the Acquired Resistance Caused by the Secondary Mutations of KRAS G12C Protein Using Long Time Molecular Dynamics Simulation and Markov State Model Analysis</h3>
+      <p class="authors">Tu Gao, Liu Qing, <strong>Qiu Yue</strong>, Elaine Lai Han Leung, Yao Xiao Jun.</p>
+      <p class="journal"><strong>International Journal of Molecular Sciences</strong>, 2022, 23(22). IF: 6.208, Q1.</p>
+      <div class="links"><a href="https://doi.org/10.3390/ijms232213845" target="_blank">DOI / Link</a></div>
+    </article>
+
+    <h2 class="year">2019</h2>
+    <article class="paper">
+      <h3>Zhujie Hewei granules ameliorated reflux esophagitis in rats</h3>
+      <p class="authors"><strong>Qiu Yue</strong>, Zhao Chun Cao, Wu Fei, Ruan Ke Feng, Zhang Ji Quan, Hu Jia Liang.</p>
+      <p class="journal"><strong>Evidence Based Complementary and Alternative Medicine</strong>, 2019, 1392020. IF: 2.65, Q2.</p>
+      <div class="links"><a href="https://doi.org/10.1155/2019/1392020" target="_blank">DOI / Link</a></div>
+    </article>
+    <article class="paper">
+      <h3>Study on the thermal stability of concentration process of Zhujie Hewei Fang</h3>
+      <p class="authors"><strong>Qiu Yue</strong>, Zhao Chun Cao, Wu Fei, Ruan Ke Feng, Zhang Ji Quan, Hu Jia Liang.</p>
+      <p class="journal"><strong>Chinese Journal of New Drugs</strong>, 2019, 28, 104 to 109.</p>
+      <div class="links"><a href="https://kns.cnki.net/kcms2/article/abstract?v=kn2pS460sOMeRc5Qe7khi4Hs1qOw3fhk9brK2Z6RFgNmljseqx_PVy24fHFOXcIV7zzI_Y_opH-RIws7MUjw213aYYZOKtvbsJ7ahuPKHFfz-RJErez36IpSgbubcOsm7IgHNSExxMmzgIhpd2Hwb7us5JLcXJHRbyFHPYlI4bM=&uniplatform=NZKPT" target="_blank">Link</a></div>
+    </article>
+  </main>
+
+  <footer>© Dr. Sean’s Research Group</footer>
+</body>
+</html>
