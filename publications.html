@@ -34,11 +34,11 @@
     .stats-header h2{margin:0;color:#222;font-size:26px;}
     .stats-header p{margin:0;color:#666;font-size:15px;transform:translateY(-15px);}
     .stats-grid{display:grid;grid-template-columns:1fr 2fr;gap:2em;align-items:end;}
-    .stats-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1em;}
+    .stats-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1em;transform:translateY(-35px);}
     .stat-card{background:#f6f9fc;border-radius:18px;padding:1.2em;text-align:center;}
     .stat-number{font-size:32px;font-weight:800;color:#0d6efd;line-height:1;}
     .stat-label{font-size:14px;color:#666;margin-top:0.6em;}
-    .bar-chart{height:240px;display:flex;align-items:flex-end;gap:1.2em;border-left:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding:0 1em 1.8em;position:relative;}
+    .bar-chart{height:240px;display:flex;align-items:flex-end;gap:0em;border-left:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding:0 1em 1.8em;position:relative;}
     .bar-chart::before{content:"";position:absolute;left:0;right:0;top:33%;border-top:1px solid #ededed;}
     .bar-chart::after{content:"";position:absolute;left:0;right:0;top:66%;border-top:1px solid #ededed;}
     .bar-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;z-index:1;}
@@ -47,9 +47,29 @@
     .bar span{position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-size:14px;font-weight:700;color:#555;opacity:0;transition:0.3s ease;}
     .bar:hover span{opacity:1;}
     .bar-year{font-size:14px;color:#777;margin-top:0.8em;}
-    @media(max-width:768px){nav{gap:1em;padding:1em 1.5em;}nav .logo{font-size:16px;}nav .menu a{display:inline-block;margin-left:0;margin-right:1em;margin-top:0.6em;font-size:15px;}.hero{margin:2em 1em;padding:2em 1.4em;}.hero h1{font-size:28px;}.stats{padding:0 1em;}.stats-box{padding:1.4em;}.stats-grid{grid-template-columns:1fr;gap:1.5em;}.stats-cards{grid-template-columns:repeat(2,1fr);}.bar-chart{gap:0.5em;padding-left:0.5em;padding-right:0.5em;}.bar{width:26px;}.timeline{padding:0 1em 2em;}.year{font-size:24px;}.paper{padding:1.2em;}.paper h3{font-size:17px;}}
+    .bar-item.zero{flex:0.45;}
+    .bar-item.zero .bar{width:8px;height:4px !important;background:#d8d8d8;border-radius:4px;}
+    .bar-item.zero .bar-year{color:#aaa;}
+    @media(max-width:768px){
+      nav{gap:1em;padding:1em 1.5em;}
+      nav .logo{font-size:16px;}
+      nav .menu a{display:inline-block;margin-left:0;margin-right:1em;margin-top:0.6em;font-size:15px;}
+      .hero{margin:2em 1em;padding:2em 1.4em;}
+      .hero h1{font-size:28px;}
+      .stats{padding:0 1em;}
+      .stats-box{padding:1.4em;}
+      .stats-grid{grid-template-columns:1fr;gap:1.5em;}
+      .stats-cards{grid-template-columns:repeat(2,1fr);}
+      .bar-chart{gap:0.5em;padding-left:0.5em;padding-right:0.5em;}
+      .bar{width:26px;}
+      .timeline{padding:0 1em 2em;}
+      .year{font-size:24px;}
+      .paper{padding:1.2em;}
+      .paper h3{font-size:17px;}
+    }
   </style>
 </head>
+
 <body>
   <nav id="navbar">
     <a class="logo" href="index.html#home" style="text-decoration:none">CADD & AIDD Platform</a>
@@ -77,11 +97,11 @@
         </div>
         <div class="bar-chart" aria-label="Publication statistics by year">
           <div class="bar-item"><div class="bar" style="height:66.7%;"><span>2</span></div><div class="bar-year">2019</div></div>
-          <div class="bar-item"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2020</div></div>
-          <div class="bar-item"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2021</div></div>
+          <div class="bar-item zero"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2020</div></div>
+          <div class="bar-item zero"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2021</div></div>  
           <div class="bar-item"><div class="bar" style="height:100%;"><span>3</span></div><div class="bar-year">2022</div></div>
           <div class="bar-item"><div class="bar" style="height:33.3%;"><span>1</span></div><div class="bar-year">2023</div></div>
-          <div class="bar-item"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2024</div></div>
+          <div class="bar-item zero"><div class="bar" style="height:0%;"><span>0</span></div><div class="bar-year">2024</div></div>
           <div class="bar-item"><div class="bar" style="height:100%;"><span>3</span></div><div class="bar-year">2025</div></div>
           <div class="bar-item"><div class="bar" style="height:100%;"><span>3</span></div><div class="bar-year">2026</div></div>
         </div>
