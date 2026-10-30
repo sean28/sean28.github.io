@@ -30,9 +30,12 @@
 
     .stats{max-width:1125px;margin:2.25em auto 0.3em;padding:0.5em 2em 0;}
     .stats-box{background:#fff;border-radius:24px;padding:1.8em 2em;box-shadow:0 4px 16px rgba(0,0,0,0.07);}
-    .stats-header{display:flex;justify-content:space-between;align-items:flex-end;gap:1em;flex-wrap:wrap;margin-bottom:1.5em;}
+    .stats-header{display:flex;justify-content:space-between;align-items:center;gap:1em;flex-wrap:wrap;margin-bottom:1.5em;}
     .stats-header h2{margin:0;color:#222;font-size:26px;}
-    .stats-header p{margin:0;color:#666;font-size:15px;transform:translateY(-15px);}
+    .stats-header p{margin:0;color:#666;font-size:15px;}
+    .stats-meta{text-align:right;}
+    .scholar-link{display:inline-block;margin-top:0.4em;color:#0d6efd;font-size:13px;font-weight:400;text-decoration:none;}
+    .scholar-link:hover{text-decoration:underline;}
     .stats-grid{display:grid;grid-template-columns:1fr 2fr;gap:2em;align-items:end;}
     .stats-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1em;transform:translateY(-35px);}
     .stat-card{background:#f6f9fc;border-radius:18px;padding:1.2em;text-align:center;}
@@ -44,7 +47,7 @@
     .bar-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;z-index:1;}
     .bar{width:42px;background:#7b7b7b;border-radius:6px 6px 0 0;transition:0.3s ease;position:relative;}
     .bar:hover{background:#0d6efd;transform:translateY(-4px);}
-    .bar span{position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-size:14px;font-weight:700;color:#555;opacity:0;transition:0.3s ease;}
+    .bar span{position:absolute;top:-21px;left:50%;transform:translateX(-50%);font-size:14px;font-weight:700;color:#555;opacity:0;transition:0.3s ease;}
     .bar:hover span{opacity:1;}
     .bar-year{font-size:14px;color:#777;margin-top:0.8em;}
     .bar-item.zero{flex:0.45;}
@@ -58,6 +61,7 @@
       .hero h1{font-size:28px;}
       .stats{padding:0 1em;}
       .stats-box{padding:1.4em;}
+      .stats-meta{text-align:left;}
       .stats-grid{grid-template-columns:1fr;gap:1.5em;}
       .stats-cards{grid-template-columns:repeat(2,1fr);}
       .bar-chart{gap:0.5em;padding-left:0.5em;padding-right:0.5em;}
@@ -86,7 +90,10 @@
     <div class="stats-box">
       <div class="stats-header">
         <h2>📊 Publication Statistics</h2>
-        <p>Publication count by year, updated according to the listed records.</p>
+        <div class="stats-meta">
+          <p>Publication count by year, updated according to the listed records.</p>
+          <a class="scholar-link" href="https://scholar.google.com/citations?user=XcOIEEwAAAAJ&amp;hl=zh-CN&amp;oi=sra" target="_blank" rel="noopener noreferrer">☞ Google Scholar</a>
+        </div>
       </div>
       <div class="stats-grid">
         <div class="stats-cards">
